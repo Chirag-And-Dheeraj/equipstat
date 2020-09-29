@@ -429,3 +429,5 @@ fabric.properties
 
 
 secret.py
+tailwindCSS/   
+.tailwindCSS/*

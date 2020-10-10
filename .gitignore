@@ -429,5 +429,8 @@ fabric.properties
 
 
 secret.py
-tailwindCSS/   
-.tailwindCSS/*
+src/
+package-lock.json
+package.json
+tailwind.config.js
+tailwind.configdefault.js

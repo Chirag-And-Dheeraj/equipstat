@@ -16177,6 +16177,10 @@ video {
   box-shadow: none;
 }
 
+.shadow-my{
+  box-shadow: 0 25px 50px -12px rgba(255 , 255 , 255 , 0.5);
+}
+
 .hover\:shadow-xs:hover{
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
 }
@@ -16217,6 +16221,10 @@ video {
   box-shadow: none;
 }
 
+.hover\:shadow-my:hover{
+  box-shadow: 0 25px 50px -12px rgba(255 , 255 , 255 , 0.5);
+}
+
 .focus\:shadow-xs:focus{
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
 }
@@ -16255,6 +16263,10 @@ video {
 
 .focus\:shadow-none:focus{
   box-shadow: none;
+}
+
+.focus\:shadow-my:focus{
+  box-shadow: 0 25px 50px -12px rgba(255 , 255 , 255 , 0.5);
 }
 
 .fill-current{
@@ -21029,6 +21041,19 @@ video {
 .animate-bounce{
   -webkit-animation: bounce 1s infinite;
           animation: bounce 1s infinite;
+}
+
+.card{
+  border-radius: 0.5rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --bg-opacity: 1;
+  background-color: #000;
+  background-color: rgba(0, 0, 0, var(--bg-opacity));
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+  --text-opacity: 1;
+  color: #718096;
+  color: rgba(113, 128, 150, var(--text-opacity));
 }
 
 @media (min-width: 640px){
@@ -36621,6 +36646,10 @@ video {
     box-shadow: none;
   }
 
+  .sm\:shadow-my{
+    box-shadow: 0 25px 50px -12px rgba(255 , 255 , 255 , 0.5);
+  }
+
   .sm\:hover\:shadow-xs:hover{
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
   }
@@ -36661,6 +36690,10 @@ video {
     box-shadow: none;
   }
 
+  .sm\:hover\:shadow-my:hover{
+    box-shadow: 0 25px 50px -12px rgba(255 , 255 , 255 , 0.5);
+  }
+
   .sm\:focus\:shadow-xs:focus{
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
   }
@@ -36699,6 +36732,10 @@ video {
 
   .sm\:focus\:shadow-none:focus{
     box-shadow: none;
+  }
+
+  .sm\:focus\:shadow-my:focus{
+    box-shadow: 0 25px 50px -12px rgba(255 , 255 , 255 , 0.5);
   }
 
   .sm\:fill-current{
@@ -57000,6 +57037,10 @@ video {
     box-shadow: none;
   }
 
+  .md\:shadow-my{
+    box-shadow: 0 25px 50px -12px rgba(255 , 255 , 255 , 0.5);
+  }
+
   .md\:hover\:shadow-xs:hover{
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
   }
@@ -57040,6 +57081,10 @@ video {
     box-shadow: none;
   }
 
+  .md\:hover\:shadow-my:hover{
+    box-shadow: 0 25px 50px -12px rgba(255 , 255 , 255 , 0.5);
+  }
+
   .md\:focus\:shadow-xs:focus{
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
   }
@@ -57078,6 +57123,10 @@ video {
 
   .md\:focus\:shadow-none:focus{
     box-shadow: none;
+  }
+
+  .md\:focus\:shadow-my:focus{
+    box-shadow: 0 25px 50px -12px rgba(255 , 255 , 255 , 0.5);
   }
 
   .md\:fill-current{
@@ -77379,6 +77428,10 @@ video {
     box-shadow: none;
   }
 
+  .lg\:shadow-my{
+    box-shadow: 0 25px 50px -12px rgba(255 , 255 , 255 , 0.5);
+  }
+
   .lg\:hover\:shadow-xs:hover{
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
   }
@@ -77419,6 +77472,10 @@ video {
     box-shadow: none;
   }
 
+  .lg\:hover\:shadow-my:hover{
+    box-shadow: 0 25px 50px -12px rgba(255 , 255 , 255 , 0.5);
+  }
+
   .lg\:focus\:shadow-xs:focus{
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
   }
@@ -77457,6 +77514,10 @@ video {
 
   .lg\:focus\:shadow-none:focus{
     box-shadow: none;
+  }
+
+  .lg\:focus\:shadow-my:focus{
+    box-shadow: 0 25px 50px -12px rgba(255 , 255 , 255 , 0.5);
   }
 
   .lg\:fill-current{
@@ -97758,6 +97819,10 @@ video {
     box-shadow: none;
   }
 
+  .xl\:shadow-my{
+    box-shadow: 0 25px 50px -12px rgba(255 , 255 , 255 , 0.5);
+  }
+
   .xl\:hover\:shadow-xs:hover{
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
   }
@@ -97798,6 +97863,10 @@ video {
     box-shadow: none;
   }
 
+  .xl\:hover\:shadow-my:hover{
+    box-shadow: 0 25px 50px -12px rgba(255 , 255 , 255 , 0.5);
+  }
+
   .xl\:focus\:shadow-xs:focus{
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
   }
@@ -97836,6 +97905,10 @@ video {
 
   .xl\:focus\:shadow-none:focus{
     box-shadow: none;
+  }
+
+  .xl\:focus\:shadow-my:focus{
+    box-shadow: 0 25px 50px -12px rgba(255 , 255 , 255 , 0.5);
   }
 
   .xl\:fill-current{
@@ -102546,3 +102619,4 @@ video {
             animation: bounce 1s infinite;
   }
 }
+

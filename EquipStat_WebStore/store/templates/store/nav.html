@@ -1,1 +1,31 @@
-<h1>Navbar</h1>
+{% load static %}
+<header class="shadow-2xl">
+    <nav class="bg-gray-600 grid grid-cols-12 py-3">
+        <div id="toggle_btn" class="text-3xl text-center w-12 col-span-1">
+            <a href="">
+                <i class="fa fa-bars"></i>
+            </a>
+        </div>
+        <div id="toggle_search" class="col-span-2">
+            <div class="bg-white flex items-center rounded-full shadow-xl p-0">
+                <input id="search" type="text" class="text-gray-700 w-full rounded-full py-2 px-3 focus:outline-none " placeholder="Search">
+                <div class="p-1">
+                    <button class="bg-black text-white rounded-full p-2 hover:bg-gray-900 focus:outline-none w-10 h-10 flex items-center justify-center">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="logo" class="col-start-6 col-end-8 justify-self-center">
+            <a href=""><h3 class="text-3xl font-black">Equipstat</h3></a>
+        </div>
+        <div id="account_cart" class="flex col-start-12 ">`
+            <button class="bg-black text-white rounded-full p-2 hover:bg-gray-900 focus:outline-none w-10 h-10 flex items-center justify-center">
+                <i class="fa fa-user"></i>
+            </button>
+            <button class="bg-black  mx-2 text-white rounded-full p-2 hover:bg-gray-900 focus:outline-none w-10 h-10 flex items-center justify-center">
+                <i class="fa fa-shopping-cart"></i>
+            </button>
+        </div>
+    </nav>
+</header>

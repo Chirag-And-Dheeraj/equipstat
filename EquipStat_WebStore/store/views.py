@@ -11,7 +11,7 @@ def store(request):
 
 def about(request):
     context = {}
-    return render(request, 'store/about.html', context)
+    return render(request, 'store/about_us.html', context)
 
 def contact(request):
     context = {}

@@ -1,4 +1,17 @@
 {% extends 'store/main.html' %} 
 {% block content %}
     <h1>Store</h1>
+    <br><br>
+    {% for product in newProducts %}
+    <div class="product">
+        <hr>
+        <img class="thumbnail" src="{{ product.imageURL }}">
+        <p>Name: {{ product.name }}</p> <br>
+        <p>MRP: {{ product.mrp }}</p> <br>
+        <p>Our Price: {{ product.ourPrice }}</p> <br>
+        <p>Stock: {{ product.inventory }}</p> <br>
+        <p>Details: {{ product.details }}</p> <br>
+        <hr>
+    </div>
+    {% endfor %}
 {% endblock %}

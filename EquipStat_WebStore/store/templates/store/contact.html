@@ -1,21 +1,43 @@
 {% extends 'store/main.html' %} 
 {% block content %}
-    <h1>Contact page</h1>
-    <form action="" method="POST">
-        {% csrf_token %} 
-        {{ form.firstName.label_tag }}
-        {{ form.firstName }} <br> <br>
-        {{ form.lastName.label_tag }}
-        {{ form.lastName }} <br> <br>
-        {{ form.email.label_tag }}
-        {{ form.email }} <br> <br>
-        {{ form.contact.label_tag }}
-        {{ form.contact }} <br> <br>
-        {{ form.typeOfMessage.label_tag }}
-        {{ form.typeOfMessage }} <br> <br>
-        {{ form.message.label_tag }} <br>
-        {{ form.message }} <br> <br>
-        <br>
-        <input type="submit" name="Submit">
-    </form>
+    <div class="grid grid-cols-12">
+        <div class="card m-5 col-start-3 col-end-11">
+            <form action="" method="POST">
+                <div class="grid grid-rows-6 grid-cols-2 py-5"> 
+                    {% csrf_token %}
+                    <div class=" grid grid-cols-2 col-span-2"> 
+                        <div class="col-start-1 px-10">
+                            {{ form.firstName.label_tag }}
+                            {{ form.firstName }} 
+                        </div>
+                        <div class="col-start-2 px-10">
+                            {{ form.lastName.label_tag }}
+                            {{ form.lastName }} 
+                        </div>
+                    </div>
+                    <div class="col-span-2 px-10">
+                        {{ form.email.label_tag }}
+                        {{ form.email }}
+                    </div> 
+                    <div class="grid grid-cols-2 col-span-2">
+                        <div class="col-start-1 px-10">
+                            {{ form.contact.label_tag }}
+                            {{ form.contact }}
+                        </div>
+                        <div class="col-start-2 px-10"> 
+                            {{ form.typeOfMessage.label_tag }}<br>
+                            {{ form.typeOfMessage }}
+                       </div>
+                    </div>  
+                    <div class="row-span-2 px-10 col-span-2">
+                        {{ form.message.label_tag }} 
+                        {{ form.message }} 
+                    </div>
+                    <div class="grid justify-items-center items-center text-center col-span-2 row-span-1">
+                        <input class="bg-gray-500 text-black hover:text-white hover:bg-gray-800 p-3 rounded w-1/4 border-b-4 border-gray-700 hover:border-gray-500 focus:outline-none " type="submit" name="Submit">
+                    </div>
+               </div>
+            </form>
+        </div>
+    </div> 
 {% endblock %}

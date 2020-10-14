@@ -56,3 +56,16 @@ class ProductNew(models.Model):
 
     def __str__(self):
         return self.name
+
+
+
+MESSAGE_TYPES = ( ('1', 'Grievance'), ('2', 'Feedback') )
+
+class ContactUsDetail(models.Model):
+    # user = models.OneToOneField(User, on_delete=models.CASCADE)
+    firstName = models.CharField(max_length=30)
+    lastName = models.CharField(max_length=30)
+    email = models.EmailField()
+    contact = models.CharField(max_length=10, null=True)
+    typeOfMessage = models.CharField(max_length=10, choices=MESSAGE_TYPES)
+    message = models.TextField()

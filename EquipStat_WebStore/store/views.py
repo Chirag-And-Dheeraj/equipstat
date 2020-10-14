@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import *
+from .forms import *
 # Create your views here.
 def home(request):
     context = {}
@@ -15,6 +16,15 @@ def about(request):
     return render(request, 'store/about_us.html', context)
 
 def contact(request):
+    form = ContactUsForm()
+    if request.method == 'POST':
+        form = ContactUsForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    context = {'form':form}
+    return render(request, 'store/contact.html', context)
+
     context = {}
     return render(request, 'store/contact.html', context)
 

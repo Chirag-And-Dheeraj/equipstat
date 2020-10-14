@@ -7,5 +7,5 @@ from .models import *
 admin.site.register(UserDetail)
 admin.site.register(ProductRefurbished)
 admin.site.register(ProductNew)
-
+admin.site.register(ContactUsDetail)
 

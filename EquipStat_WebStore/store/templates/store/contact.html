@@ -1,4 +1,21 @@
 {% extends 'store/main.html' %} 
 {% block content %}
     <h1>Contact page</h1>
+    <form action="" method="POST">
+        {% csrf_token %} 
+        {{ form.firstName.label_tag }}
+        {{ form.firstName }} <br> <br>
+        {{ form.lastName.label_tag }}
+        {{ form.lastName }} <br> <br>
+        {{ form.email.label_tag }}
+        {{ form.email }} <br> <br>
+        {{ form.contact.label_tag }}
+        {{ form.contact }} <br> <br>
+        {{ form.typeOfMessage.label_tag }}
+        {{ form.typeOfMessage }} <br> <br>
+        {{ form.message.label_tag }} <br>
+        {{ form.message }} <br> <br>
+        <br>
+        <input type="submit" name="Submit">
+    </form>
 {% endblock %}

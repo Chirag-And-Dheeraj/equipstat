@@ -21069,6 +21069,17 @@ video {
   background-color: rgba(255, 255, 255, var(--bg-opacity));
 }
 
+.images{
+  filter: drop-shadow(1px 2px 3px black);
+  height: 64vh;
+  width: 64vh;
+}
+
+.logo{
+  height: 64vh;
+  width: 64vh;
+}
+
 @media (min-width: 640px){
   .sm\:container{
     width: 100%;

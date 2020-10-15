@@ -46,6 +46,20 @@ class ProductNew(models.Model):
     slug = models.SlugField(max_length = 250, null = True, blank = True)
     details = models.TextField()
 
+    def _get_unique_slug(self):
+        slug = slugify(self.name)
+        unique_slug = slug
+        num = 1
+        while ProductNew.objects.filter(slug=unique_slug).exists():
+            unique_slug = '{}-{}'.format(slug, num)
+            num += 1
+        return unique_slug
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = self._get_unique_slug()
+        super().save(*args, **kwargs)
+
     @property
     def imageURL(self):
         try:

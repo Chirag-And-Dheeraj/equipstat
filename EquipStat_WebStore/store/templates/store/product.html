@@ -1,4 +1,14 @@
 {% extends 'store/main.html' %} 
 {% block content %}
     <h1>Single Product</h1>
+    <div class="product">
+        <hr>
+        <img class="thumbnail" src="{{ oneProduct.imageURL }}">
+        <p>Name: {{ oneProduct.name }}</p> <br>
+        <p>MRP: {{ oneProduct.mrp }}</p> <br>
+        <p>Our Price: {{ oneProduct.ourPrice }}</p> <br>
+        <p>Stock: {{ oneProduct.inventory }}</p> <br>
+        <p>Details: {{ oneProduct.details }}</p> <br>
+        <hr>
+    </div>
 {% endblock %}

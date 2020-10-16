@@ -81,6 +81,14 @@ def store(request):
     context = {'newProducts':newProducts}
     return render(request, 'store/store.html', context)
 
+
+def product(request, slug):
+    oneProduct = ProductNew.objects.get(slug=slug)
+    context = {'oneProduct':oneProduct}
+    return render(request, 'store/product.html', context )
+
+
+
 def about(request):
     context = {}
     return render(request, 'store/about_us.html', context)
@@ -105,9 +113,4 @@ def cart(request):
 def checkout(request):
     context = {}
     return render(request, 'store/checkout.html', context)
-
-def product(request):
-    context = {}
-    return render(request, 'store/product.html', context)
-
 

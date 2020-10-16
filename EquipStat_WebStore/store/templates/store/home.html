@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 
-    <div id="home-content" class="grid grid-cols-12 grid-rows-4 text-4xl">
+    <div id="home-content" class="grid grid-cols-12 grid-rows-4 gap-y-5 text-4xl">
         <div class="grid row-span-1 col-start-2 col-end-6 mx-auto pt-4 items-end">
              <img class="images" src="{% static '/images/calculator.svg' %}" alt="Calculator">
         </div>
@@ -17,16 +17,16 @@
 </span>
             </div>
         </div>
-        <div class="grid row-start-3 col-start-8 col-end-12 justify-items-center items-center">
+        <div class="grid row-start-3 col-start-8 col-end-12 justify-items-center items-start">
             <img class="images" src="{% static '/images/chemistry.svg' %}" alt="Chemistry">
        </div>
         <div class="grid row-start-3 col-start-2 col-span-4 justify-items-center items-end text-center font-extrabold">
                 Refurbished Lab Coats at cheaper rates works for both workshop as well as chemistry lab. 
         </div>
-        <div class="images grid row-start-4 row-end-5 col-start-2 col-end-6 justify-items-center items-end">
+        <div class="images grid row-start-4 row-end-5 col-start-2 col-end-6 items-end">
             <img class="images" src="{% static 'images/books.svg' %}" alt="Books">
         </div>
-        <div class="grid row-start-4 row-end-5 col-start-8 col-end-12 items-center font-extrabold text-center">
+        <div class="grid row-start-4 row-end-5 col-start-8 col-end-12 justify-items-center items-center font-extrabold text-center">
             Why buy new books when the older ones works just fine. Get them at cheaper rates only at EquipStat
         </div>
     </div>

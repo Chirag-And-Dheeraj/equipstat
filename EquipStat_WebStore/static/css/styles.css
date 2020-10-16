@@ -21080,6 +21080,18 @@ video {
   width: 64vh;
 }
 
+.input_field{
+  width: 100%;
+  --bg-opacity: 1;
+  background-color: #a0aec0;
+  background-color: rgba(160, 174, 192, var(--bg-opacity));
+  --text-opacity: 1;
+  color: #1a202c;
+  color: rgba(26, 32, 44, var(--text-opacity));
+  padding: 0.75rem;
+  border-radius: 0.25rem;
+}
+
 @media (min-width: 640px){
   .sm\:container{
     width: 100%;
@@ -102707,4 +102719,7 @@ video {
             animation: bounce 1s infinite;
   }
 }
+
+
+
 

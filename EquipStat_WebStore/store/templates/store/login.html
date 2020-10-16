@@ -1,0 +1,18 @@
+{% extends 'store/main.html' %} 
+{% block content %}
+    <h1>Login</h1>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <label for="username">Username </label><br>
+        <input type="text" id="username" name="username"> <br><br>
+        <label for="password">Password </label><br>
+        <input type="password" id="password" name="password"> <br><br><br>
+        <input type="submit" value="Login!"><br><br>
+    </form>
+</div>
+{% for message in messages %}
+<div class="message">
+    {{message}}
+</div>
+{% endfor %}
+{% endblock %}

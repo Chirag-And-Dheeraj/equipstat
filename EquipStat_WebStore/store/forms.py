@@ -5,6 +5,8 @@ from django.contrib.auth.models import User
 from django import forms
 
 
+
+
 class ContactUsForm(ModelForm):
     class Meta:
         model = ContactUsDetail

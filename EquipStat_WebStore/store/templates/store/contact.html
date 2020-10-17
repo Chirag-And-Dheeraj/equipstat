@@ -1,9 +1,13 @@
 {% extends 'store/main.html' %} 
 {% block content %}
-    <div class="grid grid-cols-12">
-        <div class="card m-5 col-start-3 col-end-11">
+{% load static %}
+    <div class="grid grid-rows-3 grid-cols-12">
+        <div class="grid col-start-5 col-end-9 row-span-1 row-start-1 justify-items-center items-center">
+            <img src="{% static '/images/contactus.svg' %}" alt="Contact">
+        </div>
+        <div class="card m-5 col-start-3 col-end-11 row-start-2 row-span-2">
             <form action="" method="POST">
-                <div class="grid grid-rows-6 grid-cols-2 py-5 gap-y-3"> 
+                <div class="grid row-start-2 grid-rows-6 grid-cols-2 py-5 gap-y-3"> 
                     {% csrf_token %}
                     <div class=" grid grid-cols-2 col-span-2"> 
                         <div class="col-start-1 px-10">

@@ -23,14 +23,17 @@
             </div>
         </div>
         <div id="logo" class="col-start-6 col-end-8 justify-self-center">
-            <a href=""><h3 class="text-3xl font-black">Equipstat</h3></a>
+            <a href="/"><h3 class="text-3xl font-black">Equipstat</h3></a>
         </div>
-        <div class="col-start-10 col-end-12">
+        <div class="col-start-9 col-end-12">
             {% if user.is_authenticated %}
             <a href="{% url 'logout' %}" class="border-black border-r-2 pr-2" >Logout</a>
             {% else %}
             <a href="{% url 'login' %}" class="border-black border-r-2 pr-2" >Login</a>
-            <a href="{% url 'register' %}">Sign-Up</a>
+            <a href="{% url 'register' %}" class="border-black border-r-2 pr-2">Sign-Up</a>
+            <a href="{% url 'contact' %}">Contact</a>
+            <!-- <a href="{% url 'store' %}">Store</a> -->
+
             {% endif %}
         </div>
         <div id="account_cart" class="grid grid-rows-1 grid-cols-2 col-start-12 ">

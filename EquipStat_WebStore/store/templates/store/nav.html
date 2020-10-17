@@ -26,8 +26,12 @@
             <a href=""><h3 class="text-3xl font-black">Equipstat</h3></a>
         </div>
         <div class="col-start-10 col-end-12">
-            <a href="" class="border-black border-r-2 pr-2" >Login</a>
-            <a href="">Sign-Up</a>
+            {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}" class="border-black border-r-2 pr-2" >Logout</a>
+            {% else %}
+            <a href="{% url 'login' %}" class="border-black border-r-2 pr-2" >Login</a>
+            <a href="{% url 'register' %}">Sign-Up</a>
+            {% endif %}
         </div>
         <div id="account_cart" class="grid grid-rows-1 grid-cols-2 col-start-12 ">
             <button class="col-start-1 bg-black text-white rounded-full p-2 hover:bg-gray-900 focus:outline-none w-10 h-10 grid items-center justify-items-center">

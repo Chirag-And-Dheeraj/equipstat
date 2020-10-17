@@ -10,7 +10,7 @@
         <p>MRP: {{ product.mrp }}</p> <br>
         <p>Our Price: {{ product.ourPrice }}</p> <br>
         <p>Stock: {{ product.inventory }}</p> <br>
-        <p>Details: {{ product.details }}</p> <br>
+        <p><a href="{{ product.slug }}">Detail View</a></p> <br>
         <hr>
     </div>
     {% endfor %}

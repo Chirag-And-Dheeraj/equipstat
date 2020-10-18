@@ -21069,6 +21069,17 @@ video {
   background-color: rgba(255, 255, 255, var(--bg-opacity));
 }
 
+.cardDark {
+  border-radius: 0.375rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --bg-opacity: 1;
+  background-color: #1a202c;
+  background-color: rgba(26, 32, 44, var(--bg-opacity));
+  --text-opacity: 1;
+  color: #edf2f7;
+  color: rgba(237, 242, 247, var(--text-opacity));
+}
+
 .images{
   filter: drop-shadow(1px 2px 3px black);
   height: 64vh;

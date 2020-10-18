@@ -5,7 +5,6 @@ from django.utils.text import slugify
 
 class UserDetail(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    academicDetails = models.TextField()
     contact = models.CharField(max_length=10, null=True)
 
     def __str__(self):

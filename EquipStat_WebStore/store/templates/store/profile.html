@@ -1,0 +1,12 @@
+{% extends 'store/main.html' %}
+{% load static %} 
+{% block content %}
+    <h1>Profile</h1>
+    <div class="border-2 border-black">
+        {{ first_name }} <br><br>
+        {{ last_name }} <br><br>
+        {{ username }} <br><br>
+        {{ email }} <br><br>
+        {{ contact }} <br><br>
+    </div>
+{% endblock %}

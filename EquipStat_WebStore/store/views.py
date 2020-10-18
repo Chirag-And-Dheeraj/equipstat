@@ -3,6 +3,13 @@ from .models import *
 from .forms import *
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+
+
+
+
+
+
 # Create your views here.
 def home(request):
     context = {}
@@ -35,6 +42,7 @@ def register(request):
         password_1 = request.POST['password1']
         password_2 = request.POST['password2']
         email = request.POST['email']
+        contact = request.POST['contact']
 
         if password_1 == password_2:
             if User.objects.filter(username=username).exists():
@@ -46,6 +54,7 @@ def register(request):
             else:
                 user = User.objects.create_user(first_name=first_name, last_name=last_name, email=email, username=username, password=password_2)
                 user.save()
+                userDetail = UserDetail.objects.create(user=user, contact=contact)
                 messages.info(request, 'Yay, you just registered your account with us!')
                 return redirect('login')
         else:
@@ -69,10 +78,32 @@ def register(request):
 #         form = PasswordChangeForm(request.user)
 #     return render(request, 'accounts/password_reset.html', {'form': form})
 
-
+@login_required(login_url='login')
 def logout(request):
     auth.logout(request)
     return redirect('/')
+
+
+
+@login_required(login_url='login')
+def profile(request, pk):
+    user = User.objects.get(pk=pk)
+    first_name = user.first_name
+    last_name = user.last_name
+    username = user.username
+    email = user.email
+    userDetail = UserDetail.objects.get(user_id=pk)
+    contact = userDetail.contact
+
+    context = {
+        'first_name': first_name,
+        'last_name': last_name,
+        'username': username,
+        'email': email,
+        'contact': contact,
+        }
+    return render(request, 'store/profile.html', context)
+
 
 
 

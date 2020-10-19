@@ -1,17 +1,33 @@
 {% extends 'store/main.html' %} 
 {% block content %}
-    <h1>Store</h1>
-    <br><br>
-    {% for product in newProducts %}
-    <div class="product">
-        <hr>
-        <img class="thumbnail" src="{{ product.imageURL }}">
-        <p>Name: {{ product.name }}</p> <br>
-        <p>MRP: {{ product.mrp }}</p> <br>
-        <p>Our Price: {{ product.ourPrice }}</p> <br>
-        <p>Stock: {{ product.inventory }}</p> <br>
-        <p><a href="{{ product.slug }}">Detail View</a></p> <br>
-        <hr>
+{% load static %}
+    <h1 class="text-black text-6xl font-main text-center">Store</h1>
+    <div class="grid grid-cols-2 grid-rows-3 gap-10 p-12">
+        {% for product in newProducts %}
+        <div class="card grid grid-cols-3 p-3">
+            <div class="grid col-start-1 col-span-1 items-center pr-2">
+                <img class="" src="{{ product.imageURL }}">
+            </div>
+            <div class="grid col-start-2 col-span-2 grid-rows-5 items-center text-2xl ">
+                <div class="row-start-1 text-center font-mono">
+                    Name: {{ product.name }}
+                </div>
+                <div class="row-start-2">
+                    Our Price: <span class="font-semibold text-green-500">&#8377;{{ product.ourPrice }}</span> <span class="text-base line-through text-red-500">&#8377;{{ product.mrp }}</span>
+                </div>
+                <div class="row-start-3">
+                    Stock: {{ product.inventory }}
+                </div>
+                <div class="row-start-4 inline-block">
+                    <a href="{{ product.slug }}">
+                        <p class="inline text-blue-500 hover:underline">Detail View</p>
+                        <svg class="inline" width="10%" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
 {% endblock %}

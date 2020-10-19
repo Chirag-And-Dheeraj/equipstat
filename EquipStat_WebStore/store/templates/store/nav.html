@@ -28,14 +28,13 @@
         <div class="col-start-9 col-end-12">
             {% if user.is_authenticated %}
             <a href="{% url 'logout' %}" class="border-black border-r-2 pr-2" >Logout</a>
-            <a href="{% url 'profile' pk=user.pk %}">Profile</a>
+            <a href="{% url 'profile' pk=user.pk %}" class="border-black border-r-2 pr-2">Profile</a>
             {% else %}
             <a href="{% url 'login' %}" class="border-black border-r-2 pr-2" >Login</a>
             <a href="{% url 'register' %}" class="border-black border-r-2 pr-2">Register</a>
-            <a href="{% url 'contact' %}">Contact</a>
-            <!-- <a href="{% url 'store' %}">Store</a> -->
-
             {% endif %}
+            <a href="{% url 'contact' %}" class="border-black border-r-2 pr-2">Contact</a>
+            <a href="{% url 'store' %}">Store</a>
         </div>
         <div id="account_cart" class="grid grid-rows-1 grid-cols-2 col-start-12 ">
             <button class="col-start-1 bg-black text-white rounded-full p-2 hover:bg-gray-900 focus:outline-none w-10 h-10 grid items-center justify-items-center">

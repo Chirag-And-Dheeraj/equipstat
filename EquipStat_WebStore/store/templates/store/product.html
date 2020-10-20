@@ -1,14 +1,26 @@
 {% extends 'store/main.html' %} 
 {% block content %}
-    <h1>Single Product</h1>
-    <div class="product">
-        <hr>
-        <img class="thumbnail" src="{{ oneProduct.imageURL }}">
-        <p>Name: {{ oneProduct.name }}</p> <br>
-        <p>MRP: {{ oneProduct.mrp }}</p> <br>
-        <p>Our Price: {{ oneProduct.ourPrice }}</p> <br>
-        <p>Stock: {{ oneProduct.inventory }}</p> <br>
-        <p>Details: {{ oneProduct.details }}</p> <br>
-        <hr>
-    </div>
+    
+        <div class="bg-gray-400">
+            <div class="grid grid-cols-4 grid-rows-4">
+                <div class="grid col-start-1 row-start-1 row-end-5 cardDark justify-items-center items-center px-8">
+                    <img class="" src="https://via.placeholder.com/400x500">   <!--{{ oneProduct.imageURL }}-->
+                </div>
+                <div class="grid row-start-1 col-span-3 row-span-1 text-5xl font-bold justify-items-center items-center border-b-2 border-t-2 border-black">
+                    <p>{{ oneProduct.name }}</p>
+				</div> 
+				<div class="grid justify-items-center items-center text-2xl font-semibold">
+                    <p>Our Price: {{ oneProduct.ourPrice }}</p>
+                </div> 
+                <div class="grid justify-items-center items-center text-2xl font-semibold line-through">
+                    <p>MRP: {{ oneProduct.mrp }}</p>
+                </div>
+                <div class="grid justify-items-center items-center text-2xl font-semibold">
+                    <p>Stock: {{ oneProduct.inventory }}</p>
+                </div> 
+                <div class="grid justify-items-center items-center col-start-2 col-end-5 text-2xl">
+                    <p>{{ oneProduct.details }}</p>
+                </div>
+            </div>
+        </div>
 {% endblock %}

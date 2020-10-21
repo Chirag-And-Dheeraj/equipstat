@@ -16,10 +16,10 @@ TYPES = ( ('1', 'Books'), ('2', 'Lab Coats'), ('3', 'Instruments') )
 
 class ProductRefurbished(models.Model):
     name = models.CharField(max_length=50)
-    seller = models.OneToOneField(UserDetail, on_delete=models.CASCADE)
+    seller = models.ManyToOneRel
     typeOfProduct = models.CharField(max_length=20, choices=TYPES)
     expectedReturn = models.CharField(max_length=30)
-    image = models.ImageField(null=True, blank=True)
+    image = models.ImageField(upload_to = 'static/images',null=True, blank=True)
     slug = models.SlugField(max_length = 250, null = True, blank = True)
     details = models.TextField()
 

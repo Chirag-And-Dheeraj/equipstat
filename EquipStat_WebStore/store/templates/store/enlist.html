@@ -1,0 +1,23 @@
+{% extends 'store/main.html' %} 
+{% block content %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <!-- <label for="name">Product Name</label>
+        <input id="name" type="text" name="name">
+        <label for="typeOfProduct">Type of your product</label>
+        <select name="typeOfProduct" id="typeOfProduct">
+            <option value="1">Books</option>
+            <option value="2">Lab Coats</option>
+            <option value="3">Instruments</option>
+        </select>
+        <label for="expectedReturn">Expected Return</label>
+        <input name="expectedReturn" id="expectedReturn" type="text">
+        <label for="image">Upload an Image</label>
+        <input id="image" type="file" name="image">
+        <label for="details">Details</label>
+        <textarea id="details" name="details" rows="4" cols="50"></textarea>-->
+
+        <input type="submit" value="Submit"> 
+    </form>
+{% endblock %}

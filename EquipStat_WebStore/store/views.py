@@ -119,6 +119,17 @@ def product(request, slug):
     return render(request, 'store/product.html', context )
 
 
+@login_required(login_url='login')
+def enlist(request):
+    form = RefurbishedItemForm()
+    if request.method == 'POST':
+        form = RefurbishedItemForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    context = {'form':form}
+    return render(request, 'store/enlist.html', context)
+
 
 def about(request):
     context = {}

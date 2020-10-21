@@ -17,3 +17,15 @@ class ContactUsForm(ModelForm):
     class Meta:
         model = ContactUsDetail
         fields = '__all__'
+
+class RefurbishedItemForm(ModelForm):
+    # name = models.CharField(max_length=50)
+    # seller = models.OneToOneField(UserDetail, on_delete=models.CASCADE)
+    # typeOfProduct = models.CharField(max_length=20, choices=TYPES)
+    # expectedReturn = models.CharField(max_length=30)
+    # image = models.ImageField(upload_to = 'images/',null=True, blank=True)
+    # slug = models.SlugField(max_length = 250, null = True, blank = True)
+    # details = models.TextField()
+    class Meta:
+        model = ProductRefurbished
+        fields = '__all__'

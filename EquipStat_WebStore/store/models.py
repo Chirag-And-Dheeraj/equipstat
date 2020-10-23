@@ -16,12 +16,26 @@ TYPES = ( ('1', 'Books'), ('2', 'Lab Coats'), ('3', 'Instruments') )
 
 class ProductRefurbished(models.Model):
     name = models.CharField(max_length=50)
-    seller = models.ManyToOneRel
+    seller = models.CharField(max_length=50 ,null=True)
     typeOfProduct = models.CharField(max_length=20, choices=TYPES)
     expectedReturn = models.CharField(max_length=30)
-    image = models.ImageField(upload_to = 'static/images',null=True, blank=True)
+    image = models.ImageField(upload_to = 'images/',null=True, blank=True)
     slug = models.SlugField(max_length = 250, null = True, blank = True)
     details = models.TextField()
+
+    def _get_unique_slug(self):
+        slug = slugify(self.name)
+        unique_slug = slug
+        num = 1
+        while ProductNew.objects.filter(slug=unique_slug).exists():
+            unique_slug = '{}-{}'.format(slug, num)
+            num += 1
+        return unique_slug
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = self._get_unique_slug()
+        super().save(*args, **kwargs)
 
     @property
     def imageURL(self):

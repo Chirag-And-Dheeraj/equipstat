@@ -6,7 +6,7 @@
             <img src="{% static '/images/contactus.svg' %}" alt="Contact">
         </div>
         <div class="card m-5 col-start-3 col-end-11 row-start-2 row-span-2">
-            <form action="" method="POST">
+            <form action="" method="POST" enctype="multipart/form-data">
                 <div class="grid row-start-2 grid-rows-6 grid-cols-2 py-5 gap-y-3"> 
                     {% csrf_token %}
                     <div class=" grid grid-cols-2 col-span-2"> 

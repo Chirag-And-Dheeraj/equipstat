@@ -19,13 +19,12 @@ class ContactUsForm(ModelForm):
         fields = '__all__'
 
 class RefurbishedItemForm(ModelForm):
-    # name = models.CharField(max_length=50)
-    # seller = models.OneToOneField(UserDetail, on_delete=models.CASCADE)
-    # typeOfProduct = models.CharField(max_length=20, choices=TYPES)
-    # expectedReturn = models.CharField(max_length=30)
-    # image = models.ImageField(upload_to = 'images/',null=True, blank=True)
-    # slug = models.SlugField(max_length = 250, null = True, blank = True)
-    # details = models.TextField()
+    name = forms.CharField(label="Product Name " ,widget=forms.TextInput(attrs={'class': 'w-full bg-gray-500 text-gray-900 p-3 rounded placeholder-gray-700 focus:outline-none focus:shadow-myOutline', 'placeholder':'Book name, LabCoat, ...'}))
+    typeOfProduct = forms.CharField(label="Type Of Product " ,widget=forms.RadioSelect(choices=TYPES))
+    expectedReturn = forms.CharField(label="Expected Return ",widget=forms.TextInput(attrs={'class': 'w-full bg-gray-500 text-gray-900 p-3 rounded placeholder-gray-700 focus:outline-none focus:shadow-myOutline','placeholder':'xxx'}))
+    image = forms.ImageField(label="Upload Image")
+    details = forms.CharField(widget=forms.Textarea(attrs={'class': 'w-full bg-gray-500 text-gray-900 p-3 rounded placeholder-gray-700 focus:outline-none focus:shadow-myOutline' ,'placeholder':'Type Product Details here...', 'rows':'3' , 'cols':'20'}),label="Product Details ")
     class Meta:
         model = ProductRefurbished
-        fields = '__all__'
+        # fields = '__all__'
+        exclude = ['slug' , 'seller']

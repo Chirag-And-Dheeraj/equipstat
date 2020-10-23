@@ -123,9 +123,11 @@ def product(request, slug):
 def enlist(request):
     form = RefurbishedItemForm()
     if request.method == 'POST':
-        form = RefurbishedItemForm(request.POST)
+        form = RefurbishedItemForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            formInstance = form.save(commit=False)
+            formInstance.seller = request.user
+            formInstance.save()
             return redirect('/')
     context = {'form':form}
     return render(request, 'store/enlist.html', context)

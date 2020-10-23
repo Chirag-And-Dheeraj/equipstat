@@ -1,23 +1,41 @@
 {% extends 'store/main.html' %} 
 {% block content %}
-    <form action="" method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <!-- <label for="name">Product Name</label>
-        <input id="name" type="text" name="name">
-        <label for="typeOfProduct">Type of your product</label>
-        <select name="typeOfProduct" id="typeOfProduct">
-            <option value="1">Books</option>
-            <option value="2">Lab Coats</option>
-            <option value="3">Instruments</option>
-        </select>
-        <label for="expectedReturn">Expected Return</label>
-        <input name="expectedReturn" id="expectedReturn" type="text">
-        <label for="image">Upload an Image</label>
-        <input id="image" type="file" name="image">
-        <label for="details">Details</label>
-        <textarea id="details" name="details" rows="4" cols="50"></textarea>-->
-
-        <input type="submit" value="Submit"> 
-    </form>
+{% load static %}
+<div class="grid grid-rows-1 grid-cols-12">
+    <div class="grid col-start-2 col-end-5 row-span-1 row-start-1 justify-items-center items-center">
+        <img src="{% static '/images/enlist.svg' %}" alt="Contact">
+    </div>
+    <div class="card m-5 col-start-6 col-end-13 row-start-1 row-span-2">
+        <form action="" method="POST" enctype="multipart/form-data">
+            <div class="grid row-start-2 grid-rows-7 grid-cols-2 py-5 gap-y-8"> 
+                {% csrf_token %}
+                <div class=" grid grid-cols-2 col-span-2"> 
+                    <div class="col-start-1 px-10">
+                        {{ form.name.label_tag }}
+                        {{ form.name }} 
+                    </div>
+                    <div class="col-start-2 px-10">
+                        {{ form.typeOfProduct.label_tag }}
+                        {{ form.typeOfProduct }} 
+                    </div>
+                </div>
+                <div class="col-start-1 px-10">
+                    {{ form.expectedReturn.label_tag }}
+                    {{ form.expectedReturn }}
+                </div> 
+                <div class="col-start-2 px-10">
+                    {{ form.image.label_tag }}
+                    {{ form.image }}
+                </div>
+                <div class="row-span-3 px-10 col-span-2">
+                    {{ form.details.label_tag }} 
+                    {{ form.details }} 
+                </div>
+                <div class="grid justify-items-center items-center text-center col-span-2 row-span-1">
+                    <input class="bg-gray-500 text-black hover:text-white hover:bg-gray-800 p-3 rounded w-1/4 border-b-4 border-gray-700 hover:border-gray-500 focus:outline-none " type="submit" name="Submit" value="Enlist">
+                </div>
+           </div>
+        </form>
+    </div>
+</div> 
 {% endblock %}

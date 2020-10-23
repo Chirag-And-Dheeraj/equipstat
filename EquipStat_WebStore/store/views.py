@@ -95,12 +95,15 @@ def profile(request, pk):
     userDetail = UserDetail.objects.get(user_id=pk)
     contact = userDetail.contact
 
+    listings = ProductRefurbished.objects.filter(seller=request.user)
+
     context = {
         'first_name': first_name,
         'last_name': last_name,
         'username': username,
         'email': email,
         'contact': contact,
+        'listings': listings,
         }
     return render(request, 'store/profile.html', context)
 

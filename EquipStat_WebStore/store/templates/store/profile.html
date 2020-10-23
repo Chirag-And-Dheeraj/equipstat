@@ -1,8 +1,9 @@
 {% extends 'store/main.html' %}
 {% load static %} 
 {% block content %}
-    <div class="grid grid-cols-12">
-        <div class="cardDark grid grid-rows-4 col-start-5 col-span-4 p-5">
+    <div class="grid grid-cols-12 grid-rows-3 gap-y-10">
+        <!-- Profile card -->
+        <div class="cardDark row-start-1 row-end-2 grid grid-rows-4 col-start-5 col-span-4 p-5">
            <div class="text-3xl text-center row-start-1">
                 {{ first_name }} {{ last_name }}
            </div>
@@ -25,5 +26,61 @@
                 <span class="col-start-2 col-span-4 text-xl"><a href="tel:{{ contact }}">{{ contact }}</a></span>
             </div>
         </div>
+        <!-- Profile card -->
+
+        {% if request.user.first_name == first_name %}
+
+        <!-- My Listings -->
+        <div class="card grid grid-cols-4 grid-rows-3 row-start-2 row-end-3 col-start-2 col-end-12 overflow-x-auto gap-3 p-5">
+            <div class="grid row-start-1 row-span-1 col-span-4 justify-items-center items-center">
+                <h1 class="text-5xl">
+                    My Listings
+                </h1>
+            </div>
+            <div class="grid row-start-2 row-span-2 col-start-1 justify-items-center items-center">
+                <a class="grid justify-items-center items-center" href="{% url 'enlist' %}">
+                    <svg class="w-1/4 border-2 border-black rounded-full hover:bg-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                    </svg>
+                </a>
+            </div>
+
+            {% for listing in listings %}
+
+            <div class="grid row-start-2 row-span-2 justify-items-center items-center border-2 border-black">
+                <h1 class="">{{ listing }}</h1>
+                <p class="">{{ listing.expectedReturn }}</p>
+                <button>Edit</button>
+            </div>
+
+            {% endfor %}
+        </div>
+        <!-- My Listings -->
+
+        <!-- My Orders -->
+        <div class="card grid grid-cols-4 grid-rows-3 row-start-3 row-end-4 col-start-2 col-end-12 gap-x-3 p-5">
+            <div class="grid row-start-1 row-span-1 col-span-4 justify-items-center items-center">
+                <h1 class="text-5xl">
+                    My Orders
+                </h1>
+            </div>
+            <div class="grid row-start-2 row-span-2 col-start-1 justify-items-center items-center">
+                <a class="grid justify-items-center items-center" href="{% url 'store' %}">
+                    <svg class="w-1/4 border-2 border-black rounded-full hover:bg-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                    </svg>
+                </a>
+            </div>
+
+            {% for listing in listings %}
+
+            <div class="grid row-start-2 row-span-2 justify-items-center items-center border-2 border-black">
+                <h1 class="">{{ listing }}</h1>
+            </div>
+
+            {% endfor %}
+        </div>
+        <!-- My Orders -->
+        {% endif %}
     </div>
 {% endblock %}

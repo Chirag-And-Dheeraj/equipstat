@@ -8,4 +8,7 @@ admin.site.register(UserDetail)
 admin.site.register(ProductRefurbished)
 admin.site.register(ProductNew)
 admin.site.register(ContactUsDetail)
+admin.site.register(Order)
+admin.site.register(OrderLineItem)
+
 

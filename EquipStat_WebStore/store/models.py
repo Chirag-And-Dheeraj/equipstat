@@ -89,14 +89,36 @@ class ProductNew(models.Model):
 
 class Order(models.Model):
     orderDate = models.DateTimeField(auto_now_add=True)
-    orderTotal = models.FloatField()
+    orderTotal = models.FloatField(null=True)
     customer = models.ForeignKey(User, on_delete=models.CASCADE)
+    complete = models.BooleanField(default=False)
+
+    def __str__(self):
+        return str(self.id)
+        
+    @property
+    def get_cart_total(self):
+        orderitems = self.orderlineitem_set.all()
+        total = sum([item.get_total for item in orderitems])
+        return total 
+        
+    @property
+    def get_cart_items(self):
+        orderitems = self.orderlineitem_set.all()
+        total = sum([item.quantity for item in orderitems])
+        return total 
 
 
 class OrderLineItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     product = models.ForeignKey(ProductNew, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
+    dateAdded = models.DateTimeField(auto_now_add=True ,null=True)
+    
+    @property
+    def get_total(self):
+        total = self.product.ourPrice * self.quantity
+        return total
 
 
 MESSAGE_TYPES = ( ('1', 'Grievance'), ('2', 'Feedback') )

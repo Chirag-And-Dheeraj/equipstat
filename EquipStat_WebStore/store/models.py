@@ -50,6 +50,7 @@ class ProductRefurbished(models.Model):
 
 
 
+
 class ProductNew(models.Model):
     name = models.CharField(max_length=100)
     mrp = models.FloatField()
@@ -86,10 +87,21 @@ class ProductNew(models.Model):
 
 
 
+class Order(models.Model):
+    orderDate = models.DateTimeField(auto_now_add=True)
+    orderTotal = models.FloatField()
+    customer = models.ForeignKey(User, on_delete=models.CASCADE)
+
+
+class OrderLineItem(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    product = models.ForeignKey(ProductNew, on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=1)
+
+
 MESSAGE_TYPES = ( ('1', 'Grievance'), ('2', 'Feedback') )
 
 class ContactUsDetail(models.Model):
-    # user = models.OneToOneField(User, on_delete=models.CASCADE)
     firstName = models.CharField(max_length=30)
     lastName = models.CharField(max_length=30)
     email = models.EmailField()

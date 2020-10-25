@@ -13,7 +13,6 @@
                 <input id="search" type="text" class="col-span-3 text-gray-700 w-full rounded-full py-2 px-3 focus:outline-none" placeholder="Search">
                 <div class="p-1">
                     <button class="col-span-1 bg-black text-white rounded-full p-2 hover:bg-gray-900 focus:outline-none w-10 h-10 grid items-center justify-items-center">
-                        <!-- <i class="fa fa-search"></i> -->
                         <svg width="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
                         </svg>
@@ -30,12 +29,12 @@
             {% if user.is_authenticated %}
             <a href="{% url 'enlist' %}">Enlist</a>
             {% endif %}
+            <h1>Hello, {{ request.user.first_name }}</h1>
         </div>
         <div id="user_cart" class="grid grid-cols-2">
             {% include 'store/dropdown.html' %}
             <div>
                 <button id="cart" class="col-start-2 bg-black text-white rounded-full p-2 hover:bg-gray-900 focus:outline-none w-10 h-10 grid items-center justify-items-center">
-                    <!-- <i class="fa fa-shopping-cart"></i> -->
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                     </svg>

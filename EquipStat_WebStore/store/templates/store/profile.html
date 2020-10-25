@@ -31,13 +31,13 @@
         {% if request.user.first_name == first_name %}
 
         <!-- My Listings -->
-        <div class="card grid grid-cols-4 grid-rows-3 row-start-2 row-end-3 col-start-2 col-end-12 overflow-x-auto gap-3 p-5">
+        <div class="card grid grid-cols-4 grid-rows-3 row-start-2 row-end-3 col-start-2 col-end-12 gap-3 p-5">
             <div class="grid row-start-1 row-span-1 col-span-4 justify-items-center items-center">
                 <h1 class="text-5xl">
                     My Listings
                 </h1>
             </div>
-            <div class="grid row-start-2 row-span-2 col-start-1 justify-items-center items-center">
+            <div class="grid row-start-2 row-span-2 col-start-4">
                 <a class="grid justify-items-center items-center" href="{% url 'enlist' %}">
                     <svg class="w-1/4 border-2 border-black rounded-full hover:bg-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
@@ -45,40 +45,48 @@
                 </a>
             </div>
 
-            {% for listing in listings %}
+            <div class="flex flex-row col-start-1 col-span-3 row-span-2 w-full overflow-hidden overflow-x-scroll">
+                {% for listing in listings %}
 
-            <div class="grid row-start-2 row-span-2 justify-items-center items-center border-2 border-black">
-                <h1 class="">{{ listing }}</h1>
-                <p class="">{{ listing.expectedReturn }}</p>
-                <button>Edit</button>
+                <a class="" href="">
+                    <div class="flex flex-col  border-2 border-black m-5 max-w-full p-5">
+                        <h1 class="text-center">{{ listing }}</h1>
+                        <p class="text-center">{{ listing.expectedReturn }}</p>
+                    </div>
+                </a>
+
+                {% endfor %}
             </div>
-
-            {% endfor %}
         </div>
         <!-- My Listings -->
 
         <!-- My Orders -->
-        <div class="card grid grid-cols-4 grid-rows-3 row-start-3 row-end-4 col-start-2 col-end-12 gap-x-3 p-5">
+        <div class="card grid grid-cols-4 grid-rows-3 row-start-3 row-end-4 col-start-2 col-end-12 gap-3 p-5">
             <div class="grid row-start-1 row-span-1 col-span-4 justify-items-center items-center">
                 <h1 class="text-5xl">
                     My Orders
                 </h1>
             </div>
-            <div class="grid row-start-2 row-span-2 col-start-1 justify-items-center items-center">
-                <a class="grid justify-items-center items-center" href="{% url 'store' %}">
+            <div class="grid row-start-2 row-span-2 col-start-4">
+                <a class="grid justify-items-center items-center" href="{% url 'enlist' %}">
                     <svg class="w-1/4 border-2 border-black rounded-full hover:bg-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                     </svg>
                 </a>
             </div>
 
-            {% for listing in listings %}
+            <div class="flex flex-row col-start-1 col-span-3 row-span-2 w-full overflow-hidden overflow-x-scroll">
+                {% for listing in listings %}
 
-            <div class="grid row-start-2 row-span-2 justify-items-center items-center border-2 border-black">
-                <h1 class="">{{ listing }}</h1>
+                <a class="" href="">
+                    <div class="flex flex-col  border-2 border-black m-5 max-w-full p-5">
+                        <h1 class="text-center">{{ listing }}</h1>
+                        <p class="text-center">{{ listing.expectedReturn }}</p>
+                    </div>
+                </a>
+
+                {% endfor %}
             </div>
-
-            {% endfor %}
         </div>
         <!-- My Orders -->
         {% endif %}

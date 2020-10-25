@@ -4,6 +4,7 @@ from .forms import *
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 
 
 
@@ -157,7 +158,11 @@ def cart(request):
     context = {}
     return render(request, 'store/cart.html', context)
 
+
+def updateItem(request):
+    return JsonResponse('Item was Added', safe=False)
+
+
 def checkout(request):
     context = {}
     return render(request, 'store/checkout.html', context)
-

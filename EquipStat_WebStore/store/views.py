@@ -158,7 +158,8 @@ def cart(request):
     customer = request.user
     order, created = Order.objects.get_or_create(customer=customer, complete=False)
     items = order.orderlineitem_set.all()
-    context = {'items': items}
+    print(type(items))
+    context = {'items': items, 'order':order}
     return render(request, 'store/cart.html', context)
 
 

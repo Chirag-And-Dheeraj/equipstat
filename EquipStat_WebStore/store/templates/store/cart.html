@@ -1,34 +1,72 @@
 {% extends 'store/main.html' %} 
 {% block content %}
-    <div class="grid grid-cols-12 grid-rows-1">
+{% load static %}
+    <div class="grid grid-cols-12 grid-rows-5">
             <div class="grid grid-rows-2 col-start-2 col-end-12">
-                <div class="row-start-1">
+                <div class="row-start-1 row-span-1">
                     <a class="border-2 border-black p-3 bg-white hover:bg-gray-400" href="{% url 'store' %}">
-                        &#x2190; Continue Shopping
+                        &#x2190; Go to Store
                     </a>
                 </div>
             </div>
-            <div class="row-start-2">
-                <table>
-                    <thead>
-                        <tr>
-                          <th class="px-4 py-2">Product</th>
-                          <th class="px-4 py-2">Price</th>
-                          <th class="px-4 py-2">Quantity</th>
-                          <th class="px-4 py-2">Total</th>
-                        </tr>
-                      </thead>
-                      <tbody>
+            {% if order.get_cart_total == 0.00 %}
+                <div class="grid items-start col-start-5 col-end-9 row-start-2 row-span-4 p-5">
+                    <img src="{% static '/images/empty_cart.svg' %}" alt="">
+                    <h1 class="text-center">Your cart is empty, goto store and shop your requirments</h1>
+                </div>
+            {% else %}
+            <div class="card grid col-start-2 col-end-12 grid-cols-5 row-start-2 row-span-4 gap-5 p-5 mb-5">
+                            <div class="grid justify-items-center items-center col-start-1 col-span-1">
+                                
+                            </div>    
+                            <div class="grid items-center col-start-2 col-span-1">
+                                <h1 class="text-2xl font-extrabold capitalize">Product name</h1>
+                            </div>
+                            <div class="grid justify-items-center items-center col-start-3">
+                                <h1 class="text-2xl font-extrabold capitalize">Price</h1>
+                            </div>
+                            <div class="grid justify-items-center items-center col-start-4">
+                                <h1 class="text-2xl font-extrabold capitalize">Quantity</h1>
+                            </div>
+                            <div class="grid justify-items-center items-center col-start-5">
+                                <h1 class="text-2xl font-extrabold capitalize">Total</h1>
+                            </div>
+                            <hr class="col-span-5">
                         {% for item in items %}
-                        <tr>
-                            <td>{{ item.product.name }}</td>
-                            <td>&#8377;{{ item.product.ourPrice|floatformat:2 }}</td>
-                            <td>{{ item.quantity }}</td>
-                            <td>&#8377;{{ item.get_total }}</td>
-                        </tr>
+                            <div class="grid justify-items-center items-center col-start-1 col-span-1">
+                                <img class="w-12" src="{{ item.product.imageURL }}" alt="{{ item.product.name }}">
+                            </div>    
+                            <div class="grid items-center col-start-2 col-span-1">
+                                {{ item.product.name }}
+                            </div>
+                            <div class="grid justify-items-center items-center col-start-3">
+                                &#8377;{{ item.product.ourPrice|floatformat:2 }}
+                            </div>
+                            <div class="grid justify-items-center items-center col-start-4">
+                                <div class="flex flex-row justify-center">
+                                    <button data-product="{{ item.product.id }}" data-action="remove" class="update-cart flex justify-center items-center focus:outline-none">
+                                        <svg class="w-1/4 hover:bg-gray-600 rounded-full" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                    </button>
+                                    <div class="flex justify-center items-center">{{ item.quantity }}</div>
+                                    <button data-product="{{ item.product.id }}" data-action="add" class="update-cart flex justify-center items-center focus:outline-none">
+                                        <svg class="w-1/4 hover:bg-gray-600 rounded-full" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="grid justify-items-center items-center col-start-5 col-end-6">
+                                &#8377;{{ item.get_total }}
+                            </div>
+                            <hr class="col-span-5">
                         {% endfor %}
-                </table>
+                        <div class="grid justify-items-center col-start-5 col-end-6">
+                           <h1 class="font-extrabold text-xl">&#8377;{{ order.get_cart_total | floatformat:2 }}/-</h1>
+                        </div>
             </div>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

@@ -112,7 +112,7 @@ class Order(models.Model):
 class OrderLineItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     product = models.ForeignKey(ProductNew, on_delete=models.CASCADE)
-    quantity = models.IntegerField(default=1)
+    quantity = models.IntegerField(default=0)
     dateAdded = models.DateTimeField(auto_now_add=True ,null=True)
     
     @property

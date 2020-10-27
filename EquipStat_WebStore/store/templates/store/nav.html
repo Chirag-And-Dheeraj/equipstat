@@ -1,7 +1,7 @@
 {% load static %}
 <header class="sticky top-0 mb-5 z-10">
     <nav class="bg-gray-600 text-black grid grid-cols-12 py-3 items-center">
-        <div id="toggle_btn" class="w-10 h-auto col-span-1">
+        <div id="toggle_btn" class="w-10 h-auto col-span-1 ml-4">
             <a href="">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />
@@ -26,10 +26,11 @@
         <div class="col-start-9 col-end-12">
             <a href="{% url 'contact' %}" class="border-black border-r-2 pr-2">Contact</a>
             <a href="{% url 'store' %}" class="border-black border-r-2 pr-2">Store</a>
+            <a href="{% url 'about' %}" class="border-black border-r-2 pr-2">About us</a>
             {% if user.is_authenticated %}
             <a href="{% url 'enlist' %}">Enlist</a>
-            {% endif %}
             <h1>Hello, {{ request.user.first_name }}</h1>
+            {% endif %}
         </div>
         <div id="user_cart" class="grid grid-cols-2">
             {% include 'store/dropdown.html' %}

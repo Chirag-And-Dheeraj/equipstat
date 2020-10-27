@@ -1,20 +1,28 @@
 {% extends 'store/main.html' %} 
 {% block content %}
 {% load static %}
-    <div class="grid grid-cols-12 grid-rows-5">
-            <div class="grid grid-rows-2 col-start-2 col-end-12">
-                <div class="row-start-1 row-span-1">
-                    <a class="border-2 border-black p-3 bg-white hover:bg-gray-400" href="{% url 'store' %}">
+    <div class="grid grid-cols-12 grid-rows-6 justify-items-center items-center">
+            {% if order.get_cart_total == 0.00 %}
+                <div class="grid items-start col-start-5 col-end-9 row-start-1 row-span-4 p-5">
+                    <img src="{% static '/images/empty_cart.svg' %}" alt="">
+                    <h1 class="text-center">Your cart is empty, goto store and shop your requirments</h1>
+                </div>
+                <div class="col-start-2 col-end-4 row-start-1 row-span-1">
+                    <a href="{% url 'store' %}" class=" bg-gray-500 text-black hover:text-white hover:bg-gray-800 px-3 py-2 rounded  border-b-4 border-gray-700 text-2xl hover:border-gray-500 focus:outline-none focus:shadow-myOutline">
+                        &#x2190; Go to Store
+                    </a>
+                </div>
+            {% else %}
+            <div class="row-start-1 row-span-1 col-start-6 col-end-8 text-center">
+                <h1 class="text-4xl font-black underline">{{ request.user.first_name }}'s cart</h1>
+            </div>
+            <div class="grid grid-rows-1 row-start-1 col-start-2 col-end-4">
+                <div class="row-start-1">
+                    <a class=" bg-gray-500 text-black hover:text-white hover:bg-gray-800 px-3 py-3 rounded  border-b-4 border-gray-700 text-2xl hover:border-gray-500 focus:outline-none focus:shadow-myOutline" href="{% url 'store' %}">
                         &#x2190; Go to Store
                     </a>
                 </div>
             </div>
-            {% if order.get_cart_total == 0.00 %}
-                <div class="grid items-start col-start-5 col-end-9 row-start-2 row-span-4 p-5">
-                    <img src="{% static '/images/empty_cart.svg' %}" alt="">
-                    <h1 class="text-center">Your cart is empty, goto store and shop your requirments</h1>
-                </div>
-            {% else %}
             <div class="card grid col-start-2 col-end-12 grid-cols-5 row-start-2 row-span-4 gap-5 p-5 mb-5">
                             <div class="grid justify-items-center items-center col-start-1 col-span-1">
                                 
@@ -62,9 +70,13 @@
                             </div>
                             <hr class="col-span-5">
                         {% endfor %}
-                        <div class="grid justify-items-center col-start-5 col-end-6">
-                           <h1 class="font-extrabold text-xl">&#8377;{{ order.get_cart_total | floatformat:2 }}/-</h1>
+                        <div class="grid justify-items-center col-start-5 col-end-6 p-5">
+                           <h1 class="font-extrabold text-3xl">&#8377;{{ order.get_cart_total | floatformat:2 }}/-</h1>
                         </div>
+                        <!-- <hr class="col-span-5"> -->
+            </div>
+            <div class="grid justify-items-center row-start-1 col-start-10 col-end-12">
+                <a href="{% url 'checkout' %} " class=" bg-gray-500 text-black hover:text-white hover:bg-gray-800 px-3  py-2 rounded  border-b-4 border-gray-700 text-2xl hover:border-gray-500 focus:outline-none focus:shadow-myOutline">Checkout &rarr;</a>
             </div>
             {% endif %}
         </div>

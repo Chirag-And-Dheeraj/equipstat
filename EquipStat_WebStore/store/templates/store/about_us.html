@@ -1,4 +1,49 @@
 {% extends 'store/main.html' %} 
 {% block content %}
-    <h1>About Page</h1>
+{% load static %}
+    <div class="card m-10 grid grid-cols-12 grid-rows-5">
+        <div class="grid items-center col-span-12 text-center row-start-1 row-span-1">
+            <h1 class="text-5xl italic underline">About Us</h1>
+        </div>
+        <div class="grid col-start-2 col-end-12 row-start-2 row-span-2 grid-cols-6 grid-rows-4   justify-items-center items-center">
+            <div class="col-start-1 col-span-2 row-start-1 row-span-3 rounded-full overflow-hidden shadow-xl">
+                <img src="{% static 'images/dheeraj.png' %}" alt="Dheeraj Lalwani">
+            </div>
+            <div class="col-start-1 col-span-2 row-start-4 row-end-5">
+                <h1 class="font-bold text-2xl">Dheeraj Lalwani</h1>
+                <div class="grid grid-col-3 justify-items-center items-center">
+                    <a href="https://github.com/dheerajdlalwani" target="_blank" class="col-start-1"><i class="fa fa-github text-6xl"></i></a>
+                    <a href="https://www.linkedin.com/in/lalwanidheeraj/" target="_blank" class="col-start-2"><i class="fa fa-linkedin text-6xl"></i></a>
+                    <a href="https://twitter.com/DhiruCodes" target="_blank" class="col-start-3"><i class="fa fa-twitter text-6xl"></i></a>
+                </div>
+            </div>
+            <div class="col-start-3 col-span-2 row-start-1 row-span-3 rounded-full overflow-hidden shadow-xl">
+                <img src="{% static 'images/chirag.png' %}" alt="Chirag Lulla">
+            </div>
+            <div class="col-start-3 col-span-2 row-start-4 row-end-5">
+                <h1 class="font-bold text-2xl">Chirag Lulla</h1>
+                <div class="grid grid-col-3 justify-items-center items-center">
+                    <a href="https://github.com/Chiraglulla239" target="_blank" class="col-start-1"><i class="fa fa-github text-6xl"></i></a>
+                    <a href="https://www.linkedin.com/in/lullachirag" target="_blank" class="col-start-2"><i class="fa fa-linkedin text-6xl"></i></a>
+                    <a href="https://twitter.com/_chiraglulla_" target="_blank" class="col-start-3"><i class="fa fa-twitter text-6xl"></i></a>
+                </div>
+            </div>
+            <div class="col-start-5 col-span-2 row-start-1 row-span-3 rounded-full overflow-hidden shadow-xl">
+                <img src="https://via.placeholder.com/300x300" alt="Roshni Kukreja">
+            </div>
+            <div class="col-start-5 col-span-2 row-start-4 row-end-5">
+                <h1 class="font-bold text-2xl">Roshni Kukreja</h1>
+                <div class="grid grid-col-3 justify-items-center items-center">
+                    <a href="" class="col-start-1" target="_blank"><i class="fa fa-github text-6xl"></i></a>
+                    <a href="" class="col-start-2" target="_blank"><i class="fa fa-linkedin text-6xl"></i></a>
+                    <a href="" class="col-start-3" target="_blank"><i class="fa fa-twitter text-6xl"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-start-2 col-end-12 row-start-4 row-span-2">
+            <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque unde cupiditate iusto aliquam nesciunt recusandae saepe praesentium necessitatibus veniam autem. Voluptatum labore commodi numquam officiis ullam fuga vero maiores debitis?Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero laborum non similique maiores ipsum! Odio esse modi numquam veritatis officia autem dolor iusto iste alias quibusdam, voluptas molestiae enim? Optio!
+            </p>
+        </div>
+    </div>
 {% endblock %}

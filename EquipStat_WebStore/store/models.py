@@ -16,7 +16,8 @@ TYPES = ( ('1', 'Books'), ('2', 'Lab Coats'), ('3', 'Instruments') )
 
 class ProductRefurbished(models.Model):
     name = models.CharField(max_length=50)
-    seller = models.CharField(max_length=50 ,null=True)
+    seller = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    # sellerID = models.CharField(max_length=10 ,null=True)
     typeOfProduct = models.CharField(max_length=20, choices=TYPES)
     expectedReturn = models.CharField(max_length=30)
     image = models.ImageField(upload_to = 'images/',null=True, blank=True)

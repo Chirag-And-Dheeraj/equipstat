@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from .models import *
 from .forms import *
 from django.contrib.auth.models import User, auth
@@ -118,6 +118,15 @@ def store(request):
     return render(request, 'store/store.html', context)
 
 
+def refurbished(request):
+    books = ProductRefurbished.objects.filter(typeOfProduct = 1)
+    labCoats = ProductRefurbished.objects.filter(typeOfProduct = 2)
+    instruments = ProductRefurbished.objects.filter(typeOfProduct = 3)
+
+    context = { 'books' : books, 'labCoats' : labCoats, 'instruments' : instruments }
+    return render(request, 'store/refurbished.html', context)
+
+
 def product(request, slug):
     oneProduct = ProductNew.objects.get(slug=slug)
     context = {'oneProduct':oneProduct}
@@ -132,8 +141,11 @@ def enlist(request):
         if form.is_valid():
             formInstance = form.save(commit=False)
             formInstance.seller = request.user
+            # formInstance.sellerID = request.user.id
             formInstance.save()
             return redirect('/')
+        else:
+            return HttpResponse('error while uploading')
     context = {'form':form}
     return render(request, 'store/enlist.html', context)
 

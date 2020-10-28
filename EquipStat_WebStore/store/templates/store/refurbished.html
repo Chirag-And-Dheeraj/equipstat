@@ -1,0 +1,30 @@
+{% extends 'store/main.html' %} 
+{% block content %}
+    <h1>Books</h1>
+    {% for book in books %}
+    <div>
+        <img src="{{ book.imageURL }}" alt="">
+    </div>
+    <p>Name: {{ book.name }}</p><br>
+    <p>Approximate cost: {{ book.expectedReturn }}</p><br>
+    <p>Seller: <a href="/user/{{ book.seller.id }}">{{ book.seller.first_name }}</a></p> <br><br><hr>
+    {% endfor %}
+    <h1>Lab Coats</h1>
+    {% for labCoat in labCoats %}
+    <div>
+        <img src="{{ labCoat.imageURL }}" alt="">
+    </div>
+    <p>{{ labCoat.name }}</p><br>
+    <p>Approximate cost: {{ labCoat.expectedReturn }}</p><br>
+    <p>Seller: <a href="/user/{{ labCoat.seller.id }}">{{ labCoat.seller.first_name }}</a></p><br><br><hr> 
+    {% endfor %}
+    <h1>Instruments</h1>
+    {% for instrument in instruments %}
+    <div>
+        <img src="{{ instrument.imageURL }}" alt="">
+    </div>
+    <p>{{ instrument.name }}</p><br>
+    <p>Approximate cost: {{ instrument.expectedReturn }}</p><br>
+    <p>Seller: <a href="{{ instrument.seller.id }}">{{ instrument.seller.first_name }}</a></p> <br><br><hr>
+    {% endfor %}
+{% endblock %}

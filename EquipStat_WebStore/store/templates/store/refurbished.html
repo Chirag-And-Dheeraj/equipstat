@@ -7,7 +7,8 @@
     </div>
     <p>Name: {{ book.name }}</p><br>
     <p>Approximate cost: {{ book.expectedReturn }}</p><br>
-    <p>Seller: <a href="/user/{{ book.seller.id }}">{{ book.seller.first_name }}</a></p> <br><br><hr>
+    <p>Seller: <a href="/user/{{ book.seller.id }}">{{ book.seller.first_name }}</a></p> <br>
+    <p>Detail View: <a href="{{ book.slug }}">Details</a></p> <br><br><hr>
     {% endfor %}
     <h1>Lab Coats</h1>
     {% for labCoat in labCoats %}
@@ -16,7 +17,8 @@
     </div>
     <p>{{ labCoat.name }}</p><br>
     <p>Approximate cost: {{ labCoat.expectedReturn }}</p><br>
-    <p>Seller: <a href="/user/{{ labCoat.seller.id }}">{{ labCoat.seller.first_name }}</a></p><br><br><hr> 
+    <p>Seller: <a href="/user/{{ labCoat.seller.id }}">{{ labCoat.seller.first_name }}</a></p><br> 
+    <p>Detail View: <a href="{{ labCoat.slug }}">Details</a></p> <br><br><hr>
     {% endfor %}
     <h1>Instruments</h1>
     {% for instrument in instruments %}
@@ -25,6 +27,7 @@
     </div>
     <p>{{ instrument.name }}</p><br>
     <p>Approximate cost: {{ instrument.expectedReturn }}</p><br>
-    <p>Seller: <a href="{{ instrument.seller.id }}">{{ instrument.seller.first_name }}</a></p> <br><br><hr>
+    <p>Seller: <a href="{{ instrument.seller.id }}">{{ instrument.seller.first_name }}</a></p> <br>
+    <p>Detail View: <a href="{{ instrument.slug }}">Details</a></p> <br><br><hr>
     {% endfor %}
 {% endblock %}

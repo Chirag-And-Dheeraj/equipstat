@@ -1,0 +1,27 @@
+{% extends 'store/main.html' %} 
+{% block content %}
+    
+        <div class="bg-gray-400">
+            <div class="grid grid-cols-4 grid-rows-4">
+                <div class="grid col-start-1 row-start-1 row-end-5 cardDark justify-items-center items-center px-8">
+                    <img class="" src="{{ oneProduct.imageURL }}"> 
+                    <!-- https://via.placeholder.com/400x500    -->
+                </div>
+                <div class="grid row-start-1 col-span-3 row-span-1 text-5xl font-bold justify-items-center items-center border-b-2 border-t-2 border-black">
+                    <p>{{ oneProduct.name }}</p>
+				</div> 
+				<div class="grid justify-items-center items-center text-2xl font-semibold">
+                    <p>Approx Cost: {{ oneProduct.expectedReturn }}</p>
+                </div> 
+                <div class="grid justify-items-center items-center text-2xl font-semibold">
+                    <p>Seller<a href="/user/{{ oneProduct.seller.id }}">{{ oneProduct.seller.first_name }}</a></p>
+                </div>
+                <div class="grid justify-items-center items-center text-2xl font-semibold">
+                    <p>This is empty</p>
+                </div> 
+                <div class="grid justify-items-center items-center col-start-2 col-end-5 text-2xl">
+                    <p>{{ oneProduct.details }}</p>
+                </div>
+            </div>
+        </div>
+{% endblock %}

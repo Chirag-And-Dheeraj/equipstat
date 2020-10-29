@@ -133,6 +133,16 @@ def product(request, slug):
     return render(request, 'store/product.html', context )
 
 
+def refurbishedProduct(request, slug):
+    oneProduct = ProductRefurbished.objects.get(slug=slug)
+    context = {'oneProduct':oneProduct}
+    return render(request, 'store/refurbishedProduct.html', context )
+
+
+
+
+
+
 @login_required(login_url='login')
 def enlist(request):
     form = RefurbishedItemForm()

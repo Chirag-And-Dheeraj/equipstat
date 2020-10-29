@@ -1,4 +1,32 @@
 {% extends 'store/main.html' %} 
 {% block content %}
-    <h1>Checkout page</h1>
+    <h1>Order Summary</h1>
+    <div class="grid gird-cols-12">
+        <div class="card grid grid-cols-4 col-start-7 gap-5">
+            <div class="col-span-2 row-span-1 m-5">
+                <a class=" bg-gray-500 text-black hover:text-white hover:bg-gray-800 px-3 py-3 rounded  border-b-4 border-gray-700 text-2xl hover:border-gray-500 focus:outline-none focus:shadow-myOutline" href="{% url 'cart' %}">
+                        &#x2190; Go to Cart
+                </a>
+            </div>
+            <div class="col-span-2 row-span-1 row-start-2 m-5">
+                <span class="text-3xl text-black">Order Summary:</span>
+            </div>
+            <div class="grid col-span-4 row-start-3 border-2 border-black m-5">
+                {% for item in items %}
+                <div class="text-2xl w-1/4 col-start-1 col-span-1"><img src="{{ item.product.imageURL }}" alt=""></div>
+                <div class="text-2xl col-start-2 col-span-1">{{ item.product.name }}</div>
+                <div class="text-2xl col-start-3 col-span-1">{{ item.product.ourPrice }}</div>
+                <div class="text-2xl col-start-4 col-span-1">{{ item.quantity }}</div>
+                {% endfor %}
+
+            </div>
+            <div class="grid col-span-3 text-3xl">
+                Items: {{ order.get_cart_items }}
+            </div>
+            <div class="grid col-span-3 text-3xl">
+                Amount: &#8377;{{ order.get_cart_total | floatformat:2 }}/-
+            </div>
+
+        </div>
+    </div>
 {% endblock %}

@@ -211,5 +211,9 @@ def updateItem(request):
 
 
 def checkout(request):
-    context = {}
+    customer = request.user
+    order, created = Order.objects.get_or_create(customer=customer, complete=False)
+    items = order.orderlineitem_set.all()
+    print(type(items))
+    context = {'items': items, 'order':order}
     return render(request, 'store/checkout.html', context)

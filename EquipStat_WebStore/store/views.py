@@ -9,7 +9,7 @@ import json
 
 
 
-
+# cartItems = Order.get_cart_items()
 
 
 # Create your views here.
@@ -141,8 +141,6 @@ def refurbishedProduct(request, slug):
 
 
 
-
-
 @login_required(login_url='login')
 def enlist(request):
     form = RefurbishedItemForm()
@@ -180,7 +178,6 @@ def cart(request):
     customer = request.user
     order, created = Order.objects.get_or_create(customer=customer, complete=False)
     items = order.orderlineitem_set.all()
-    print(type(items))
     context = {'items': items, 'order':order}
     return render(request, 'store/cart.html', context)
 

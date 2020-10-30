@@ -1,5 +1,5 @@
 let updateButtons = document.getElementsByClassName('update-cart')
-console.log(updateButtons)
+// console.log(updateButtons)
 
 for (let i = 0; i < updateButtons.length; i++) {
     updateButtons[i].addEventListener('click',function(event){

@@ -1,14 +1,24 @@
 {% load static %}
 <header class="sticky top-0 mb-5 z-10">
+    <div id="SideNav" class="h-full fixed z-1 top-0 left-0 bg-gray-700 overflow-x-hidden" style="transition: 0.5s; width: 250px; margin-left: -250px;">
+        <a id="closeSideNav" href="javascript:void(0)" class="text-6xl absolute top-0 right-0 pr-5">&times;</a>
+        <img src="{% static '/images/logo.svg' %}" alt="Equipstat">
+        <a href="{% url 'store' %}" class="text-black text-center p-2 block text-3xl">Store</a>
+        {% if user.is_authenticated %}
+        <a href="{% url 'enlist' %}" class="text-black text-center p-2 block text-3xl">Enlist</a>
+        {% endif %}
+        <a href="{% url 'contact' %}" class="text-black text-center p-2 block text-3xl">Contact</a>
+        <a href="{% url 'about' %}" class="text-black text-center p-2 block text-3xl">About&nbsp;us</a>
+    </div>
     <nav class="bg-gray-600 text-black grid grid-cols-12 py-3 items-center">
         <div id="toggle_btn" class="w-10 h-auto col-span-1 ml-4">
-            <a href="javascript:void(0)">
+            <a href="javascript:void(0)" >
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />
                 </svg>
             </a>
         </div>
-        <div id="toggle_search" class="col-span-2">
+        <!-- <div id="toggle_search" class="col-span-2">
             <div class="bg-white grid grid-cols-4 items-center rounded-full shadow-xl p-0">
                 <input id="search" type="text" class="col-span-3 text-gray-700 w-full rounded-full py-2 px-3 focus:outline-none" placeholder="Search">
                 <div class="p-1">
@@ -19,16 +29,12 @@
                     </button>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div id="logo" class="col-start-6 col-end-8 justify-self-center">
             <a href="/"><h3 class="text-3xl font-black">Equipstat</h3></a>
         </div>
         <div class="col-start-9 col-end-12">
-            <a href="{% url 'contact' %}" class="border-black border-r-2 pr-2">Contact</a>
-            <a href="{% url 'store' %}" class="border-black border-r-2 pr-2">Store</a>
-            <a href="{% url 'about' %}" class="border-black border-r-2 pr-2">About us</a>
             {% if user.is_authenticated %}
-            <a href="{% url 'enlist' %}">Enlist</a>
             <h1>Hello, {{ request.user.first_name }}</h1>
             {% endif %}
         </div>

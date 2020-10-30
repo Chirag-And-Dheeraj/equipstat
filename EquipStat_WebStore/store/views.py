@@ -14,7 +14,10 @@ import json
 
 # Create your views here.
 def home(request):
-    context = {}
+    customer = request.user
+    order, created = Order.objects.get_or_create(customer=customer, complete=False)
+    items = order.orderlineitem_set.all()
+    context = {'items': items, 'order':order}
     return render(request, 'store/home.html', context)
 
 def login(request):
@@ -98,6 +101,9 @@ def profile(request, pk):
     contact = userDetail.contact
 
     listings = ProductRefurbished.objects.filter(seller=request.user)
+    customer = request.user
+    order, created = Order.objects.get_or_create(customer=customer, complete=False)
+    items = order.orderlineitem_set.all()
 
     context = {
         'first_name': first_name,
@@ -106,6 +112,7 @@ def profile(request, pk):
         'email': email,
         'contact': contact,
         'listings': listings,
+        'order':order
         }
     return render(request, 'store/profile.html', context)
 
@@ -114,7 +121,10 @@ def profile(request, pk):
 
 def store(request):
     newProducts = ProductNew.objects.all()
-    context = {'newProducts':newProducts}
+    customer = request.user
+    order, created = Order.objects.get_or_create(customer=customer, complete=False)
+    items = order.orderlineitem_set.all()
+    context = {'newProducts':newProducts, 'order':order}
     return render(request, 'store/store.html', context)
 
 
@@ -122,20 +132,29 @@ def refurbished(request):
     books = ProductRefurbished.objects.filter(typeOfProduct = 1)
     labCoats = ProductRefurbished.objects.filter(typeOfProduct = 2)
     instruments = ProductRefurbished.objects.filter(typeOfProduct = 3)
+    customer = request.user
+    order, created = Order.objects.get_or_create(customer=customer, complete=False)
+    items = order.orderlineitem_set.all()
 
-    context = { 'books' : books, 'labCoats' : labCoats, 'instruments' : instruments }
+    context = { 'books' : books, 'labCoats' : labCoats, 'instruments' : instruments, 'order':order }
     return render(request, 'store/refurbished.html', context)
 
 
 def product(request, slug):
     oneProduct = ProductNew.objects.get(slug=slug)
-    context = {'oneProduct':oneProduct}
+    customer = request.user
+    order, created = Order.objects.get_or_create(customer=customer, complete=False)
+    items = order.orderlineitem_set.all()
+    context = {'oneProduct':oneProduct, 'order':order}
     return render(request, 'store/product.html', context )
 
 
 def refurbishedProduct(request, slug):
     oneProduct = ProductRefurbished.objects.get(slug=slug)
-    context = {'oneProduct':oneProduct}
+    customer = request.user
+    order, created = Order.objects.get_or_create(customer=customer, complete=False)
+    items = order.orderlineitem_set.all()
+    context = {'oneProduct':oneProduct, 'order':order}
     return render(request, 'store/refurbishedProduct.html', context )
 
 
@@ -159,7 +178,10 @@ def enlist(request):
 
 
 def about(request):
-    context = {}
+    customer = request.user
+    order, created = Order.objects.get_or_create(customer=customer, complete=False)
+    items = order.orderlineitem_set.all()
+    context = {'order':order}
     return render(request, 'store/about_us.html', context)
 
 def contact(request):
@@ -169,7 +191,10 @@ def contact(request):
         if form.is_valid():
             form.save()
             return redirect('/')
-    context = {'form':form}
+    customer = request.user
+    order, created = Order.objects.get_or_create(customer=customer, complete=False)
+    items = order.orderlineitem_set.all()        
+    context = {'form':form,  'order':order}
     return render(request, 'store/contact.html', context)
 
 
@@ -211,6 +236,5 @@ def checkout(request):
     customer = request.user
     order, created = Order.objects.get_or_create(customer=customer, complete=False)
     items = order.orderlineitem_set.all()
-    print(type(items))
     context = {'items': items, 'order':order}
     return render(request, 'store/checkout.html', context)

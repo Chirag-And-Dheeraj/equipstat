@@ -47,7 +47,10 @@
                     </svg>
                 </a>
                 <div class="w-1/2 absolute bottom-0 right-0 bg-red-600 text-black rounded-full text-center">
-                    {{ order.get_cart_items }}</div>
+                    {% if user.is_authenticated %}
+                    {{ order.get_cart_items }}
+                    {% endif %}
+                </div>
             </div>
         </div>
     </nav>

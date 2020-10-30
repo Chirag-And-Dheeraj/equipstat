@@ -92,6 +92,7 @@ class Order(models.Model):
     orderDate = models.DateTimeField(auto_now_add=True)
     orderTotal = models.FloatField(null=True)
     customer = models.ForeignKey(User, on_delete=models.CASCADE)
+    placed = models.BooleanField(default=False)
     complete = models.BooleanField(default=False)
 
     def __str__(self):

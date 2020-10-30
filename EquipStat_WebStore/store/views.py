@@ -14,9 +14,13 @@ import json
 
 # Create your views here.
 def home(request):
-    customer = request.user
-    order, created = Order.objects.get_or_create(customer=customer, complete=False)
-    items = order.orderlineitem_set.all()
+    if request.user.is_authenticated:
+        customer = request.user
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        items = order.orderlineitem_set.all()
+    else:
+        order = []
+        items = []
     context = {'items': items, 'order':order}
     return render(request, 'store/home.html', context)
 
@@ -101,9 +105,13 @@ def profile(request, pk):
     contact = userDetail.contact
 
     listings = ProductRefurbished.objects.filter(seller=request.user)
-    customer = request.user
-    order, created = Order.objects.get_or_create(customer=customer, complete=False)
-    items = order.orderlineitem_set.all()
+    if request.user.is_authenticated:
+        customer = request.user
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        items = order.orderlineitem_set.all()
+    else:
+        order = []
+        items = []
 
     context = {
         'first_name': first_name,
@@ -121,9 +129,13 @@ def profile(request, pk):
 
 def store(request):
     newProducts = ProductNew.objects.all()
-    customer = request.user
-    order, created = Order.objects.get_or_create(customer=customer, complete=False)
-    items = order.orderlineitem_set.all()
+    if request.user.is_authenticated:
+        customer = request.user
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        items = order.orderlineitem_set.all()
+    else:
+        order = []
+        items = []
     context = {'newProducts':newProducts, 'order':order}
     return render(request, 'store/store.html', context)
 
@@ -132,9 +144,13 @@ def refurbished(request):
     books = ProductRefurbished.objects.filter(typeOfProduct = 1)
     labCoats = ProductRefurbished.objects.filter(typeOfProduct = 2)
     instruments = ProductRefurbished.objects.filter(typeOfProduct = 3)
-    customer = request.user
-    order, created = Order.objects.get_or_create(customer=customer, complete=False)
-    items = order.orderlineitem_set.all()
+    if request.user.is_authenticated:
+        customer = request.user
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        items = order.orderlineitem_set.all()
+    else:
+        order = []
+        items = []
 
     context = { 'books' : books, 'labCoats' : labCoats, 'instruments' : instruments, 'order':order }
     return render(request, 'store/refurbished.html', context)
@@ -142,18 +158,26 @@ def refurbished(request):
 
 def product(request, slug):
     oneProduct = ProductNew.objects.get(slug=slug)
-    customer = request.user
-    order, created = Order.objects.get_or_create(customer=customer, complete=False)
-    items = order.orderlineitem_set.all()
+    if request.user.is_authenticated:
+        customer = request.user
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        items = order.orderlineitem_set.all()
+    else:
+        order = []
+        items = []
     context = {'oneProduct':oneProduct, 'order':order}
     return render(request, 'store/product.html', context )
 
 
 def refurbishedProduct(request, slug):
     oneProduct = ProductRefurbished.objects.get(slug=slug)
-    customer = request.user
-    order, created = Order.objects.get_or_create(customer=customer, complete=False)
-    items = order.orderlineitem_set.all()
+    if request.user.is_authenticated:
+        customer = request.user
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        items = order.orderlineitem_set.all()
+    else:
+        order = []
+        items = []
     context = {'oneProduct':oneProduct, 'order':order}
     return render(request, 'store/refurbishedProduct.html', context )
 
@@ -178,9 +202,13 @@ def enlist(request):
 
 
 def about(request):
-    customer = request.user
-    order, created = Order.objects.get_or_create(customer=customer, complete=False)
-    items = order.orderlineitem_set.all()
+    if request.user.is_authenticated:
+        customer = request.user
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        items = order.orderlineitem_set.all()
+    else:
+        order = []
+        items = []
     context = {'order':order}
     return render(request, 'store/about_us.html', context)
 
@@ -191,9 +219,13 @@ def contact(request):
         if form.is_valid():
             form.save()
             return redirect('/')
-    customer = request.user
-    order, created = Order.objects.get_or_create(customer=customer, complete=False)
-    items = order.orderlineitem_set.all()        
+    if request.user.is_authenticated:
+        customer = request.user
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        items = order.orderlineitem_set.all()
+    else:
+        order = []
+        items = []        
     context = {'form':form,  'order':order}
     return render(request, 'store/contact.html', context)
 
@@ -212,8 +244,8 @@ def updateItem(request):
     productId = data['productId']
     action = data['action']
 
-    print('Action: ' ,action)
-    print('ProductID: ',productId)
+    # print('Action: ' ,action)
+    # print('ProductID: ',productId)
 
     customer = request.user
     product = ProductNew.objects.get(id=productId)
@@ -231,10 +263,24 @@ def updateItem(request):
 
     return JsonResponse('Item was Added', safe=False)
 
-
+@login_required(login_url='login')
 def checkout(request):
     customer = request.user
     order, created = Order.objects.get_or_create(customer=customer, complete=False)
     items = order.orderlineitem_set.all()
     context = {'items': items, 'order':order}
     return render(request, 'store/checkout.html', context)
+
+
+@login_required(login_url='login')
+def placeOrder(request):
+    data = json.loads(request.body)
+    orderID = data['orderID']
+    orderTotal = data['orderTotal']
+    # print(orderID)
+    order = Order.objects.get(id=orderID)
+    print(order.placed)
+    order.placed = True
+    order.orderTotal = orderTotal
+    order.save()
+    return JsonResponse('order placed for order ID: ' + orderID , safe=False)

@@ -50,7 +50,7 @@
                 Amount: &#8377;{{ order.get_cart_total | floatformat:2 }}/-
             </div>
             <div class="flex row-start-2 justify-end">
-                <button type="button" class="bg-gray-500 text-black hover:text-white hover:bg-gray-800 px-4 py-2 rounded  border-b-4 border-gray-700 hover:border-gray-500 focus:outline-none focus:shadow-myOutline">Place Order</button>
+                <button data-order="{{ order.id }}" data-total="{{ order.get_cart_total | floatformat:2 }}" type="button" class="checkout bg-gray-500 text-black hover:text-white hover:bg-gray-800 px-4 py-2 rounded  border-b-4 border-gray-700 hover:border-gray-500 focus:outline-none focus:shadow-myOutline">Place Order</button>
             </div>
         </div>
     </div>

@@ -20,7 +20,7 @@ def home(request):
             order = Order.objects.get(customer=customer, complete=False, placed=False)
             items = order.orderlineitem_set.all()
         except:
-            order = []
+            order = 0
             items = []
     else:
         order = []
@@ -112,9 +112,11 @@ def profile(request, pk):
     if request.user.is_authenticated:
         customer = request.user
         try:
-            order = Order.objects.get(customer=customer, complete=False, placed=False)
+            order = Order.objects.get(customer=customer, placed=True)
+            print(order)
             items = order.orderlineitem_set.all()
         except:
+            print("Except reached.")
             order = []
             items = []
     else:

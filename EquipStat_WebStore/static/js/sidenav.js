@@ -11,6 +11,6 @@ hamburger.addEventListener('click', function(event){
 })
 
 closeSideNav.addEventListener('click', function(event){
-    sideNav.style.marginLeft = "-250px"
+    sideNav.style.marginLeft = "-300px"
 })
 

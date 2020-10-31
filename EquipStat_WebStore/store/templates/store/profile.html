@@ -61,7 +61,7 @@
         <!-- My Listings -->
 
         <!-- My Orders -->
-        <div class="card grid grid-cols-4 grid-rows-3 row-start-3 row-end-4 col-start-2 col-end-12 gap-3 p-5">
+        <div class="card grid grid-cols-4 grid-rows-3 row-start-3 row-end-4 col-start-2 col-end-12 gap-3 p-5 mb-8">
             <div class="grid row-start-1 row-span-1 col-span-4 justify-items-center items-center">
                 <h1 class="text-5xl">
                     My Orders
@@ -76,12 +76,12 @@
             </div>
 
             <div class="flex flex-row col-start-1 col-span-3 row-span-2 w-full overflow-hidden overflow-x-scroll">
-                {% for listing in listings %}
+                {% for orders in order %}
 
                 <a class="" href="">
-                    <div class="flex flex-col  border-2 border-black m-5 max-w-full p-5">
-                        <h1 class="text-center">{{ listing }}</h1>
-                        <p class="text-center">{{ listing.expectedReturn }}</p>
+                    <div class="flex flex-col border-2 border-black m-5 max-w-full p-5">
+                        <h1 class="text-center">{{ order }}</h1>
+                        <p class="text-center">{{ order.complete }}</p>
                     </div>
                 </a>
 

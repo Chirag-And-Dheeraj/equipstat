@@ -3,13 +3,23 @@
 {% block content %}
     
     <div id="home-content" class="grid grid-cols-12 grid-rows-4 gap-y-5 text-4xl">
-        <div class="grid row-span-1 col-start-2 col-end-6 mx-auto pt-4 items-end">
+        <div class="grid row-span-1 col-start-2 col-end-6 mx-auto pt-4 items-center">
             <img class="images" src="{% static '/images/calculator.svg' %}" alt="Calculator">
         </div>
-        <div class="my-12 text-black font-extrabold grid justify-items-center text-center col-start-8 col-end-12 row-span-1">
-            <p class=""> Original University Approved Calculators @  unbelievable rates!!
-               (Warranty cards included!)
-            </p>
+        <div class="grid grid-rows-3 grid-flow-row auto-rows-min justify-items-center items-center my-12 text-black col-start-7 col-end-12 row-span-1">
+                <div class="row-start-1 text-center text-4xl font-black">
+                    Casio Scientific Calculators
+                </div> 
+                <div class="row-start-2 text-center font-normal text-gray-700 text-xl">
+                   University approved calculators. Apt for all kind of calculations.
+                </div>
+                <div class="text-center text-2xl row-start-3">
+                    Buy Now:
+                </div>
+                <div class="grid grid-cols-2 row-start-4 justify-items-center">
+                    <a class="col-start-1 cardDark p-5" href="/store/fx-991-ex/">FX-991EX</a>
+                    <a class="col-start-2 cardDark p-5" href="/store/fx-991-es-plus/">FX-991ESPlus</a>
+                </div> 
         </div>
         <div class="logo grid row-start-2 col-start-5 col-end-9 items-center text-center rounded-full my-10 bg-gray-900 text-gray-200 shadow-2xl">
             <div class="text-4xl px-10">
@@ -17,17 +27,39 @@
 </span>
             </div>
         </div>
-        <div class="grid row-start-3 col-start-8 col-end-12 justify-items-center items-start">
+        <div class="grid row-start-3 col-start-8 col-end-12 justify-items-center items-center">
             <img class="images" src="{% static '/images/chemistry.svg' %}" alt="Chemistry">
        </div>
-        <div class="grid row-start-3 col-start-2 col-span-4 justify-items-center items-end text-center font-extrabold">
-                Refurbished Lab Coats at cheaper rates works for both workshop as well as chemistry lab. 
+        <div class="grid grid-rows-4 grid-flow-row auto-rows-min row-start-3 col-start-2 col-span-4 justify-items-center items-center">
+            <div class="row-start-1 text-center text-4xl font-black">
+               Lab Coats 
+            </div>   
+            <div class="row-start-2 text-center font-normal text-gray-700 text-xl">
+                Available in all sizes. Mandatory for Chemistry and workshop labs.
+            </div> 
+            <div class="row-start-3 text-center text-2xl">
+                Buy Refurbished Lab Coats Now:
+            </div> 
+            <div class="row-start-4">
+                <a class="cardDark p-5" href="">Get Yours Now &rarr;</a>
+            </div>
         </div>
         <div class="images grid row-start-4 row-end-5 col-start-2 col-end-6 items-end">
             <img class="" src="{% static 'images/books.svg' %}" alt="Books">
         </div>
-        <div class="grid row-start-4 row-end-5 col-start-8 col-end-12 justify-items-center items-center font-extrabold text-center">
-            Why buy new books when the older ones works just fine. Get them at cheaper rates only at EquipStat
+        <div class="grid grid-rows-4 grid-flow-row auto-rows-min row-start-4 row-end-5 col-start-8 col-end-12 justify-items-center items-center font-extrabold text-center">
+            <div class="row-start-1 text-center text-4xl font-black">
+                Books  
+            </div>
+            <div class="row-start-2 text-center font-normal text-gray-700 text-xl">
+                Why buy new books when the older ones works just fine. Get them at cheaper rates only at EquipStat
+            </div>
+            <div class="row-start-3 text-center text-2xl">
+                Buy Refurbished Books Now:
+            </div>
+            <div class="row-start-4">
+                <a class="cardDark p-5" href="">Get Yours Now &rarr;</a>
+            </div> 
         </div>
     </div>
 {% endblock %}

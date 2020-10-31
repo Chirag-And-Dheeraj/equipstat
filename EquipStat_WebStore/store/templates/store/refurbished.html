@@ -1,33 +1,87 @@
 {% extends 'store/main.html' %} 
 {% block content %}
-    <h1>Books</h1>
-    {% for book in books %}
-    <div>
-        <img src="{{ book.imageURL }}" alt="">
+
+    <div class="grid grid-cols-3 gap-10 m-8 grid-flow-row auto-rows-min">
+        {% for book in books %}
+            <div class="card grid grid-rows-8 p-3 grid-flow-row auto-rows-min gap-y-4">
+                <div class="grid justify-items-center items-center row-start-1 row-span-4 border-b-2 border-black p-3">
+                    <img class="w-64 h-64" src="{{ book.imageURL }}" alt="{{ book.name }}">
+                </div>
+                <div class="row-start-5 row-span-1 text-center text-2xl">
+                    {{ book.name }}
+                </div>
+                <div class="grid grid-cols-2 row-start-6 row-span-1 justify-items-center items-center text-xl">
+                    <div class="col-start-1">
+                        <span class="text-green-600"> <span class="text-3xl">&#8377;{{ book.expectedReturn }}</span></span>
+                    </div>
+                    <div class="col-start-2">
+                        <a class="bg-gray-700 text-white rounded px-4 py-2" href="/user/{{ book.seller.id }}">
+                            Seller Details
+                        </a>
+                    </div>
+                </div>
+                <div class="grid justify-items-center items-center col-span-full row-start-7 row-span-1">
+                    <a class="bg-gray-700 text-white rounded px-4 py-2" href="{{ book.slug }}">
+                        More About Product
+                    </a>
+                </div>
+                <div class="flex justify-end text-base text-gray-600">Listed by {{ book.seller.first_name }}</div>
+            </div>
+        {% endfor %}
+
+        {% for labCoat in labCoats %}
+        <div class="card grid grid-rows-8 p-3 grid-flow-row auto-rows-min gap-y-4">
+            <div class="grid justify-items-center items-center row-start-1 row-span-4 border-b-2 border-black p-3">
+                <img class="w-64 h-64" src="{{ labCoat.imageURL }}" alt="{{ labCoat.name }}">
+            </div>
+            <div class="row-start-5 row-span-1 text-center text-2xl">
+                {{ labCoat.name }}
+            </div>
+            <div class="grid grid-cols-2 row-start-6 row-span-1 justify-items-center items-center text-xl">
+                <div class="col-start-1">
+                    <span class="text-green-600"> <span class="text-3xl">&#8377;{{ labCoat.expectedReturn }}</span></span>
+                </div>
+                <div class="col-start-2">
+                    <a class="bg-gray-700 text-white rounded px-4 py-2" href="/user/{{ labCoat.seller.id }}">
+                        Seller Details
+                    </a>
+                </div>
+            </div>
+            <div class="grid justify-items-center items-center col-span-full row-start-7 row-span-1">
+                <a class="bg-gray-700 text-white rounded px-4 py-2" href="{{ labCoat.slug }}">
+                    More About Product
+                </a>
+            </div>
+            <div class="flex justify-end text-base text-gray-600">Listed by {{ labCoat.seller.first_name }}</div>
+        </div>
+        {% endfor %}
+    
+        {% for instrument in instruments %}
+        <div class="card grid grid-rows-8 p-3 grid-flow-row auto-rows-min gap-y-4">
+            <div class="grid justify-items-center items-center row-start-1 row-span-4 border-b-2 border-black p-3">
+                <img class="w-64 h-64" src="{{ instrument.imageURL }}" alt="{{ instrument.name }}">
+            </div>
+            <div class="row-start-5 row-span-1 text-center text-2xl">
+                {{ instrument.name }}
+            </div>
+            <div class="grid grid-cols-2 row-start-6 row-span-1 justify-items-center items-center text-xl">
+                <div class="col-start-1">
+                    <span class="text-green-600"> <span class="text-3xl">&#8377;{{ instrument.expectedReturn }}</span></span>
+                </div>
+                <div class="col-start-2">
+                    <a class="bg-gray-700 text-white rounded px-4 py-2" href="/user/{{ instrument.seller.id }}">
+                        Seller Details
+                    </a>
+                </div>
+            </div>
+            <button type="button" class="grid col-span-full row-start-7 row-span-1 justify-items-center items-center focus:outline-none focus:shadow-myOutline">
+                <a class="bg-gray-700 text-white rounded px-4 py-2" href="{{ instrument.slug }}">
+                    More About Product
+                </a>
+            </button>
+            <div class="flex justify-end text-base text-gray-600">Listed by {{ instrument.seller.first_name }}</div>
+        </div>
+        {% endfor %}
     </div>
-    <p>Name: {{ book.name }}</p><br>
-    <p>Approximate cost: {{ book.expectedReturn }}</p><br>
-    <p>Seller: <a href="/user/{{ book.seller.id }}">{{ book.seller.first_name }}</a></p> <br>
-    <p>Detail View: <a href="{{ book.slug }}">Details</a></p> <br><br><hr>
-    {% endfor %}
-    <h1>Lab Coats</h1>
-    {% for labCoat in labCoats %}
-    <div>
-        <img src="{{ labCoat.imageURL }}" alt="">
-    </div>
-    <p>{{ labCoat.name }}</p><br>
-    <p>Approximate cost: {{ labCoat.expectedReturn }}</p><br>
-    <p>Seller: <a href="/user/{{ labCoat.seller.id }}">{{ labCoat.seller.first_name }}</a></p><br> 
-    <p>Detail View: <a href="{{ labCoat.slug }}">Details</a></p> <br><br><hr>
-    {% endfor %}
-    <h1>Instruments</h1>
-    {% for instrument in instruments %}
-    <div>
-        <img src="{{ instrument.imageURL }}" alt="">
-    </div>
-    <p>{{ instrument.name }}</p><br>
-    <p>Approximate cost: {{ instrument.expectedReturn }}</p><br>
-    <p>Seller: <a href="{{ instrument.seller.id }}">{{ instrument.seller.first_name }}</a></p> <br>
-    <p>Detail View: <a href="{{ instrument.slug }}">Details</a></p> <br><br><hr>
-    {% endfor %}
+    
 {% endblock %}

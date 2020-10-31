@@ -2,13 +2,19 @@ let placeOrderButton = document.getElementsByClassName('checkout')
 // console.log(placeOrderButton)
 
 
-if (placeOrderButton[0]!=undefined){
+if (placeOrderButton[0] != undefined) {
     placeOrderButton[0].addEventListener('click', function (event) {
         let orderID = this.dataset.order
         let orderTotal = this.dataset.total
         // console.log(orderID)
         placeOrder(orderID, orderTotal)
     })
+}
+
+
+function getWhatIWant(id) {
+    url = "/success/" + id
+    window.location.replace(url)
 }
 
 
@@ -24,21 +30,22 @@ function placeOrder(orderID, orderTotal) {
         body: JSON.stringify({ 'orderID': orderID, 'orderTotal': orderTotal })
     })
         .then((response) => {
-            // console.log("Fetch  executed successfully.")
-            return response.json()
+            console.log("Fetch  executed successfully.")
+            return (response.json())
         })
 
         .then((data) => {
             console.log(data)
+            getWhatIWant(data)
         })
 }
 
 let downloadButton = document.querySelector('.download')
-console.log(downloadButton); 
+console.log(downloadButton);
 
-downloadButton.addEventListener('click',function(){
-    html2canvas(document.querySelector('.receipt'),{
-        onrendered: function(canvas){
+downloadButton.addEventListener('click', function () {
+    html2canvas(document.querySelector('.receipt'), {
+        onrendered: function (canvas) {
             return Canvas2Image.saveAsPNG(canvas)
         }
     })

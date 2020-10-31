@@ -16,8 +16,12 @@ import json
 def home(request):
     if request.user.is_authenticated:
         customer = request.user
-        order, created = Order.objects.get_or_create(customer=customer, complete=False, placed=False)
-        items = order.orderlineitem_set.all()
+        try:
+            order = Order.objects.get(customer=customer, complete=False, placed=False)
+            items = order.orderlineitem_set.all()
+        except:
+            order = []
+            items = []
     else:
         order = []
         items = []
@@ -107,8 +111,12 @@ def profile(request, pk):
     listings = ProductRefurbished.objects.filter(seller=request.user)
     if request.user.is_authenticated:
         customer = request.user
-        order, created = Order.objects.get_or_create(customer=customer, complete=False, placed=False)
-        items = order.orderlineitem_set.all()
+        try:
+            order = Order.objects.get(customer=customer, complete=False, placed=False)
+            items = order.orderlineitem_set.all()
+        except:
+            order = []
+            items = []
     else:
         order = []
         items = []
@@ -131,8 +139,12 @@ def store(request):
     newProducts = ProductNew.objects.all()
     if request.user.is_authenticated:
         customer = request.user
-        order, created = Order.objects.get_or_create(customer=customer, complete=False, placed=False)
-        items = order.orderlineitem_set.all()
+        try:
+            order = Order.objects.get(customer=customer, complete=False, placed=False)
+            items = order.orderlineitem_set.all()
+        except:
+            order = 0
+            items = []
     else:
         order = []
         items = []
@@ -146,8 +158,12 @@ def refurbished(request):
     instruments = ProductRefurbished.objects.filter(typeOfProduct = 3)
     if request.user.is_authenticated:
         customer = request.user
-        order, created = Order.objects.get_or_create(customer=customer, complete=False, placed=False)
-        items = order.orderlineitem_set.all()
+        try:
+            order = Order.objects.get(customer=customer, complete=False, placed=False)
+            items = order.orderlineitem_set.all()
+        except:
+            order = []
+            items = []
     else:
         order = []
         items = []
@@ -160,8 +176,12 @@ def product(request, slug):
     oneProduct = ProductNew.objects.get(slug=slug)
     if request.user.is_authenticated:
         customer = request.user
-        order, created = Order.objects.get_or_create(customer=customer, complete=False, placed=False)
-        items = order.orderlineitem_set.all()
+        try:
+            order = Order.objects.get(customer=customer, complete=False, placed=False)
+            items = order.orderlineitem_set.all()
+        except:
+            order = []
+            items = []
     else:
         order = []
         items = []
@@ -173,8 +193,12 @@ def refurbishedProduct(request, slug):
     oneProduct = ProductRefurbished.objects.get(slug=slug)
     if request.user.is_authenticated:
         customer = request.user
-        order, created = Order.objects.get_or_create(customer=customer, complete=False, placed=False)
-        items = order.orderlineitem_set.all()
+        try:
+            order = Order.objects.get(customer=customer, complete=False, placed=False)
+            items = order.orderlineitem_set.all()
+        except:
+            order = []
+            items = []
     else:
         order = []
         items = []
@@ -204,8 +228,12 @@ def enlist(request):
 def about(request):
     if request.user.is_authenticated:
         customer = request.user
-        order, created = Order.objects.get_or_create(customer=customer, complete=False, placed=False)
-        items = order.orderlineitem_set.all()
+        try:
+            order = Order.objects.get(customer=customer, complete=False, placed=False)
+            items = order.orderlineitem_set.all()
+        except:
+            order = []
+            items = []
     else:
         order = []
         items = []
@@ -221,8 +249,12 @@ def contact(request):
             return redirect('/')
     if request.user.is_authenticated:
         customer = request.user
-        order, created = Order.objects.get_or_create(customer=customer, complete=False, placed=False)
-        items = order.orderlineitem_set.all()
+        try:
+            order = Order.objects.get(customer=customer, complete=False, placed=False)
+            items = order.orderlineitem_set.all()
+        except:
+            order = []
+            items = []
     else:
         order = []
         items = []        
@@ -233,10 +265,12 @@ def contact(request):
 @login_required(login_url='login')
 def cart(request):
     customer = request.user
-    order, created = Order.objects.get_or_create(customer=customer, complete=False, placed=False)
-    orderPlaced = order.objects.get(customer=customer,placed=True,complete=False)
-    print(orderPlaced)
-    items = order.orderlineitem_set.all()
+    try:
+        order = Order.objects.get(customer=customer, complete=False, placed=False)
+        items = order.orderlineitem_set.all()
+    except:
+        order = 0
+        items = []
     context = {'items': items, 'order':order}
     return render(request, 'store/cart.html', context)
 
@@ -268,7 +302,7 @@ def updateItem(request):
 @login_required(login_url='login')
 def checkout(request):
     customer = request.user
-    order, created = Order.objects.get_or_create(customer=customer, complete=False)
+    order = Order.objects.get(customer=customer, placed = False, complete=False)
     items = order.orderlineitem_set.all()
     context = {'items': items, 'order':order}
     return render(request, 'store/checkout.html', context)
@@ -285,4 +319,12 @@ def placeOrder(request):
     order.placed = True
     order.orderTotal = orderTotal
     order.save()
-    return JsonResponse('order placed for order ID: ' + orderID , safe=False)
+    return JsonResponse( orderID , safe=False)
+
+
+def success(request, pk):
+    order = Order.objects.get(id=pk)
+    items = order.orderlineitem_set.all()
+    context = {'items': items, 'order':order}
+    return render(request, 'store/success.html', context)
+    

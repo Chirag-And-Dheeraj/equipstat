@@ -73,11 +73,16 @@
                         <div class="grid justify-items-center col-start-5 col-end-6 p-5">
                            <h1 class="font-extrabold text-3xl">&#8377;{{ order.get_cart_total | floatformat:2 }}/-</h1>
                         </div>
-                        <!-- <hr class="col-span-5"> -->
             </div>
+            {% if order.complete == False and order.placed == True %}
+            <div class="grid justify-items-center row-start-1 col-start-10 col-end-12">
+                <h1>Please pickup your first order before placing next.</h1>
+            </div> 
+            {% else %}
             <div class="grid justify-items-center row-start-1 col-start-10 col-end-12">
                 <a href="{% url 'checkout' %} " class=" bg-gray-500 text-black hover:text-white hover:bg-gray-800 px-3  py-2 rounded  border-b-4 border-gray-700 text-2xl hover:border-gray-500 focus:outline-none focus:shadow-myOutline">Checkout &rarr;</a>
             </div>
+            {% endif %}
             {% endif %}
         </div>
     </div>

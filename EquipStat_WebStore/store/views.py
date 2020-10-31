@@ -16,7 +16,7 @@ import json
 def home(request):
     if request.user.is_authenticated:
         customer = request.user
-        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        order, created = Order.objects.get_or_create(customer=customer, complete=False, placed=False)
         items = order.orderlineitem_set.all()
     else:
         order = []
@@ -107,7 +107,7 @@ def profile(request, pk):
     listings = ProductRefurbished.objects.filter(seller=request.user)
     if request.user.is_authenticated:
         customer = request.user
-        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        order, created = Order.objects.get_or_create(customer=customer, complete=False, placed=False)
         items = order.orderlineitem_set.all()
     else:
         order = []
@@ -131,7 +131,7 @@ def store(request):
     newProducts = ProductNew.objects.all()
     if request.user.is_authenticated:
         customer = request.user
-        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        order, created = Order.objects.get_or_create(customer=customer, complete=False, placed=False)
         items = order.orderlineitem_set.all()
     else:
         order = []
@@ -146,7 +146,7 @@ def refurbished(request):
     instruments = ProductRefurbished.objects.filter(typeOfProduct = 3)
     if request.user.is_authenticated:
         customer = request.user
-        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        order, created = Order.objects.get_or_create(customer=customer, complete=False, placed=False)
         items = order.orderlineitem_set.all()
     else:
         order = []
@@ -160,7 +160,7 @@ def product(request, slug):
     oneProduct = ProductNew.objects.get(slug=slug)
     if request.user.is_authenticated:
         customer = request.user
-        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        order, created = Order.objects.get_or_create(customer=customer, complete=False, placed=False)
         items = order.orderlineitem_set.all()
     else:
         order = []
@@ -173,7 +173,7 @@ def refurbishedProduct(request, slug):
     oneProduct = ProductRefurbished.objects.get(slug=slug)
     if request.user.is_authenticated:
         customer = request.user
-        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        order, created = Order.objects.get_or_create(customer=customer, complete=False, placed=False)
         items = order.orderlineitem_set.all()
     else:
         order = []
@@ -204,7 +204,7 @@ def enlist(request):
 def about(request):
     if request.user.is_authenticated:
         customer = request.user
-        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        order, created = Order.objects.get_or_create(customer=customer, complete=False, placed=False)
         items = order.orderlineitem_set.all()
     else:
         order = []
@@ -221,7 +221,7 @@ def contact(request):
             return redirect('/')
     if request.user.is_authenticated:
         customer = request.user
-        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        order, created = Order.objects.get_or_create(customer=customer, complete=False, placed=False)
         items = order.orderlineitem_set.all()
     else:
         order = []
@@ -233,7 +233,9 @@ def contact(request):
 @login_required(login_url='login')
 def cart(request):
     customer = request.user
-    order, created = Order.objects.get_or_create(customer=customer, complete=False)
+    order, created = Order.objects.get_or_create(customer=customer, complete=False, placed=False)
+    orderPlaced = order.objects.get(customer=customer,placed=True,complete=False)
+    print(orderPlaced)
     items = order.orderlineitem_set.all()
     context = {'items': items, 'order':order}
     return render(request, 'store/cart.html', context)
@@ -249,7 +251,7 @@ def updateItem(request):
 
     customer = request.user
     product = ProductNew.objects.get(id=productId)
-    order, created = Order.objects.get_or_create(customer=customer, complete=False)
+    order, created = Order.objects.get_or_create(customer=customer, complete=False, placed=False)
     orderItem, created = OrderLineItem.objects.get_or_create(order=order, product=product)
     if action == 'add':
         orderItem.quantity = (orderItem.quantity + 1)

@@ -107,19 +107,19 @@ def profile(request, pk):
     email = user.email
     userDetail = UserDetail.objects.get(user_id=pk)
     contact = userDetail.contact
-
     listings = ProductRefurbished.objects.filter(seller=request.user)
     if request.user.is_authenticated:
+        print("Inside the if")
         customer = request.user
         try:
-            order = Order.objects.get(customer=customer, placed=True)
-            print(order)
-            items = order.orderlineitem_set.all()
+            orders = Order.objects.filter(customer=customer, placed=True)
+            print("Try reached")
         except:
             print("Except reached.")
             order = []
             items = []
     else:
+        print("Inside Else")
         order = []
         items = []
 
@@ -130,7 +130,7 @@ def profile(request, pk):
         'email': email,
         'contact': contact,
         'listings': listings,
-        'order':order
+        'orders':orders
         }
     return render(request, 'store/profile.html', context)
 

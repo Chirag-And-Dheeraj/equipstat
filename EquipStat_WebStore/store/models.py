@@ -47,9 +47,9 @@ class ProductRefurbished(models.Model):
 
     @property
     def type(self):
-        if self.typeOfProduct == 1:
+        if self.typeOfProduct == '1':
             return "Books"
-        elif self.typeOfProduct == 2:
+        elif self.typeOfProduct == '2':
             return "Chemistry Lab Coat"
         else:
             return "Engineering Graphics Instrument"
@@ -57,12 +57,15 @@ class ProductRefurbished(models.Model):
 
     def __str__(self):
 	    return self.name
+    
+    class Meta:
+        verbose_name_plural = "Refurbished Products"
 
 
 
 
 class ProductNew(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=200)
     mrp = models.FloatField()
     ourPrice = models.FloatField()
     inventory = models.IntegerField()
@@ -98,6 +101,9 @@ class ProductNew(models.Model):
 
     def __str__(self):
         return self.name
+    
+    class Meta:
+        verbose_name_plural = "New Products"
 
 
 

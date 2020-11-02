@@ -3,13 +3,13 @@
     <div id="SideNav" class="h-full fixed z-1 top-0 left-0 bg-gray-800 text-white overflow-x-hidden" style="transition: 0.5s; width: 300px; margin-left: -300px;">
         <a id="closeSideNav" href="javascript:void(0)" class="text-6xl absolute top-0 right-0 pr-5">&times;</a>
         <a href="/"><img src="{% static '/images/logo.svg' %}" alt="Equipstat"></a>
-        <a href="{% url 'store' %}" class="text-center p-2 block text-3xl border-b-2 border-t-2 border-black">Store</a>
-        <a href="{% url 'refurbished' %}" class="text-center p-2 block text-3xl border-b-2 border-black">Refurbished</a>
+        <a href="{% url 'store' %}" class="text-center p-2 block text-2xl border-b-2 border-t-2 border-black">Store</a>
+        <a href="{% url 'refurbished' %}" class="text-center p-2 block text-2xl border-b-2 border-black">Refurbished</a>
         {% if user.is_authenticated %}
-        <a href="{% url 'enlist' %}" class="text-center p-2 block text-3xl border-b-2 border-black">Enlist</a>
+        <a href="{% url 'enlist' %}" class="text-center p-2 block text-2xl border-b-2 border-black">Enlist</a>
         {% endif %}
-        <a href="{% url 'contact' %}" class="text-center p-2 block text-3xl border-b-2 border-black">Contact</a>
-        <a href="{% url 'about' %}" class="text-center p-2 block text-3xl border-b-2 border-black">About&nbsp;us</a>
+        <a href="{% url 'contact' %}" class="text-center p-2 block text-2xl border-b-2 border-black">Contact</a>
+        <a href="{% url 'about' %}" class="text-center p-2 block text-2xl border-b-2 border-black">About&nbsp;us</a>
     </div>
     <nav class="bg-gray-900  text-white grid grid-cols-12 py-3 items-center">
         <div id="toggle_btn" class="w-10 h-auto col-span-1 ml-4">

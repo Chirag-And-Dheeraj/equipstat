@@ -17,7 +17,6 @@ TYPES = ( ('1', 'Books'), ('2', 'Lab Coats'), ('3', 'Instruments') )
 class ProductRefurbished(models.Model):
     name = models.CharField(max_length=50)
     seller = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    # sellerID = models.CharField(max_length=10 ,null=True)
     typeOfProduct = models.CharField(max_length=20, choices=TYPES)
     expectedReturn = models.CharField(max_length=30)
     image = models.ImageField(upload_to = 'images/',null=True, blank=True)
@@ -45,6 +44,16 @@ class ProductRefurbished(models.Model):
         except:
             url = ''
         return url
+
+    @property
+    def type(self):
+        if self.typeOfProduct == 1:
+            return "Books"
+        elif self.typeOfProduct == 2:
+            return "Chemistry Lab Coat"
+        else:
+            return "Engineering Graphics Instrument"
+            
 
     def __str__(self):
 	    return self.name
@@ -82,6 +91,10 @@ class ProductNew(models.Model):
         except:
             url = ''
         return url
+
+    @property
+    def saving(self):
+        return self.mrp - self.ourPrice
 
     def __str__(self):
         return self.name

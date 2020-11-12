@@ -193,6 +193,8 @@ def product(request, slug):
 
 def refurbishedProduct(request, slug):
     oneProduct = ProductRefurbished.objects.get(slug=slug)
+    seller = User.objects.get(username = oneProduct.seller)
+    sellerDetail = UserDetail.objects.get(user = seller)
     if request.user.is_authenticated:
         customer = request.user
         try:
@@ -204,7 +206,7 @@ def refurbishedProduct(request, slug):
     else:
         order = []
         items = []
-    context = {'oneProduct':oneProduct, 'order':order}
+    context = {'oneProduct':oneProduct, 'order':order, 'seller':seller, 'sellerDetail':sellerDetail}
     return render(request, 'store/refurbishedProduct.html', context )
 
 
@@ -330,3 +332,10 @@ def success(request, pk):
     context = {'items': items, 'order':order}
     return render(request, 'store/success.html', context)
     
+
+def deleteListing(request):
+    data = json.loads(request.body)
+    listingID = data['listingID']
+    listing = ProductRefurbished.objects.get(id=listingID)
+    listing.delete()
+    return JsonResponse(request.user.id, safe=False)

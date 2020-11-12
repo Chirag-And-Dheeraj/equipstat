@@ -20,6 +20,7 @@ urlpatterns = [
     path('place_order/', views.placeOrder, name="place_order"),
     path('enlist/', views.enlist, name="enlist"),
     path('update_item/', views.updateItem, name="update_item"),
+    path('delete_listing/', views.deleteListing, name="delete_listing"),
     path('success/<str:pk>', views.success, name='success'), 
 ]
 

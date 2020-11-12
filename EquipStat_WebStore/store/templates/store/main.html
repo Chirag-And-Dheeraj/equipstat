@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,8 +30,9 @@
         }
         const csrftoken = getCSRF('csrftoken');
     </script>
-    
+
 </head>
+
 <body class="font-default bg-gray-300 text-lg text-black min-h-screen">
     {% include 'store/nav.html' %}
     {% block content %}
@@ -43,5 +45,7 @@
     <script src="{% static '/js/sidenav.js' %}"></script>
     <script src="{% static '/js/dropdown.js' %}"></script>
     <script src="{% static '/js/cart.js' %}"></script>
+    <script src="{% static '/js/delete.js' %}"></script>
 </body>
+
 </html>

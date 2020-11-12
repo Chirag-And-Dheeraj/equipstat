@@ -1,6 +1,6 @@
-{% extends 'store/main.html' %} 
+{% extends 'store/main.html' %}
 {% block content %}
-    
+
 <div class="grid grid-cols-12 p-5">
     <div class="card grid grid-cols-3 grid-rows-2 col-start-1 col-span-full p-3">
         <div class="grid justify-items-center items-center col-start-1 col-span-1 row-start-1 row-span-2">
@@ -25,23 +25,38 @@
             <div class="grid grid-cols-3 row-start-6 row-end-7 items-center">
                 <div class="col-start-1">
                     Listed by:
-                     <a class="border-white border-b-2 hover:text-gray-600 hover:border-gray-600" href="/user/{{ oneProduct.seller.id }}">
+                    <a class="border-white border-b-2 hover:text-gray-600 hover:border-gray-600"
+                        href="/user/{{ oneProduct.seller.id }}">
                         {{ oneProduct.seller.first_name }} {{ oneProduct.seller.last_name }}
                     </a>
                 </div>
                 <div class="col-start-2">
-                    <a class="bg-gray-900 rounded text-white px-4 py-2" href="mailto:{{ email }}">
-                        <i class="fa fa-envelope"></i> <span class="ml-3">Email</span> 
+                    <a class="bg-gray-900 rounded text-white px-4 py-2" href="mailto:{{ seller.email }}">
+                        <i class="fa fa-envelope"></i> <span class="ml-3">Email</span>
                     </a>
                 </div>
                 <div class="col-start-3">
-                    <a class="bg-gray-900 rounded text-white px-4 py-2" href="tel:{{ contact }}">
-                        <i class="fa fa-phone"></i> <span class="ml-2">Contact</span> 
+                    <a class="bg-gray-900 rounded text-white px-4 py-2" href="tel:{{ sellerDetail.contact }}">
+                        <i class="fa fa-phone"></i> <span class="ml-2">Contact</span>
                     </a>
                 </div>
             </div>
         </div>
     </div>
-</div>      
+</div>
+
+
+
+{% if oneProduct.seller == request.user %}
+<button class="delete-listing w-10 bg-red-700 text-white" data-listing="{{ oneProduct.id }}">
+    DELETE
+</button>
+{% endif %}
+
+
+
+
+
+
 
 {% endblock %}

@@ -6,7 +6,7 @@
             <img src="{% static '/images/contactus.svg' %}" alt="Contact">
         </div>
         <div class="card m-5 col-start-3 col-end-11 row-start-2 row-span-2">
-            <form action="" method="POST" enctype="multipart/form-data">
+            <form action="" method="POST" enctype="multipart/form-data" onsubmit="return validateContact(this)">
                 <div class="grid row-start-2 grid-rows-6 grid-cols-2 py-5 gap-y-3"> 
                     {% csrf_token %}
                     <div class=" grid grid-cols-2 col-span-2"> 
@@ -38,7 +38,7 @@
                         {{ form.message }} 
                     </div>
                     <div class="grid justify-items-center items-center text-center col-span-2 row-span-1">
-                        <input class="bg-gray-500 text-black hover:text-white hover:bg-gray-800 p-3 rounded w-1/4 border-b-4 border-gray-700 hover:border-gray-500 focus:outline-none " type="submit" name="Submit">
+                        <input onclick="return validateContact()" class="bg-gray-500 text-black hover:text-white hover:bg-gray-800 p-3 rounded w-1/4 border-b-4 border-gray-700 hover:border-gray-500 focus:outline-none " type="submit" name="Submit">
                     </div>
                </div>
             </form>

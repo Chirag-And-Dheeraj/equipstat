@@ -11,7 +11,7 @@
         <img src="{% static '/images/register.svg' %}" alt="SignUp">
     </div>
     <div class="card col-start-7 col-end-12 row-start-2 row-end-5 my-auto">
-        <form action="" method="POST">
+        <form action="" method="POST" onsubmit="return validateRegister(this)">
             <div class="grid grid-rows-7 p-5 gap-y-4">
                 {% csrf_token %}
                 <div class="grid grid-cols-2 gap-x-4">
@@ -64,7 +64,7 @@
                     <div class="col-start-1">
                         <input
                             class=" bg-gray-500 text-black hover:text-white hover:bg-gray-800 px-3  py-1 rounded border-b-4 border-gray-700 hover:border-gray-500 focus:outline-none "
-                            type="submit" value="Register">
+                            type="submit" value="Register" onclick="return validateRegister()">
                     </div>
                     <div class="grid items-center col-start-2 text-sm">
                         <span>Already have an account? <a class="text-black font-bold underline"

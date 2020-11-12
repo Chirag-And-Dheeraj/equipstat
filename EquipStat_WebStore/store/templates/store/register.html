@@ -1,66 +1,84 @@
-{% extends 'store/main.html' %} 
+{% extends 'store/main.html' %}
 {% block content %}
 {% load static %}
-    <div class="grid grid-cols-12">
-        <div class="grid grid-rows-3 grid-cols-4 items-center col-start-2 col-end-5 row-start-2 row-end-3">
-            <h1 class="row-start-1 row-end-3 col-start-1 col-end-3 text-gray-600 font-bold text-5xl">Register</h1>
-            <span class="text-2xl row-start-3 row-end-4 col-start-2 col-end-5 italic underline text-gray-500">...to Equip Yourself</span>
-        </div>
-        <div class="grid items-end col-start-3 col-end-6 row-start-3 row-end-5">
-            <img src="{% static '/images/register.svg' %}" alt="SignUp">
-        </div>
-        <div class="card col-start-7 col-end-12 row-start-2 row-end-5 my-auto">
-            <form action="" method="POST">
-                <div class="grid grid-rows-7 p-5 gap-y-4">
-                    {% csrf_token %}
-                    <div class="grid grid-cols-2 gap-x-4">
-                        <div class="col-start-1">
-                            <label for="first_name">First Name:</label><br>
-                            <input class="w-full bg-gray-500 text-gray-900 p-2 rounded placeholder-gray-700 focus:outline-none focus:shadow-myOutline" id="first_name" type="text" name='first_name' placeholder="John">
-                        </div>
-                        <div class="col-start-2">
-                            <label for="last_name">Last Name:</label><br>
-                            <input class="w-full bg-gray-500 text-gray-900 p-2 rounded placeholder-gray-700 focus:outline-none focus:shadow-myOutline" id="last_name" type="text" name='last_name' placeholder="Doe">
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-2 gap-x-4"> 
-                        <div class="col-start-1">
-                            <label for="username">Username:</label><br>
-                            <input class="w-full bg-gray-500 text-gray-900 p-2 rounded placeholder-gray-700 focus:outline-none focus:shadow-myOutline" id="username" type="text" name='username' placeholder="johnDoe">
-                        </div>
-                        <div class="col-start-2">
-                            <label for="contact">Contact No.:</label>
-                            <input class="w-full bg-gray-500 text-gray-900 p-2 rounded placeholder-gray-700 focus:outline-none focus:shadow-myOutline" id="contact" type="text" name="contact" placeholder="xxxxxxxxxx">
-                        </div>
-                    </div>
-                    <div class="row-span-1">
-                        <label for="email">Email address:</label><br>
-                        <input class="w-full bg-gray-500 text-gray-900 p-2 rounded placeholder-gray-700 focus:outline-none focus:shadow-myOutline" id="email" type="email" name='email' placeholder="example@domain.com"> 
-                    </div>
-                    <div class="row-span-1"> 
-                        <label for="password1">Password:</label><br>
-                        <input class="w-full bg-gray-500 text-gray-900 p-2 rounded placeholder-gray-700 focus:outline-none focus:shadow-myOutline" id="password1" type="password" name='password1' placeholder="**********"> 
-                    </div>
-                    <div class="row-span-1">
-                        <label for="password2">Re-enter Password:</label><br>
-                        <input class="w-full bg-gray-500 text-gray-900 p-2 rounded placeholder-gray-700 focus:outline-none focus:shadow-myOutline" id="password2" type="password" name='password2' placeholder="**********"><br>
-                    </div>
-                    <div class="grid grid-cols-2 row-span-1">
-                       <div class="col-start-1">
-                            <input class=" bg-gray-500 text-black hover:text-white hover:bg-gray-800 px-3  py-1 rounded border-b-4 border-gray-700 hover:border-gray-500 focus:outline-none " type="submit" value="Register">
-                       </div>
-                       <div class="grid items-center col-start-2 text-sm">
-                            <span>Already have an account? <a class="text-black font-bold underline" href="{% url 'login' %}">Login</a></span>
-                       </div>
-                    </div>
-               </div>
-            </form>
-       </div>
+<div class="grid grid-cols-12">
+    <div class="grid grid-rows-3 grid-cols-4 items-center col-start-2 col-end-5 row-start-2 row-end-3">
+        <h1 class="row-start-1 row-end-3 col-start-1 col-end-3 text-gray-600 font-bold text-5xl">Register</h1>
+        <span class="text-2xl row-start-3 row-end-4 col-start-2 col-end-5 italic underline text-gray-500">...to Equip
+            Yourself</span>
     </div>
+    <div class="grid items-end col-start-3 col-end-6 row-start-3 row-end-5">
+        <img src="{% static '/images/register.svg' %}" alt="SignUp">
+    </div>
+    <div class="card col-start-7 col-end-12 row-start-2 row-end-5 my-auto">
+        <form action="" method="POST">
+            <div class="grid grid-rows-7 p-5 gap-y-4">
+                {% csrf_token %}
+                <div class="grid grid-cols-2 gap-x-4">
+                    <div class="col-start-1">
+                        <label for="first_name">First Name:</label><br>
+                        <input
+                            class="w-full bg-gray-500 text-gray-900 p-2 rounded placeholder-gray-700 focus:outline-none focus:shadow-myOutline"
+                            id="first_name" type="text" name='first_name' required placeholder="John">
+                    </div>
+                    <div class="col-start-2">
+                        <label for="last_name">Last Name:</label><br>
+                        <input
+                            class="w-full bg-gray-500 text-gray-900 p-2 rounded placeholder-gray-700 focus:outline-none focus:shadow-myOutline"
+                            id="last_name" type="text" name='last_name' placeholder="Doe">
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-x-4">
+                    <div class="col-start-1">
+                        <label for="username">Username:</label><br>
+                        <input
+                            class="w-full bg-gray-500 text-gray-900 p-2 rounded placeholder-gray-700 focus:outline-none focus:shadow-myOutline"
+                            id="username" type="text" name='username' required placeholder="johnDoe">
+                    </div>
+                    <div class="col-start-2">
+                        <label for="contact">Contact No.:</label>
+                        <input
+                            class="w-full bg-gray-500 text-gray-900 p-2 rounded placeholder-gray-700 focus:outline-none focus:shadow-myOutline"
+                            id="contact" type="text" name="contact" required placeholder="xxxxxxxxxx">
+                    </div>
+                </div>
+                <div class="row-span-1">
+                    <label for="email">Email address:</label><br>
+                    <input
+                        class="w-full bg-gray-500 text-gray-900 p-2 rounded placeholder-gray-700 focus:outline-none focus:shadow-myOutline"
+                        id="email" type="email" name='email' required placeholder="example@domain.com">
+                </div>
+                <div class="row-span-1">
+                    <label for="password1">Password:</label><br>
+                    <input
+                        class="w-full bg-gray-500 text-gray-900 p-2 rounded placeholder-gray-700 focus:outline-none focus:shadow-myOutline"
+                        id="password1" type="password" name='password1' required placeholder="**********">
+                </div>
+                <div class="row-span-1">
+                    <label for="password2">Re-enter Password:</label><br>
+                    <input
+                        class="w-full bg-gray-500 text-gray-900 p-2 rounded placeholder-gray-700 focus:outline-none focus:shadow-myOutline"
+                        id="password2" type="password" name='password2' required placeholder="**********"><br>
+                </div>
+                <div class="grid grid-cols-2 row-span-1">
+                    <div class="col-start-1">
+                        <input
+                            class=" bg-gray-500 text-black hover:text-white hover:bg-gray-800 px-3  py-1 rounded border-b-4 border-gray-700 hover:border-gray-500 focus:outline-none "
+                            type="submit" value="Register">
+                    </div>
+                    <div class="grid items-center col-start-2 text-sm">
+                        <span>Already have an account? <a class="text-black font-bold underline"
+                                href="{% url 'login' %}">Login</a></span>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 
-    {% for message in messages %}
-    <div class="message">
-        {{message}}
-    </div>
-    {% endfor %}
-    {% endblock %}
+{% for message in messages %}
+<div class="message">
+    {{message}}
+</div>
+{% endfor %}
+{% endblock %}

@@ -57,22 +57,26 @@ def register(request):
         email = request.POST['email']
         contact = request.POST['contact']
 
-        if password_1 == password_2:
-            if User.objects.filter(username=username).exists():
-                messages.info(request, 'Username not available!')
-                return redirect('register')
-            elif User.objects.filter(email=email).exists():
-                messages.info(request, 'Email already registered')
-                return redirect('register')
-            else:
-                user = User.objects.create_user(first_name=first_name, last_name=last_name, email=email, username=username, password=password_2)
-                user.save()
-                userDetail = UserDetail.objects.create(user=user, contact=contact)
-                messages.info(request, 'Yay, you just registered your account with us!')
-                return redirect('login')
-        else:
-            messages.info(request, "Passwords don't match!")
+        if first_name == "" or username == "" or password_1 == "" or password_2 == "" or email == "" or contact == "":
+            messages.info(request, 'First Name, username, password 1, password 2, email & contact fields are all compulsory')
             return redirect('register')
+        else:
+            if password_1 == password_2:
+                if User.objects.filter(username=username).exists():
+                    messages.info(request, 'Username not available!')
+                    return redirect('register')
+                elif User.objects.filter(email=email).exists():
+                    messages.info(request, 'Email already registered')
+                    return redirect('register')
+                else:
+                    user = User.objects.create_user(first_name=first_name, last_name=last_name, email=email, username=username, password=password_2)
+                    user.save()
+                    userDetail = UserDetail.objects.create(user=user, contact=contact)
+                    messages.info(request, 'Yay, you just registered your account with us!')
+                    return redirect('login')
+            else:
+                messages.info(request, "Passwords don't match!")
+                return redirect('register')
     else:  # This is a GET request, for fetching the registration page.
         return render(request, 'store/register.html')
 

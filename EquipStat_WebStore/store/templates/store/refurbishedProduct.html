@@ -1,5 +1,6 @@
 {% extends 'store/main.html' %}
 {% block content %}
+{% load static %}
 
 <div class="grid grid-cols-12 p-5">
     <div class="card grid grid-cols-3 grid-rows-2 col-start-1 col-span-full p-3">
@@ -7,9 +8,18 @@
             <img class="w-64" src="{{ oneProduct.imageURL }}" alt="{{ oneProduct.name }}">
         </div>
         <div class="grid grid-rows-6 row-span-2 col-start-2 col-span-2">
-            <div class="row-start-1 row-span-1">
-                <h1 class="text-3xl font-extrabold">{{ oneProduct.name }}</h1>
-                <p class="text-xl text-gray-600">Category: {{ oneProduct.type }}</p>
+            <div class="grid grid-cols-4 row-start-1 row-span-1">
+                <div class="col-start-1 col-span-2">
+                    <h1 class="text-3xl font-extrabold">{{ oneProduct.name }}</h1>
+                    <p class="text-xl text-gray-600">Category: {{ oneProduct.type }}</p>
+                </div>
+                <div class="grid col-start-4 justify-items-end items-start">
+                    {% if oneProduct.seller == request.user %}
+                        <button class="delete-listing w-10 text-black" data-listing="{{ oneProduct.id }}">
+                            <img class="w-8 rounded-full hover:bg-gray-600" src="{% static '/images/delete.svg' %}" alt="delete" title="delete">
+                        </button>
+                    {% endif %}
+                </div>
             </div>
             <div class="grid row-start-2 row-span-1 items-end">
                 <div class="col-start-1 text-green-600 text-4xl">
@@ -31,12 +41,12 @@
                     </a>
                 </div>
                 <div class="col-start-2">
-                    <a class="bg-gray-900 rounded text-white px-4 py-2" href="mailto:{{ seller.email }}">
+                    <a class="bg-gray-900 rounded text-white px-4 py-2 hover:bg-gray-700" href="mailto:{{ seller.email }}">
                         <i class="fa fa-envelope"></i> <span class="ml-3">Email</span>
                     </a>
                 </div>
                 <div class="col-start-3">
-                    <a class="bg-gray-900 rounded text-white px-4 py-2" href="tel:{{ sellerDetail.contact }}">
+                    <a class="bg-gray-900 rounded text-white px-4 py-2 hover:bg-gray-700" href="tel:{{ sellerDetail.contact }}">
                         <i class="fa fa-phone"></i> <span class="ml-2">Contact</span>
                     </a>
                 </div>
@@ -47,11 +57,7 @@
 
 
 
-{% if oneProduct.seller == request.user %}
-<button class="delete-listing w-10 bg-red-700 text-white" data-listing="{{ oneProduct.id }}">
-    DELETE
-</button>
-{% endif %}
+
 
 
 

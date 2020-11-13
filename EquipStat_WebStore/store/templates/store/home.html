@@ -2,8 +2,8 @@
 {% load static %}
 {% block content %}
     
-    <div id="home-content" class="grid grid-cols-12 grid-rows-4 gap-y-5 text-4xl">
-        <div class="grid row-span-1 col-start-2 col-end-6 mx-auto pt-4 items-center">
+    <main id="home-content" class="grid grid-cols-12 grid-rows-4 gap-y-5 text-4xl">
+        <div id="start" class="grid row-span-1 col-start-2 col-end-6 mx-auto pt-4 items-center">
             <img class="images" src="{% static '/images/calculator.svg' %}" alt="Calculator">
         </div>
         <div class="grid grid-rows-3 grid-flow-row auto-rows-min justify-items-center items-center my-12 text-black col-start-7 col-end-12 row-span-1">
@@ -17,19 +17,29 @@
                     Buy Now:
                 </div>
                 <div class="grid grid-cols-2 row-start-4 justify-items-center">
-                    <a class="col-start-1 cardDark p-5 hover:bg-gray-700" href="/store/fx-991-ex/">FX-991EX</a>
-                    <a class="col-start-2 cardDark p-5 hover:bg-gray-700" href="/store/fx-991-es-plus/">FX-991ESPlus</a>
+                    <a class="col-start-1 bg-gray-900 text-white rounded px-4 py-4 hover:bg-gray-700" href="/store/fx-991-ex/">FX-991EX</a>
+                    <a class="col-start-2 bg-gray-900 text-white rounded px-4 py-4 hover:bg-gray-700" href="/store/fx-991-es-plus/">FX-991ESPlus</a>
                 </div> 
         </div>
-        <div class="logo grid row-start-2 col-start-5 col-end-9 items-center text-center rounded-full my-10 bg-gray-900 text-gray-200 shadow-2xl">
-            <div class="text-4xl px-10">
-                Get ready to equip yourself for the semesters, with <span class="font-black font-main text-6xl p-0 m-0">EquipStat
-</span>
+        <div class="grid row-start-1 col-span-full justify-items-center items-center bg-gradient-to-t from-gray-800 via-gray-700 to-gray-600 py-10">
+            <div class="logo grid justify-items-center items-center rounded-full text-4xl text-center my-10 bg-gray-900 text-gray-200 shadow-2xl">
+                    <div>
+                        Get ready to equip yourself for the semesters, with <span class="font-black font-main text-6xl p-0 m-0">EquipStat
+                    </div>
+    </span>
             </div>
+            <a href="#start" >
+                <svg width="30" height="28" viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14.2084 9.70831V5.95831L7.20837 10.125L0.208374 5.95831V9.70831L7.20837 13.875L14.2084 9.70831Z" fill="white"/>
+                    <path d="M14.2084 3.875V0.125L7.20837 4.29167L0.208374 0.125V3.875L7.20837 8.04167L14.2084 3.875Z" fill="white"/>
+                </svg>
+            </a>
+                
+                
         </div>
         <div class="grid row-start-3 col-start-8 col-end-12 justify-items-center items-center">
             <img class="images" src="{% static '/images/chemistry.svg' %}" alt="Chemistry">
-       </div>
+        </div>
         <div class="grid grid-rows-4 grid-flow-row auto-rows-min row-start-3 col-start-2 col-span-4 justify-items-center items-center">
             <div class="row-start-1 text-center text-4xl font-black">
                Lab Coats 
@@ -41,7 +51,7 @@
                 Buy Refurbished Lab Coats Now:
             </div> 
             <div class="row-start-4">
-                <a class="cardDark p-5 hover:bg-gray-700" href="{% url 'refurbished' %}">Get Yours Now &rarr;</a>
+                <a class="bg-gray-900 text-white rounded px-4 py-4 hover:bg-gray-700" href="{% url 'refurbished' %}">Get Yours Now &rarr;</a>
             </div>
         </div>
         <div class="images grid row-start-4 row-end-5 col-start-2 col-end-6 items-end">
@@ -58,8 +68,8 @@
                 Buy Refurbished Books Now:
             </div>
             <div class="row-start-4">
-                <a class="cardDark p-5 hover:bg-gray-700" href="{% url 'refurbished' %}">Get Yours Now &rarr;</a>
+                <a class="bg-gray-900 text-white rounded px-4 py-4 hover:bg-gray-700" href="{% url 'refurbished' %}">Get Yours Now &rarr;</a>
             </div> 
         </div>
-    </div>
+    </main>
 {% endblock %}

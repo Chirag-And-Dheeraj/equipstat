@@ -1,7 +1,7 @@
 {% extends 'store/main.html' %}
 {% load static %}
 {% block content %}
-<div class="grid grid-cols-12 grid-rows-3 gap-y-10">
+<div class="grid grid-cols-12 grid-rows-3 gap-y-10 mt-5">
     <!-- Profile card -->
     <div class="cardDark row-start-1 row-end-2 grid grid-rows-4 col-start-5 col-span-4 p-5">
         <div class="text-3xl text-center row-start-1">
@@ -56,9 +56,14 @@
         <div class="flex flex-row col-start-1 col-span-3 row-span-2 w-full overflow-hidden overflow-x-scroll">
             {% for listing in listings %}
             <a class="" href="/refurbished/{{ listing.slug }}">
-                <div class="flex flex-col  border-2 border-black m-5 max-w-full p-5">
-                    <h1 class="text-center">{{ listing }}</h1>
-                    <p class="text-center">{{ listing.expectedReturn }}</p>
+                <div class="grid grid-rows-3 border-2 border-black m-5 max-w-full p-5 justify-items-center items-center">
+                    <h1 class="row-start-1">{{ listing }}</h1>
+                    <p class="row-start-2">Price:{{ listing.expectedReturn }}</p>
+                    {% if listing.seller == request.user %}
+                        <button class="row-start-3 delete-listing text-black" data-listing="{{ listing.id }}">
+                            <img class="w-6 rounded-full hover:bg-gray-600" src="{% static '/images/delete.svg' %}" alt="delete" title="delete">
+                        </button>
+                    {% endif %}
                 </div>
             </a>
             {% endfor %}

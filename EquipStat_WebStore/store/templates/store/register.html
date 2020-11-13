@@ -10,7 +10,7 @@
     <div class="grid items-end col-start-3 col-end-6 row-start-3 row-end-5">
         <img src="{% static '/images/register.svg' %}" alt="SignUp">
     </div>
-    <div class="card col-start-7 col-end-12 row-start-2 row-end-5 my-auto">
+    <div class="mt-8 card col-start-7 col-end-12 row-start-2 row-end-5 my-auto">
         <form action="" method="POST" onsubmit="return validateRegister(this)">
             <div class="grid grid-rows-7 p-5 gap-y-4">
                 {% csrf_token %}
@@ -74,11 +74,10 @@
             </div>
         </form>
     </div>
+    {% for message in messages %}
+        <div class="row-start-5 col-start-8 col-end-11 message text-xl text-center text-red-600 message">
+            {{ message }}
+        </div>
+    {% endfor %}
 </div>
-
-{% for message in messages %}
-<div class="message">
-    {{message}}
-</div>
-{% endfor %}
 {% endblock %}

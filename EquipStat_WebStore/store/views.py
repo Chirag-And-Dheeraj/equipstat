@@ -81,19 +81,6 @@ def register(request):
         return render(request, 'store/register.html')
 
 
-# def password_reset(request):
-#     if request.method == 'POST':
-#         form = PasswordChangeForm(request.user, request.POST)
-#         if form.is_valid():
-#             user = form.save()
-#             update_session_auth_hash(request, user)
-#             messages.success(request, 'Password reset successful!')
-#             return redirect('password_reset')
-#         else:
-#             messages.error(request, 'Please correct the error below')
-#     else:
-#         form = PasswordChangeForm(request.user)
-#     return render(request, 'accounts/password_reset.html', {'form': form})
 
 @login_required(login_url='login')
 def logout(request):
@@ -162,6 +149,8 @@ def refurbished(request):
     books = ProductRefurbished.objects.filter(typeOfProduct = 1)
     labCoats = ProductRefurbished.objects.filter(typeOfProduct = 2)
     instruments = ProductRefurbished.objects.filter(typeOfProduct = 3)
+    products = ProductRefurbished.objects.count()
+    print(products)
     if request.user.is_authenticated:
         customer = request.user
         try:
@@ -174,7 +163,7 @@ def refurbished(request):
         order = []
         items = []
 
-    context = { 'books' : books, 'labCoats' : labCoats, 'instruments' : instruments, 'order':order }
+    context = { 'books' : books, 'labCoats' : labCoats, 'instruments' : instruments, 'order':order, 'products':products }
     return render(request, 'store/refurbished.html', context)
 
 

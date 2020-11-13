@@ -19,7 +19,7 @@ class ProductRefurbished(models.Model):
     seller = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     typeOfProduct = models.CharField(max_length=20, choices=TYPES)
     expectedReturn = models.CharField(max_length=30)
-    image = models.ImageField(upload_to = 'images/',null=True, blank=True)
+    image = models.ImageField(upload_to = 'RefurbishedProducts/',null=True, blank=True)
     slug = models.SlugField(max_length = 250, null = True, blank = True)
     details = models.TextField()
 
@@ -69,7 +69,7 @@ class ProductNew(models.Model):
     mrp = models.FloatField()
     ourPrice = models.FloatField()
     inventory = models.IntegerField()
-    image = models.ImageField()
+    image = models.ImageField(upload_to = 'NewProducts/',null=True, blank=True)
     slug = models.SlugField(max_length = 250, null = True, blank = True)
     details = models.TextField()
 

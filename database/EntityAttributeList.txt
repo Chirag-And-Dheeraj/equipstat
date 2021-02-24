@@ -1,1 +1,50 @@
+User 
+    - id (pk)
+    - fname
+    - username
+    - email
+    - contact
+    - location
+    - password
+
+Refurbished : 
+    Labcoat
+        - id (pk)
+        - user (fk)
+        - size
+        - price
+
+    Instrument
+        - id (pk)
+        - user (fk)
+        - name (checkboxes)
+        - price
+
+    Book
+        - id (pk)
+        - user (fk)
+        - name_book
+        - name_author
+        - pub_year
+        - price
+
+New :
+    Product
+        - id (pk)
+        - name
+        - price
+        - stock
+
+Order
+    - id (pk)
+    - user (fk)
+    - total (derived)
+    - status
+
+order_items
+    - id (pk)
+    - order_id (fk)
+    - product_id (fk)
+    
+
 

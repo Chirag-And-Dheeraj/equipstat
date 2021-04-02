@@ -1,4 +1,4 @@
-User 
+user 
     - id (pk)
     - fname
     - username
@@ -35,7 +35,7 @@ New :
         - price
         - stock
 
-Order
+order
     - id (pk)
     - user (fk)
     - total (derived)

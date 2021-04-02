@@ -40,11 +40,13 @@ Order
     - user (fk)
     - total (derived)
     - status
+    - total_quantity (derived)
 
 order_items
     - id (pk)
     - order_id (fk)
     - product_id (fk)
+    - quantity
     
 
 

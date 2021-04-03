@@ -5,10 +5,12 @@ from .models import *
 
 # Register your models here.
 admin.site.register(UserDetail)
-admin.site.register(ProductRefurbished)
-admin.site.register(ProductNew)
+admin.site.register(Product)
+admin.site.register(Book)
+admin.site.register(Instrument)
+admin.site.register(Labcoat)
 admin.site.register(ContactUsDetail)
 admin.site.register(Order)
-admin.site.register(OrderLineItem)
+admin.site.register(OrderItem)
 
 

@@ -18,13 +18,3 @@ class ContactUsForm(ModelForm):
         model = ContactUsDetail
         fields = '__all__'
 
-class RefurbishedItemForm(ModelForm):
-    name = forms.CharField(label="Product Name " ,widget=forms.TextInput(attrs={'class': 'w-full bg-gray-500 text-gray-900 p-3 rounded placeholder-gray-700 focus:outline-none focus:shadow-myOutline', 'placeholder':'Book name, LabCoat, ...'}))
-    typeOfProduct = forms.CharField(label="Type Of Product " ,widget=forms.RadioSelect(choices=TYPES))
-    expectedReturn = forms.CharField(label="Expected Return ",widget=forms.TextInput(attrs={'class': 'w-full bg-gray-500 text-gray-900 p-3 rounded placeholder-gray-700 focus:outline-none focus:shadow-myOutline','placeholder':'xxx'}))
-    image = forms.ImageField(label="Upload Image")
-    details = forms.CharField(widget=forms.Textarea(attrs={'class': 'w-full bg-gray-500 text-gray-900 p-3 rounded placeholder-gray-700 focus:outline-none focus:shadow-myOutline' ,'placeholder':'Type Product Details here...', 'rows':'3' , 'cols':'20'}),label="Product Details ")
-    class Meta:
-        model = ProductRefurbished
-        # fields = '__all__'
-        exclude = ['slug' , 'seller']

@@ -147,8 +147,8 @@ class OrderItem(models.Model):
         return total
 
 
-MESSAGE_TYPES = (('1', 'Grievance'), ('2', 'Feedback'))
-
+MESSAGE_TYPES = (('Grievance', 'Grievance'), ('Feedback', 'Feedback'))
+STATUS_TYPES = (('Replied', 'Replied'), ('Resolved','Resolved'), ('Pending','Pending'), ('Spam','Spam'))
 
 class ContactUsDetail(models.Model):
     firstName = models.CharField(max_length=30)
@@ -157,3 +157,7 @@ class ContactUsDetail(models.Model):
     contact = models.CharField(max_length=10, null=True)
     typeOfMessage = models.CharField(max_length=10, choices=MESSAGE_TYPES)
     message = models.TextField()
+    status = models.CharField(max_length=10, choices=STATUS_TYPES, default='Pending')
+    
+    def __str__(self):
+        return self.typeOfMessage + " | " + self.status

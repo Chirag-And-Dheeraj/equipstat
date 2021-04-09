@@ -33,16 +33,16 @@
 
 </head>
 
-<body class="font-default bg-gray-300 text-lg text-black">
+<body class="font-font">
     {% include 'store/nav.html' %}
     {% block content %}
 
     {% endblock %}
-    {% include 'store/footer.html' %}
+    <!-- {% include 'store/footer.html' %} -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
     <script src="https://superal.github.io/canvas2image/canvas2image.js"></script>
     <script src="{% static '/js/checkout.js' %}"></script>
-    <script src="{% static '/js/sidenav.js' %}"></script>
+    <script src="{% static '/js/nav.js' %}"></script>
     <script src="{% static '/js/dropdown.js' %}"></script>
     <script src="{% static '/js/cart.js' %}"></script>
     <script src="{% static '/js/delete.js' %}"></script>

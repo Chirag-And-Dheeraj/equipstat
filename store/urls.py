@@ -10,5 +10,8 @@ urlpatterns = [
 	path('refurbished-instruments/', views.refurbishedInstruments, name="refurbished-instruments"),
 	path('refurbished-books/', views.refurbishedBooks, name="refurbished-books"),
 	path('refurbished-labcoats/', views.refurbishedLabcoats, name="refurbished-labcoats"),
+	path('enlist/', views.enlist, name="enlist"),
+	path('enlist/book', views.enlistBooks, name="enlist-books"),
+    path('accounts/data', views.collectUserData, name="collect-user-data")
 ]
 

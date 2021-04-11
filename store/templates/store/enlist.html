@@ -1,41 +1,54 @@
-{% extends 'store/main.html' %} 
+{% extends 'store/main.html' %}
 {% block content %}
 {% load static %}
-<div class="grid grid-rows-1 grid-cols-12">
-    <div class="grid col-start-2 col-end-5 row-span-1 row-start-1 justify-items-center items-center">
-        <img src="{% static '/images/enlist.svg' %}" alt="Contact">
-    </div>
-    <div class="card m-5 col-start-6 col-end-13 row-start-1 row-span-2">
-        <form action="" method="POST" enctype="multipart/form-data" onsubmit="return validateEnlist(this)">
-            <div class="grid row-start-2 grid-rows-7 grid-cols-2 py-5 gap-y-8"> 
-                {% csrf_token %}
-                <div class=" grid grid-cols-2 col-span-2"> 
-                    <div class="col-start-1 px-10">
-                        {{ form.name.label_tag }}
-                        {{ form.name }} 
-                    </div>
-                    <div class="col-start-2 px-10">
-                        {{ form.typeOfProduct.label_tag }}
-                        {{ form.typeOfProduct }} 
-                    </div>
-                </div>
-                <div class="col-start-1 px-10">
-                    {{ form.expectedReturn.label_tag }}
-                    {{ form.expectedReturn }}
-                </div> 
-                <div class="col-start-2 px-10">
-                    {{ form.image.label_tag }}
-                    {{ form.image }}
-                </div>
-                <div class="row-span-3 px-10 col-span-2">
-                    {{ form.details.label_tag }} 
-                    {{ form.details }} 
-                </div>
-                <div class="grid justify-items-center items-center text-center col-span-2 row-span-1">
-                    <input onclick="return validateEnlist()" class="bg-gray-500 text-black hover:text-white hover:bg-gray-800 p-3 rounded w-1/4 border-b-4 border-gray-700 hover:border-gray-500 focus:outline-none " type="submit" name="Submit" value="Enlist">
-                </div>
-           </div>
-        </form>
-    </div>
-</div> 
+<h1 class="text-black text-6xl font-main text-center">Enlist</h1>
+
+
+{% if sellerDetail %}
+<form action="{% url 'enlist-books' %}" method="POST">
+    {% csrf_token %}
+    <label for="name_book">Book Name:</label><br>
+    <input id="name_book" name="name_book" type="text"><br>
+    <label for="name_author">Author Name:</label><br>
+    <input id="name_author" name="name_author" type="text"><br>
+    <label for="year_pub">Publication Year:</label><br>
+    <input id="year_pub" name="year_pub" type="text"><br>
+    <label for="price">Price</label><br>
+    <input id="price" name="price" type="text"><br>
+    <input type="submit"><br>
+</form>
+
+
+    
+
+{% else %}
+
+<h2>You will have to provide your contact number and nearest local train station for enlisting products.</h2>
+    <form action="{% url 'collect-user-data' %}" method="POST">
+        {% csrf_token %}
+        <label for="contact_user">Contact Number:</label><br>
+        <input id="contact_user" name="contact_user" type="text"><br>
+        <label for="location_user">Nearest Station:</label><br>
+        <input id="location_user" name="location_user" type="text"><br>
+        <input type="hidden" name="type" value="seller">
+        <input type="submit"><br>
+    </form>
+
+
+{% endif %}
+
+
+<br>
+<hr>
+<br>
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+
 {% endblock %}

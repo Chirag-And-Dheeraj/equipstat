@@ -36,7 +36,7 @@ class Book(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return self.name + " | " + self.year_of_publishing
+        return self.name + " | " + str(self.year_of_publishing)
 
 
 class Instrument(models.Model):
@@ -72,7 +72,7 @@ class Labcoat(models.Model):
     price = models.FloatField()
 
     def __str__(self):
-        return self.name
+        return str(self.size)
 
     class Meta:
         verbose_name_plural = "Labcoats"

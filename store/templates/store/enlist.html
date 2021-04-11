@@ -3,8 +3,22 @@
 {% load static %}
 <h1 class="text-black text-6xl font-main text-center">Enlist</h1>
 
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li>
+        <h2>{{ message }}</h2>
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<br>
+<hr>
+<br>
 
 {% if sellerDetail %}
+<h1>Book</h1>
 <form action="{% url 'enlist-books' %}" method="POST">
     {% csrf_token %}
     <label for="name_book">Book Name:</label><br>
@@ -18,36 +32,48 @@
     <input type="submit"><br>
 </form>
 
+<br>
+<hr>
+<br>
 
-    
-
-{% else %}
-
-<h2>You will have to provide your contact number and nearest local train station for enlisting products.</h2>
-    <form action="{% url 'collect-user-data' %}" method="POST">
-        {% csrf_token %}
-        <label for="contact_user">Contact Number:</label><br>
-        <input id="contact_user" name="contact_user" type="text"><br>
-        <label for="location_user">Nearest Station:</label><br>
-        <input id="location_user" name="location_user" type="text"><br>
-        <input type="hidden" name="type" value="seller">
-        <input type="submit"><br>
-    </form>
-
-
-{% endif %}
-
+<h1>Instrument</h1>
+<form action="{% url 'enlist-instruments' %}" method="POST">
+    {% csrf_token %}
+    <label for="name_instrument">Instrument Name:</label><br>
+    <input id="name_instrument" name="name_instrument" type="text"><br>
+    <label for="price">Price</label><br>
+    <input id="price" name="price" type="text"><br>
+    <input type="submit"><br>
+</form>
 
 <br>
 <hr>
 <br>
 
-{% if messages %}
-<ul class="messages">
-    {% for message in messages %}
-    <li>{{ message }}</li>
-    {% endfor %}
-</ul>
+<h1>Labcoat</h1>
+<form action="{% url 'enlist-labcoats' %}" method="POST">
+    {% csrf_token %}
+    <label for="size_labcoat">Labcoat Size:</label><br>
+    <input id="size_labcoat" name="size_labcoat" type="text"><br>
+    <label for="price">Price</label><br>
+    <input id="price" name="price" type="text"><br>
+    <input type="submit"><br>
+</form>
+
+{% else %}
+
+<h2>You will have to provide your contact number and nearest local train station for enlisting products.</h2>
+<form action="{% url 'collect-user-data' %}" method="POST">
+    {% csrf_token %}
+    <label for="contact_user">Contact Number:</label><br>
+    <input id="contact_user" name="contact_user" type="text"><br>
+    <label for="location_user">Nearest Station:</label><br>
+    <input id="location_user" name="location_user" type="text"><br>
+    <input type="hidden" name="type" value="seller">
+    <input type="submit"><br>
+</form>
+
+
 {% endif %}
 
 

@@ -1,0 +1,32 @@
+[
+    {
+        "src" : "../static/images/newCalc.png",
+        "alt" : "Calculator",
+        "title": "Calculator",
+        "text": "New Calculators"
+    },
+    {
+        "src" : "../static/images/newIns.png",
+        "alt" : "New Instruments",
+        "title": "New Instruments",
+        "text": "New Instruments"
+    },
+    {
+        "src" : "../static/images/refIns.png",
+        "alt" : "Refurbished Instruments",
+        "title": "Refurbished Instruments",
+        "text": "Refurbished Instruments"
+    },
+    {
+        "src" : "../static/images/refBook.png",
+        "alt" : "Refurbished Books",
+        "title": "Refurbished Books",
+        "text": "Refurbished Books"
+    },
+    {
+        "src" : "../static/images/refLabC.png",
+        "alt" : "Refurbished LabCoats",
+        "title": "Refurbished LabCoats",
+        "text": "Refurbished LabCoats"
+    }
+]

@@ -2,17 +2,40 @@
 {% load static %}
 {% block content %}
 
-
 <h1 class="text-black text-6xl font-main text-center">Profile</h1>
 
-<form id="profile-form" action="" method="POST">
+{% if messages %}
+<br>
+<hr>
+<br>
+
+
+<ul class="messages">
+    {% for message in messages %}
+    <li>
+        <h2>{{ message }}</h2>
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<br>
+<hr>
+<br>
+
+<h2 class="text-black text-4xl font-main text-center">Personal Details</h2>
+
+<br>
+<hr>
+<br>
+
+First Name: {{ first_name }} <br>
+Last Name: {{ last_name }} <br>
+Email: {{ email }} <br>
+
+
+<form id="profile-form" action="{% url 'profile' %}" method="POST">
     {% csrf_token %}
-    <label for="first_name">First Name:</label>
-    <input id="first_name" name="first_name" type="text" value="{{ first_name }}"><br>
-    <label for="last_name">Last Name:</label>
-    <input id="last_name" name="last_name" type="text" value="{{ last_name }}"><br>
-    <label for="email">Email:</label>
-    <input id="email" name="email" type="text" value="{{ email }}"><br>
     <label for="contact">Contact:</label>
     <input id="contact" name="contact" type="text" value="{{ contact }}"><br>
     <label for="location">Location:</label>
@@ -20,5 +43,58 @@
     <button class="edit-info" type="button">Edit</button>
     <input class="save-info cursor-pointer" type="submit" value="Save"><br>
 </form>
+
+<br>
+<hr>
+<br>
+
+<h2 class="text-black text-4xl font-main text-center">Listings</h2>
+
+<br>
+<hr>
+<br>
+
+<h3 class="text-black text-2xl font-main text-center">Books</h3>
+
+<br>
+<hr>
+<br>
+
+{% for book in listings_books %}
+{{ book.name }} | {{ book.author }} | {{ book.year_of_publishing }} | {{ book.price }} <br>
+{% endfor %}
+
+<br>
+<hr>
+<br>
+
+<h3 class="text-black text-2xl font-main text-center">Labcoats</h3>
+
+<br>
+<hr>
+<br>
+
+{% for labcoat in listings_labcoats %}
+{{ labcoat.size }} | {{ labcoat.price }} <br>
+{% endfor %}
+
+<br>
+<hr>
+<br>
+
+<h3 class="text-black text-2xl font-main text-center">Instruments</h3>
+
+<br>
+<hr>
+<br>
+
+{% for instrument in listings_instruments %}
+{{ instrument.name }} | {{ instrument.price }} <br>
+{% endfor %}
+
+<br>
+<hr>
+<br>
+
 
 {% endblock %}

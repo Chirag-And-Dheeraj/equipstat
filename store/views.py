@@ -28,15 +28,60 @@ def collectUserData(request):
 @login_required(login_url='account_login')
 def profile(request):
     user = request.user
-    first_name = request.user.first_name
-    last_name = request.user.last_name
-    email = request.user.email
+    first_name = user.first_name
+    last_name = user.last_name
+    email = user.email
     userDetail = UserDetail.objects.get(user=user)
     contact = userDetail.contact
     location = userDetail.location
     context={'first_name':first_name, 'last_name':last_name, 'email':email, 'contact':contact, 'location':location}
-    print(context)
-    return render(request, 'store/profile.html', context)
+
+
+
+    listings_books = Book.objects.filter(seller=user)
+    listings_labcoats = Labcoat.objects.filter(seller=user)
+    listings_instruments = Instrument.objects.filter(seller=user)
+
+    print(listings_books)
+    print(listings_labcoats)
+    print(listings_instruments)
+
+
+    if request.method == "POST":
+        data = request.POST
+        new_contact = data['contact']
+        new_location = data['location']
+        try:   
+            userDetail = UserDetail.objects.get(user=request.user)
+            userDetail.contact = new_contact
+            userDetail.location = new_location
+            userDetail.save()
+            messages.info(request,"Profile updated Successfully!")
+            contact = userDetail.contact
+            location = userDetail.location
+            context={
+                'first_name':first_name,
+                'last_name':last_name,
+                'email':email,
+                'contact':contact,
+                'location':location,
+                'listings_books':listings_books,'listings_labcoats':listings_labcoats,'listings_instruments':listings_instruments
+                }
+            return render(request, 'store/profile.html', context, status=200)
+        except:
+            print("Something went wrong.")
+            messages.info(request,"Profile updated Successfully!")
+            return render(request, 'store/profile.html', context, status=200)
+    else:
+        context={
+            'first_name':first_name,
+            'last_name':last_name,
+            'email':email,
+            'contact':contact,
+            'location':location,
+            'listings_books':listings_books,'listings_labcoats':listings_labcoats,'listings_instruments':listings_instruments
+            }
+        return render(request, 'store/profile.html', context)
 
 
 

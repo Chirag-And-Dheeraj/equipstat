@@ -13,7 +13,8 @@ editButton.addEventListener('click', () => {
     })
 })
 
-saveButton.addEventListener('click', e => {
+saveButton.addEventListener('submit', e => {
+    e.preventDefault()
     inputFields.forEach(input => {
         input.disabled = true
     })

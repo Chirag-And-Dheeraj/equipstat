@@ -20,9 +20,26 @@ def collectUserData(request):
     contact = data['contact_user']
     location = data['location_user']
     userDetail = UserDetail.objects.create(user=request.user, contact=contact, location=location)
-    messages.info(request,"User data saved successfully. For God's sake, please complete atleast this feature today.")
+    messages.info(request,"User data saved successfully.")
     if data['type'] == 'seller':
         return redirect('enlist')
+
+
+@login_required(login_url='account_login')
+def profile(request):
+    user = request.user
+    first_name = request.user.first_name
+    last_name = request.user.last_name
+    email = request.user.email
+    userDetail = UserDetail.objects.get(user=user)
+    contact = userDetail.contact
+    location = userDetail.location
+    context={'first_name':first_name, 'last_name':last_name, 'email':email, 'contact':contact, 'location':location}
+    print(context)
+    return render(request, 'store/profile.html', context)
+
+
+
 
 def instruments(request):
     context={}

@@ -1,9 +1,11 @@
 {% extends 'store/main.html' %}
 {% load static %}
 {% block content %}
+
+
 <h1 class="text-black text-6xl font-main text-center">Profile</h1>
 
-<form action="" method="POST">
+<form id="profile-form" action="" method="POST">
     {% csrf_token %}
     <label for="first_name">First Name:</label>
     <input id="first_name" name="first_name" type="text" value="{{ first_name }}"><br>
@@ -14,21 +16,9 @@
     <label for="contact">Contact:</label>
     <input id="contact" name="contact" type="text" value="{{ contact }}"><br>
     <label for="location">Location:</label>
-    <input id="first_name" name="location" type="text" value="{{ location }}"><br>
-    <button type="button">Edit</button>
-    <input type="submit" value="Save"><br>
+    <input id="location" name="location" type="text" value="{{ location }}"><br>
+    <button class="edit-info" type="button">Edit</button>
+    <input class="save-info cursor-pointer" type="submit" value="Save"><br>
 </form>
-
-<script>
-
-    // const form = document.querySelector('form')
-    const button = document.querySelector('button')
-
-    
-
-    button.addEventListener('click', ()=>{
-
-    })
-</script>
 
 {% endblock %}

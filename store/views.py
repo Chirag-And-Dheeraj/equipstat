@@ -20,7 +20,7 @@ def collectUserData(request):
     contact = data['contact_user']
     location = data['location_user']
     userDetail = UserDetail.objects.create(user=request.user, contact=contact, location=location)
-    messages.info(request,"User data saved successfully.")
+    messages.success(request,"Profile details saved")
     if data['type'] == 'seller':
         return redirect('enlist')
 
@@ -62,7 +62,6 @@ def profile(request):
             userDetail.contact = new_contact
             userDetail.location = new_location
             userDetail.save()
-            messages.info(request,"Profile updated Successfully!")
             contact = userDetail.contact
             location = userDetail.location
             context={
@@ -75,7 +74,7 @@ def profile(request):
                 'listings_labcoats':listings_labcoats,
                 'listings_instruments':listings_instruments
                 }
-            messages.info(request,"Profile updated Successfully!")
+            messages.info(request,"Profile details updated")
             return render(request, 'store/profile.html', context, status=200)
         except:
             userDetail = UserDetail.objects.create(user=request.user,contact=new_contact, location=new_location)
@@ -92,7 +91,7 @@ def profile(request):
                 'listings_labcoats':listings_labcoats,
                 'listings_instruments':listings_instruments
                 }
-            messages.info(request,"Profile details added Successfully!")
+            messages.success(request,"Profile details saved")
             return render(request, 'store/profile.html', context, status=201)
     else:
         context={
@@ -161,13 +160,13 @@ def enlistBooks(request):
     sellerDetail = UserDetail.objects.get(user=request.user)
 
     if name_book == "" or name_author == "" or year_pub == "" or price == "":
-        messages.error(request,"All the fields are compulsory.")
+        messages.error(request,"All the fields are compulsory")
         context={'sellerDetail': sellerDetail}
         return render(request, 'store/enlist.html',context, status=406)
     else:
         book = Book.objects.create(seller=sellerDetail, name=name_book, author=name_author, year_of_publishing=year_pub, price=int(price))
         book.save()
-        messages.info(request,"Product Enlisted Successfully!")
+        messages.success(request,"Product enlisted successfully")
         context={'sellerDetail': sellerDetail}
         return render(request, 'store/enlist.html',context,status=201)
 
@@ -182,7 +181,7 @@ def enlistInstruments(request):
     sellerDetail = UserDetail.objects.get(user=seller)
 
     if name_instrument == "" or price == "":
-        messages.error(request,"All the fields are compulsory.")
+        messages.error(request,"All the fields are compulsory")
         context={'sellerDetail': sellerDetail}
         return render(request, 'store/enlist.html',context,status=406)
     else:
@@ -190,7 +189,7 @@ def enlistInstruments(request):
         print(f"User is near {sellerDetail.location}")
         instrument = Instrument.objects.create(seller=request.user, name=name_instrument, price=int(price))
         instrument.save()
-        messages.info(request,"Product Enlisted Successfully!")
+        messages.success(request,"Product enlisted successfully")
         context={'sellerDetail': sellerDetail}
         return render(request, 'store/enlist.html',context,status=201)
 
@@ -204,13 +203,13 @@ def enlistLabcoats(request):
     sellerDetail = UserDetail.objects.get(user=seller)
 
     if size_labcoat == "" or price == "":
-        messages.error(request,"All the fields are compulsory.")
+        messages.error(request,"All the fields are compulsory")
         context={'sellerDetail': sellerDetail}
         return render(request, 'store/enlist.html',context, status=406)
     else:
         labcoat = Labcoat.objects.create(seller=request.user, size=size_labcoat, price=int(price))
         labcoat.save()
-        messages.info(request,"Product Enlisted Successfully!")
+        messages.success(request,"Product enlisted successfully")
         context={'sellerDetail': sellerDetail}
         return render(request, 'store/enlist.html',context, status=201)
 

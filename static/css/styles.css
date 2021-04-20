@@ -32059,6 +32059,45 @@ video {
   background-size: cover;
 }
 
+.panel{
+  max-height: 0px;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
+.error{
+  --tw-bg-opacity: 1;
+  background-color: rgba(252, 165, 165, var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgba(153, 27, 27, var(--tw-text-opacity));
+  border-width: 2px;
+  border-style: dashed;
+  --tw-border-opacity: 1;
+  border-color: rgba(153, 27, 27, var(--tw-border-opacity));
+}
+
+.success{
+  --tw-bg-opacity: 1;
+  background-color: rgba(110, 231, 183, var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgba(6, 95, 70, var(--tw-text-opacity));
+  border-width: 2px;
+  border-style: dashed;
+  --tw-border-opacity: 1;
+  border-color: rgba(6, 95, 70, var(--tw-border-opacity));
+}
+
+.info{
+  --tw-bg-opacity: 1;
+  background-color: rgba(147, 197, 253, var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgba(30, 64, 175, var(--tw-text-opacity));
+  border-width: 2px;
+  border-style: dashed;
+  --tw-border-opacity: 1;
+  border-color: rgba(30, 64, 175, var(--tw-border-opacity));
+}
+
 @media (min-width: 640px){
   .sm\:container{
     width: 100%;
@@ -188513,8 +188552,3 @@ video {
     --tw-backdrop-sepia: sepia(100%);
   }
 }
-
-
-
-
-

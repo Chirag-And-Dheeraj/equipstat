@@ -1,0 +1,9 @@
+{% load static %}
+
+{% if messages %}
+{% for message in messages %}
+    <div class="{{ message.tags }} rounded text-center p-3 mx-4 mb-4">
+        <h2 class="text-lg">{{ message }}</h2>
+    </div>
+{% endfor %}
+{% endif %}

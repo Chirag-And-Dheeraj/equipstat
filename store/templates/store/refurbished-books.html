@@ -1,6 +1,23 @@
-{% extends 'store/main.html' %} 
+{% extends 'store/main.html' %}
 {% block content %}
 {% load static %}
-    <h1 class="text-black text-6xl font-main text-center">Refurbished Books</h1>
-    
+<h1 class="text-black text-6xl font-main text-center">Refurbished Books</h1>
+
+<br>
+<br>
+<hr>
+{% for book in books %}
+<br>
+Name: {{ book.name }} <br>
+Price: {{ book.price }} <br>
+Author: {{ book.author }} <br>
+Year of Publishing: {{ book.year_of_publishing }} <br>
+Seller: {{ book.seller.user.first_name }} {{ book.seller.user.last_name }} <br>
+Contact: {{ book.seller.contact }} <br>
+Location: {{ book.seller.location }} <br>
+WhatsApp: <a href="https://wa.me/91{{ book.seller.contact }}">{{ book.seller.user.first_name }}</a>
+<br>
+<br>
+<hr>
+{% endfor %}
 {% endblock %}

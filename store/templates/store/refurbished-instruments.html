@@ -1,6 +1,15 @@
-{% extends 'store/main.html' %} 
+{% extends 'store/main.html' %}
 {% block content %}
 {% load static %}
-    <h1 class="text-black text-6xl font-main text-center">Refurbished Instruments</h1>
-    
+<h1 class="text-black text-6xl font-main text-center">Refurbished Instruments</h1>
+<br>
+<br>
+<hr>
+{% for instrument in instruments %}
+<br>
+{{ instrument.name }}
+<br>
+<br>
+<hr>
+{% endfor %}
 {% endblock %}

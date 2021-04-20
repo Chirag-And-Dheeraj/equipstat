@@ -14,7 +14,7 @@ class UserDetail(models.Model):
 
 
 class Book(models.Model):
-    seller = models.ForeignKey(User, on_delete=models.CASCADE)
+    seller = models.ForeignKey(UserDetail, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
     author = models.CharField(max_length=200)
     year_of_publishing = models.IntegerField()

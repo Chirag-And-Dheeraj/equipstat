@@ -97,7 +97,14 @@ def calculators(request):
 
 
 def refurbishedBooks(request):
-    context={}
+    books = Book.objects.all()
+    sellerDetails = UserDetail.objects.all()
+    # for book in books:
+    #     sellerDetail = UserDetail.objects.get(user=book.seller)
+    #     sellerDetails.append(sellerDetail)
+    context={'books':books}
+    for book in books:
+        print(f"Book: {book}")
     return render(request, 'store/refurbished-books.html', context)
 
 
@@ -107,7 +114,8 @@ def refurbishedLabcoats(request):
 
 
 def refurbishedInstruments(request):
-    context={}
+    instruments = Instrument.objects.all()
+    context={'instruments':instruments}
     return render(request, 'store/refurbished-instruments.html', context)
 
 
@@ -128,15 +136,14 @@ def enlistBooks(request):
     name_author = data['name_author']
     year_pub = data['year_pub']
     price = data['price']
-    seller = request.user
-    sellerDetail = UserDetail.objects.get(user=seller)
+    sellerDetail = UserDetail.objects.get(user=request.user)
 
     if name_book == "" or name_author == "" or year_pub == "" or price == "":
         messages.error(request,"All the fields are compulsory.")
         context={'sellerDetail': sellerDetail}
         return render(request, 'store/enlist.html',context, status=406)
     else:
-        book = Book.objects.create(seller=request.user, name=name_book, author=name_author, year_of_publishing=year_pub, price=int(price))
+        book = Book.objects.create(seller=sellerDetail, name=name_book, author=name_author, year_of_publishing=year_pub, price=int(price))
         book.save()
         messages.info(request,"Product Enlisted Successfully!")
         context={'sellerDetail': sellerDetail}

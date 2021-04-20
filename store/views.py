@@ -31,18 +31,24 @@ def profile(request):
     first_name = user.first_name
     last_name = user.last_name
     email = user.email
-    userDetail = UserDetail.objects.get(user=user)
-    contact = userDetail.contact
-    location = userDetail.location
+    try:
+        userDetail = UserDetail.objects.get(user=user)
+        contact = userDetail.contact
+        location = userDetail.location
+    except:
+        contact=""
+        location=""
     context={'first_name':first_name, 'last_name':last_name, 'email':email, 'contact':contact, 'location':location}
 
+    try:
+        listings_books = Book.objects.filter(seller=userDetail)
+        print(listings_books)
+    except:
+        listings_books = None
+        print("No Book Listing")
+    listings_labcoats = Labcoat.objects.filter(seller=user) #TODO
+    listings_instruments = Instrument.objects.filter(seller=user) #TODO
 
-
-    listings_books = Book.objects.filter(seller=user)
-    listings_labcoats = Labcoat.objects.filter(seller=user)
-    listings_instruments = Instrument.objects.filter(seller=user)
-
-    print(listings_books)
     print(listings_labcoats)
     print(listings_instruments)
 
@@ -65,13 +71,29 @@ def profile(request):
                 'email':email,
                 'contact':contact,
                 'location':location,
-                'listings_books':listings_books,'listings_labcoats':listings_labcoats,'listings_instruments':listings_instruments
+                'listings_books':listings_books,
+                'listings_labcoats':listings_labcoats,
+                'listings_instruments':listings_instruments
                 }
-            return render(request, 'store/profile.html', context, status=200)
-        except:
-            print("Something went wrong.")
             messages.info(request,"Profile updated Successfully!")
             return render(request, 'store/profile.html', context, status=200)
+        except:
+            userDetail = UserDetail.objects.create(user=request.user,contact=new_contact, location=new_location)
+            userDetail.save()
+            contact = userDetail.contact
+            location = userDetail.location
+            context={
+                'first_name':first_name,
+                'last_name':last_name,
+                'email':email,
+                'contact':contact,
+                'location':location,
+                'listings_books':listings_books,
+                'listings_labcoats':listings_labcoats,
+                'listings_instruments':listings_instruments
+                }
+            messages.info(request,"Profile details added Successfully!")
+            return render(request, 'store/profile.html', context, status=201)
     else:
         context={
             'first_name':first_name,

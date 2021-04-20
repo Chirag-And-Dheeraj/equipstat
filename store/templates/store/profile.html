@@ -37,9 +37,19 @@ Email: {{ email }} <br>
 <form id="profile-form" action="{% url 'profile' %}" method="POST">
     {% csrf_token %}
     <label for="contact">Contact:</label>
-    <input id="contact" name="contact" type="text" value="{{ contact }}"><br>
+    <input id="contact" name="contact" type="text" value="
+    {% if contact %}
+    {{ contact }}
+    {% else %}
+    {% endif %}
+    "><br>
     <label for="location">Location:</label>
-    <input id="location" name="location" type="text" value="{{ location }}"><br>
+    <input id="location" name="location" type="text" value="
+    {% if location %}
+    {{ location }}
+    {% else %}
+    {% endif %}
+    "><br>
     <button class="edit-info" type="button">Edit</button>
     <input class="save-info cursor-pointer" type="submit" value="Save"><br>
 </form>

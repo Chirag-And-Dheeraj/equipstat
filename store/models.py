@@ -40,7 +40,7 @@ class Book(models.Model):
 
 
 class Instrument(models.Model):
-    seller = models.ForeignKey(User, on_delete=models.CASCADE)
+    seller = models.ForeignKey(UserDetail, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
     price = models.FloatField()
     slug = models.SlugField(max_length=250, null=True, blank=True)
@@ -67,7 +67,7 @@ class Instrument(models.Model):
 
 
 class Labcoat(models.Model):
-    seller = models.ForeignKey(User, on_delete=models.CASCADE)
+    seller = models.ForeignKey(UserDetail, on_delete=models.CASCADE)
     size = models.IntegerField()
     price = models.FloatField()
 

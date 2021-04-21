@@ -2,12 +2,19 @@
 {% block content %}
 {% load static %}
 <h1 class="text-black text-6xl font-main text-center">Refurbished Instruments</h1>
+
 <br>
 <br>
 <hr>
 {% for instrument in instruments %}
 <br>
-{{ instrument.name }}
+Name: {{ instrument.name }} <br>
+Price: {{ instrument.price }} <br>
+Seller: {{ instrument.seller.user.first_name }} {{ instrument.seller.user.last_name }} <br>
+Location: {{ instrument.seller.location }} <br>
+WhatsApp: <a
+    href="https://wa.me/91{{ instrument.seller.contact }}?text=Hi+{{ instrument.seller.user.first_name }}.+I+am+{{ request.user.first_name }}.+I+got+your+number+from+your+_{{ instrument.name }}_+Listing+on+*Equipstat*+and+I+would+like+to+talk+to+you+about+it."
+    target="_blank">{{ instrument.seller.user.first_name }}</a>
 <br>
 <br>
 <hr>

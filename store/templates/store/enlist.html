@@ -1,4 +1,5 @@
 {% extends 'store/main.html' %}
+
 {% block content %}
 {% load static %}
 
@@ -10,67 +11,48 @@
 {% include 'store/message.html' %}
 
 {% if sellerDetail %}
-<div class="mx-4 shadow rounded">
-    <h4 class="text-lg font-extralight rounded-t border px-4 py-3 text-center text-white bg-pallete-buttonPrimary">Choose appropriate type of product</h4>
-    <div class="accordian border">
-        <div class="btn flex items-center justify-between px-4 py-3">
-            <h3 class="text-lg font-bold">Books</h3>
-            <img class="chevron w-6" src="{% static 'images/chevron-down.svg' %}" alt="chevron">
+<div class="md:mx-5">
+    <div class="mx-auto max-w-2xl md:border md:rounded md:max-w-6xl">
+        <div class="px-3 md:px-0">
+            <h4 class="text-lg rounded-t px-4 py-3 text-center text-white bg-pallete-buttonPrimary lg:text-xl lg:tracking-wider">Choose appropriate type of product</h4>
         </div>
-        <div class="panel px-4">
-            <form action="{% url 'enlist-books' %}" method="POST">
-                {% csrf_token %}
-                <div class="grid gap-y-4 py-3">
-                    <label for="name_book">Book Name:</label>
-                    <input class="p-2 rounded border border-gray-300 focus:outline-none focus:border-gray-400" id="name_book" name="name_book" type="text" placeholder="Eg:Applied Maths">
-                    <label for="name_author">Author Name:</label>
-                    <input class="p-2 rounded border border-gray-300 focus:outline-none focus:border-gray-400" id="name_author" name="name_author" type="text" placeholder="Eg:Kumbhojkar">
-                    <label for="year_pub">Publication Year:</label>
-                    <input class="p-2 rounded border border-gray-300 focus:outline-none focus:border-gray-400" id="year_pub" name="year_pub" type="text" placeholder="Eg:1990">
-                    <label for="price">Price:</label>
-                    <input class="p-2 rounded border border-gray-300 focus:outline-none focus:border-gray-400" id="price" name="price" type="text" placeholder="Eg:200">
-                    <input class="p-2 rounded bg-pallete-buttonPrimary text-white font-medium" type="submit" value="Enlist">
+        <div class="px-3 md:px-0 md:grid md:grid-cols-2 md:grid-rows-2 md:items-start md:gap-x-5 md:m-5 lg:grid-cols-3">
+            <div class="accordian shadow rounded md:col-start-1 md:row-start-1 md:row-end-2 md:my-3">
+                <div class="border md:rounded-t">
+                    <div class="btn flex items-center justify-between px-4 py-3 lg:cursor-pointer hover:bg-gray-100 transition-colors">
+                        <h3 class="text-lg font-bold sm:text-xl">Books</h3>
+                        <img class="chevron w-6" src="{% static 'images/chevron-down.svg' %}" alt="chevron">
+                    </div>
+                    <div class="panel px-4 md:hidden">
+                        {% include 'store/form-book.html' %}
+                    </div>
                 </div>
-            </form>
-        </div>
-    </div>
-
-
-    <div class="accordian border" id="accordian-2">
-        <div class="btn flex items-center justify-between px-4 py-3">
-            <h3 class="text-lg font-bold">Instruments</h3>
-            <img class="chevron w-6" src="{% static 'images/chevron-down.svg' %}" alt="chevron">
-        </div>
-        <div class="panel px-4">
-            <form action="{% url 'enlist-instruments' %}" method="POST">
-                {% csrf_token %}
-                <div class="grid gap-y-3 py-3">
-                    <label for="name_instrument">Instrument Name:</label>
-                    <input class="p-2 rounded border border-gray-300 focus:outline-none focus:border-gray-400" id="name_instrument" name="name_instrument" type="text" placeholder="Eg:Drafter">
-                    <label for="price">Price:</label>
-                    <input class="p-2 rounded border border-gray-300 focus:outline-none focus:border-gray-400" id="price" name="price" type="text" placeholder="Eg:200">
-                    <input class="p-2 rounded bg-pallete-buttonPrimary text-white font-medium" type="submit" value="Enlist">
+            
+            
+                <div class="border">
+                    <div class="btn flex items-center justify-between px-4 py-3 lg:cursor-pointer hover:bg-gray-100 transition-colors">
+                        <h3 class="text-lg font-bold sm:text-xl">Instruments</h3>
+                        <img class="chevron w-6" src="{% static 'images/chevron-down.svg' %}" alt="chevron">
+                    </div>
+                    <div class="panel px-4 md:hidden">
+                        {% include 'store/form-instrument.html' %}
+                    </div>
                 </div>
-            </form>
-        </div>
-    </div>
-    
-    <div class="accordian rounded-b border " id="accordian-3">
-        <div class="btn flex items-center justify-between px-4 py-3">
-            <h3 class="text-lg font-bold">Labcoat</h3>
-            <img class="chevron w-6" src="{% static 'images/chevron-down.svg' %}" alt="chevron">
-        </div>
-        <div class="panel px-4">
-            <form action="{% url 'enlist-labcoats' %}" method="POST">
-                {% csrf_token %}
-                <div class="grid gap-y-3 py-3">
-                    <label for="size_labcoat">Labcoat Size:</label>
-                    <input class="p-2 rounded border border-gray-300 focus:outline-none focus:border-gray-400" id="size_labcoat" name="size_labcoat" type="text" placeholder="Eg:32">
-                    <label for="price">Price:</label>
-                    <input class="p-2 rounded border border-gray-300 focus:outline-none focus:border-gray-400" id="price" name="price" type="text" placeholder="Eg:200">
-                    <input class="p-2 rounded bg-pallete-buttonPrimary text-white font-medium" type="submit" value="Enlist">
+                
+        
+                <div class="rounded-b border ">
+                    <div class="btn flex items-center justify-between px-4 py-3 lg:cursor-pointer hover:bg-gray-100 transition-colors">
+                        <h3 class="text-lg font-bold sm:text-xl">Labcoats</h3>
+                        <img class="chevron w-6" src="{% static 'images/chevron-down.svg' %}" alt="chevron">
+                    </div>
+                    <div class="panel px-4 md:hidden">
+                        {% include 'store/form-labcoat.html' %}
+                    </div>
                 </div>
-            </form>
+            </div>
+            <div class="opened md-form hidden md:block md:col-start-2 md:row-start-1 md:row-end-3 lg:col-span-2">
+                {% include 'store/form-book.html' %}
+            </div>
         </div>
     </div>
 </div>
@@ -87,7 +69,43 @@
     <input type="hidden" name="type" value="seller">
     <input type="submit"><br>
 </form>
-
-
 {% endif %}
+
+<script>
+    // const accordian = document.querySelector('.accordian');
+    // Array.from(accordian.children).forEach(child => console.log(child.innerText));
+    if(innerWidth >= 768) {
+        let html= ''
+        const accButtons = document.querySelectorAll('.btn')
+        const mdForm = document.querySelector('.md-form')
+
+        for (let i = 0; i < accButtons.length; i++) {
+            accButtons[i].addEventListener('click', e => {
+                console.log('Button Number:', i)
+                //close accordian if any other accordian is open and rotate chevron
+                if(mdForm.classList.contains('opened')) {
+                    mdForm.innerHTML = ''
+                    mdForm.classList.remove('opened')
+                }
+                switch (i) {
+                    case 0:
+                        html = `{% include 'store/form-book.html' %}`
+                        mdForm.innerHTML = html
+                        break;
+                    case 1:
+                        html = `{% include 'store/form-instrument.html' %}`
+                        mdForm.innerHTML = html
+                        break;
+
+                    case 2:
+                        html = `{% include 'store/form-labcoat.html' %}`
+                        mdForm.innerHTML = html
+                        break;
+                }
+                mdForm.classList.add('opened')
+            })
+        }
+    }
+</script>
+
 {% endblock %}

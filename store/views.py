@@ -152,64 +152,66 @@ def enlist(request):
 
 @login_required(login_url='account_login')
 def enlistBooks(request):
-    data = request.POST
-    name_book = data['name_book']
-    name_author = data['name_author']
-    year_pub = data['year_pub']
-    price = data['price']
-    sellerDetail = UserDetail.objects.get(user=request.user)
+    if request.method == 'POST':   
+        data = request.POST
+        name_book = data['name_book']
+        name_author = data['name_author']
+        year_pub = data['year_pub']
+        price = data['price']
+        sellerDetail = UserDetail.objects.get(user=request.user)
 
-    if name_book == "" or name_author == "" or year_pub == "" or price == "":
-        messages.error(request,"All the fields are compulsory")
-        context={'sellerDetail': sellerDetail}
-        return render(request, 'store/enlist.html',context, status=406)
+        if name_book == "" or name_author == "" or year_pub == "" or price == "":
+            messages.error(request,"All the fields are compulsory")
+            return redirect('enlist')
+        else:
+            book = Book.objects.create(seller=sellerDetail, name=name_book, author=name_author, year_of_publishing=year_pub, price=int(price))
+            book.save()
+            messages.success(request,"Product enlisted successfully")
+            return redirect('enlist')
     else:
-        book = Book.objects.create(seller=sellerDetail, name=name_book, author=name_author, year_of_publishing=year_pub, price=int(price))
-        book.save()
-        messages.success(request,"Product enlisted successfully")
-        context={'sellerDetail': sellerDetail}
-        return render(request, 'store/enlist.html',context,status=201)
+        return redirect('enlist')
 
 
 
 @login_required(login_url='account_login')
 def enlistInstruments(request):
-    data = request.POST
-    name_instrument = data['name_instrument']
-    price = data['price']
-    seller = request.user
-    sellerDetail = UserDetail.objects.get(user=seller)
-
-    if name_instrument == "" or price == "":
-        messages.error(request,"All the fields are compulsory")
-        context={'sellerDetail': sellerDetail}
-        return render(request, 'store/enlist.html',context,status=406)
-    else:
+    if request.method == 'POST':
+        data = request.POST
+        name_instrument = data['name_instrument']
+        price = data['price']
+        seller = request.user
         sellerDetail = UserDetail.objects.get(user=seller)
-        print(f"User is near {sellerDetail.location}")
-        instrument = Instrument.objects.create(seller=request.user, name=name_instrument, price=int(price))
-        instrument.save()
-        messages.success(request,"Product enlisted successfully")
-        context={'sellerDetail': sellerDetail}
-        return render(request, 'store/enlist.html',context,status=201)
+
+        if name_instrument == "" or price == "":
+            messages.error(request,"All the fields are compulsory")
+            return redirect('enlist')
+        else:
+            sellerDetail = UserDetail.objects.get(user=seller)
+            print(f"User is near {sellerDetail.location}")
+            instrument = Instrument.objects.create(seller=request.user, name=name_instrument, price=int(price))
+            instrument.save()
+            messages.success(request,"Product enlisted successfully")
+            return redirect('enlist')
+    else:
+        return redirect('enlist')
 
 
 @login_required(login_url='account_login')
 def enlistLabcoats(request):
-    data = request.POST
-    size_labcoat = data['size_labcoat']
-    price = data['price']
-    seller = request.user
-    sellerDetail = UserDetail.objects.get(user=seller)
+    if request.method == 'POST':
+        data = request.POST
+        size_labcoat = data['size_labcoat']
+        price = data['price']
+        seller = request.user
+        sellerDetail = UserDetail.objects.get(user=seller)
 
-    if size_labcoat == "" or price == "":
-        messages.error(request,"All the fields are compulsory")
-        context={'sellerDetail': sellerDetail}
-        return render(request, 'store/enlist.html',context, status=406)
+        if size_labcoat == "" or price == "":
+            messages.error(request,"All the fields are compulsory")
+            return redirect('enlist')
+        else:
+            labcoat = Labcoat.objects.create(seller=request.user, size=size_labcoat, price=int(price))
+            labcoat.save()
+            messages.success(request,"Product enlisted successfully")
+            return redirect('enlist')
     else:
-        labcoat = Labcoat.objects.create(seller=request.user, size=size_labcoat, price=int(price))
-        labcoat.save()
-        messages.success(request,"Product enlisted successfully")
-        context={'sellerDetail': sellerDetail}
-        return render(request, 'store/enlist.html',context, status=201)
-
+        return redirect('enlist')

@@ -1,32 +1,41 @@
-// accordian animations -start
+// accordian animations - start - sm
 
 const accBtns = document.querySelectorAll('.btn')
 const chevronArrow = document.querySelectorAll('.chevron')
 
+console.log(chevronArrow)
 
-for (let i = 0; i < accBtns.length; i++) {
-    let panel = accBtns[i].nextElementSibling
-    let childElements = Array.from(accBtns[i].children)
-    accBtns[i].addEventListener('click', e => {
-        let closed = false
-        for (let j = 0; j < accBtns.length; j++) {
-            if(accBtns[j].nextElementSibling.classList.contains('opened')){
-                closed = true
-                accBtns[j].nextElementSibling.style.maxHeight = null
-                accBtns[j].nextElementSibling.classList.remove('opened')
-                console.log("closing currently opened accordian")
-                Array.from(accBtns[j].children)[1].classList.remove("transform", "-rotate-180")
+if(innerWidth < 768) {
+    const btns = [...accBtns]
+    const btnsState = btns.map( btn => ({btn, closed:null}))
+
+    for (let i = 0; i < accBtns.length; i++) {
+        let panel = accBtns[i].nextElementSibling
+        let childElements = Array.from(accBtns[i].children)
+        btnsState[i].btn.addEventListener('click', e => {
+            
+            //close accordian if any other accordian is open and rotate chevron
+            for (let j = 0; j < accBtns.length; j++) {
+                btnsState[j].closed = false
+                if(accBtns[j].nextElementSibling.classList.contains('opened')) {
+                    accBtns[j].nextElementSibling.style.maxHeight = null
+                    btnsState[j].closed = true
+                    accBtns[j].nextElementSibling.classList.remove('opened')
+                    Array.from(accBtns[j].children)[1].classList.remove("transform", "-rotate-180")
+                }
             }
-        }
-        if(closed !== true){
-            panel.style.maxHeight = `${panel.scrollHeight}px`;
-            panel.classList.add('opened')
-            childElements[1].classList.add("transition-all", "transform", "rotate-180")
-        }
-    })
+
+            //open accordian and rotate chevron
+            if(btnsState[i].closed !== true){
+                panel.style.maxHeight = `${panel.scrollHeight}px`;
+                panel.classList.add('opened')
+                childElements[1].classList.add("transition-all", "transform", "rotate-180")
+            }
+        })
+    }
 }
+// accordian animations - end - sm
 
-// accordian animations -end
-
-
-
+if(innerWidth >= 768) {
+    chevronArrow.forEach(arrow => arrow.classList.add("transform", "-rotate-90"))
+}

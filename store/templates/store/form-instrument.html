@@ -1,0 +1,10 @@
+<form action="{% url 'enlist-instruments' %}" method="POST">
+    {% csrf_token %}
+    <div class="grid gap-y-3 py-3">
+        <label class="sm:text-lg" for="name_instrument">Instrument Name:</label>
+        <input class="p-2 rounded border border-gray-300 focus:outline-none focus:border-gray-400" id="name_instrument" name="name_instrument" type="text" placeholder="Eg:Drafter">
+        <label class="sm:text-lg" for="price">Price:</label>
+        <input class="p-2 rounded border border-gray-300 focus:outline-none focus:border-gray-400" id="price" name="price" type="text" placeholder="Eg:200">
+        <input class="p-2 rounded bg-pallete-buttonPrimary text-white font-medium text-xl" type="submit" value="Enlist">
+    </div>
+</form>

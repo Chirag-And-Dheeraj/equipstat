@@ -48,7 +48,7 @@
                     </div>
                 </div>
             </div>
-            <div class="opened md-form hidden md:block md:col-start-2 md:row-start-1 md:row-end-3 lg:col-span-2">
+            <div class="includes-dd opened md-form hidden md:block md:col-start-2 md:row-start-1 md:row-end-3 lg:col-span-2">
                 {% include 'store/form-book.html' %}
             </div>
         </div>
@@ -72,6 +72,8 @@
 <script>
     // const accordian = document.querySelector('.accordian');
     // Array.from(accordian.children).forEach(child => console.log(child.innerText));
+
+    //change forms on respective clicks on buttons
     if(innerWidth >= 768) {
         let html= ''
         const accButtons = document.querySelectorAll('.btn')
@@ -79,7 +81,6 @@
 
         for (let i = 0; i < accButtons.length; i++) {
             accButtons[i].addEventListener('click', e => {
-                console.log('Button Number:', i)
                 //close accordian if any other accordian is open and rotate chevron
                 if(mdForm.classList.contains('opened')) {
                     mdForm.innerHTML = ''

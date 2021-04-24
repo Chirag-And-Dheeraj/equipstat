@@ -1,21 +1,36 @@
-<form action="{% url 'enlist-books' %}" method="POST">
+<form action="{% url 'enlist-books' %}" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="grid gap-y-4 py-1 md:gap-y-4">
         <div>
             <label class="sm:text-lg block" for="name_book">Book Name:</label>
-            <input class="p-2 w-full rounded border border-gray-300 focus:outline-none focus:border-gray-400" id="name_book" name="name_book" type="text" placeholder="Eg:Applied Maths">
+            <input class="p-2 w-full rounded border border-gray-300 focus:outline-none focus:border-gray-400"
+                id="name_book" name="name_book" type="text" placeholder="Eg:Applied Maths">
         </div>
         <div>
             <label class="sm:text-lg block" for="name_author">Author Name:</label>
-            <input class="p-2 w-full rounded border border-gray-300 focus:outline-none focus:border-gray-400" id="name_author" name="name_author" type="text" placeholder="Eg:Kumbhojkar">
+            <input class="p-2 w-full rounded border border-gray-300 focus:outline-none focus:border-gray-400"
+                id="name_author" name="name_author" type="text" placeholder="Eg:Kumbhojkar">
         </div>
         <div>
             <label class="sm:text-lg block" for="year_pub">Publication Year:</label>
-            <input class="p-2 w-full rounded border border-gray-300 focus:outline-none focus:border-gray-400" id="year_pub" name="year_pub" type="text" placeholder="Eg:1990">
+            <input class="p-2 w-full rounded border border-gray-300 focus:outline-none focus:border-gray-400"
+                id="year_pub" name="year_pub" type="text" placeholder="Eg:1990">
         </div>
         <div>
             <label class="sm:text-lg block" for="price">Price:</label>
-            <input class="p-2 w-full rounded border border-gray-300 focus:outline-none focus:border-gray-400" id="price" name="price" type="text" placeholder="Eg:200">
+            <input class="p-2 w-full rounded border border-gray-300 focus:outline-none focus:border-gray-400" id="price"
+                name="price" type="text" placeholder="Eg:200">
+        </div>
+        <div>
+            <label class="sm:text-lg block" for="image">Images:</label>
+            <input class="p-2 w-full rounded border border-gray-300 focus:outline-none focus:border-gray-400" id="price"
+                name="images[]" type="file" placeholder="Eg:200" multiple accept="image/*">
+        </div>
+        <div>
+            <label class="sm:text-lg block" for="description">Description:</label>
+            <textarea class="p-2 w-full rounded border border-gray-300 focus:outline-none focus:border-gray-400"
+                id="description" name="description" type="text"
+                placeholder="Eg: A very old book, but in a rather good condition."></textarea>
         </div>
         <input class="p-2 rounded bg-pallete-buttonPrimary text-white font-medium text-xl" type="submit" value="Enlist">
     </div>

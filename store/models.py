@@ -20,6 +20,7 @@ class Book(models.Model):
     year_of_publishing = models.IntegerField()
     price = models.FloatField()
     slug = models.SlugField(max_length=250, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
 
     def _get_unique_slug(self):
         slug = slugify(self.name)
@@ -39,11 +40,14 @@ class Book(models.Model):
         return self.name + " | " + str(self.year_of_publishing)
 
 
+
+
 class Instrument(models.Model):
     seller = models.ForeignKey(UserDetail, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
     price = models.FloatField()
     slug = models.SlugField(max_length=250, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
 
     def _get_unique_slug(self):
         slug = slugify(self.name)
@@ -70,12 +74,41 @@ class Labcoat(models.Model):
     seller = models.ForeignKey(UserDetail, on_delete=models.CASCADE)
     size = models.IntegerField()
     price = models.FloatField()
+    description = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return str(self.size)
 
     class Meta:
         verbose_name_plural = "Labcoats"
+
+
+class BookImage(models.Model):
+    book = models.ForeignKey(Book, default=None, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to="Refurbished/Books/")
+    @property
+    def imageURL(self):
+        url = self.image.url
+        return url
+
+
+class InstrumentImage(models.Model):
+    instrument = models.ForeignKey(Instrument, default=None, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to="Refurbished/Instruments/")
+    @property
+    def imageURL(self):
+        url = self.image.url
+        return url
+
+
+class LabcoatImage(models.Model):
+    labcoat = models.ForeignKey(Labcoat, default=None, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to="Refurbished/Labcoats/")
+    @property
+    def imageURL(self):
+        url = self.image.url
+        return url
+
 
 
 class Product(models.Model):
@@ -148,7 +181,9 @@ class OrderItem(models.Model):
 
 
 MESSAGE_TYPES = (('Grievance', 'Grievance'), ('Feedback', 'Feedback'))
-STATUS_TYPES = (('Replied', 'Replied'), ('Resolved','Resolved'), ('Pending','Pending'), ('Spam','Spam'))
+STATUS_TYPES = (('Replied', 'Replied'), ('Resolved', 'Resolved'),
+                ('Pending', 'Pending'), ('Spam', 'Spam'))
+
 
 class ContactUsDetail(models.Model):
     firstName = models.CharField(max_length=30)
@@ -157,7 +192,8 @@ class ContactUsDetail(models.Model):
     contact = models.CharField(max_length=10, null=True)
     typeOfMessage = models.CharField(max_length=10, choices=MESSAGE_TYPES)
     message = models.TextField()
-    status = models.CharField(max_length=10, choices=STATUS_TYPES, default='Pending')
-    
+    status = models.CharField(
+        max_length=10, choices=STATUS_TYPES, default='Pending')
+
     def __str__(self):
         return self.typeOfMessage + " | " + self.status

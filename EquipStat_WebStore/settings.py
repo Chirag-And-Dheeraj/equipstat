@@ -27,7 +27,8 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'Optional default value')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['equipstat.herokuapp.com', '127.0.0.1', '192.168.1.196.nip.io', '192.168.0.100.nip.io']
+ALLOWED_HOSTS = ['equipstat.herokuapp.com', '127.0.0.1',
+                 '192.168.1.196.nip.io', '192.168.0.100.nip.io', '192.168.0.104.nip.io']
 
 
 # Application definition
@@ -39,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+
     # Project related apps
     'store',
 

@@ -155,79 +155,58 @@ def enlist(request):
 
 @login_required(login_url='account_login')
 def enlistBooks(request):
-    data = request.POST
-    name_book = data['name_book']
-    name_author = data['name_author']
-    year_pub = data['year_pub']
-    price = data['price']
-    sellerDetail = UserDetail.objects.get(user=request.user)
-
-    if name_book == "" or name_author == "" or year_pub == "" or price == "":
-        messages.error(request, "All the fields are compulsory")
-        context = {'sellerDetail': sellerDetail}
-        return render(request, 'store/enlist.html', context, status=406)
-    else:
-        book = Book.objects.create(seller=sellerDetail, name=name_book,
-                                   author=name_author, year_of_publishing=year_pub, price=int(price))
-        book.save()
-        messages.success(request, "Product enlisted successfully")
-        context = {'sellerDetail': sellerDetail}
-        return render(request, 'store/enlist.html', context, status=201)
-    if request.method == 'POST':   
+    if request.method == 'POST':
         data = request.POST
         name_book = data['name_book']
         name_author = data['name_author']
         year_pub = data['year_pub']
         price = data['price']
-        sellerDetail = UserDetail.objects.get(user=request.user)
-
-        if name_book == "" or name_author == "" or year_pub == "" or price == "":
-            messages.error(request,"All the fields are compulsory")
+        description = data['description']
+        images = request.FILES.getlist('images[]')
+        seller = request.user
+        sellerDetail = UserDetail.objects.get(user=seller)
+        if name_book == "" or name_author == "" or year_pub == "" or price == "" or description == "":
+            messages.error(request, "All the fields are compulsory")
             return redirect('enlist')
         else:
-            book = Book.objects.create(seller=sellerDetail, name=name_book, author=name_author, year_of_publishing=year_pub, price=int(price))
+            book = Book.objects.create(seller=sellerDetail, name=name_book, author=name_author, year_of_publishing=year_pub, price=int(price), description=description)
             book.save()
-            messages.success(request,"Product enlisted successfully")
+            newBook = Book.objects.get(id=book.id)
+            for image in request.FILES.getlist('images[]'):
+                bookImage = BookImage.objects.create(book=newBook, image=image)
+                print(f"{bookImage.book.name} image is inside {bookImage.imageURL}")
+                bookImage.save()
+            messages.success(request, "Product enlisted successfully")
             return redirect('enlist')
     else:
         return redirect('enlist')
 
 
-
 @login_required(login_url='account_login')
 def enlistInstruments(request):
-    data = request.POST
-    name_instrument = data['name_instrument']
-    price = data['price']
-    sellerDetail = UserDetail.objects.get(user=request.user)
-
-    if name_instrument == "" or price == "":
-        messages.error(request, "All the fields are compulsory")
-        context = {'sellerDetail': sellerDetail}
-        return render(request, 'store/enlist.html', context, status=406)
-    else:
-        instrument = Instrument.objects.create(
-            seller=sellerDetail, name=name_instrument, price=int(price))
-        instrument.save()
-        messages.success(request, "Product enlisted successfully")
-        context = {'sellerDetail': sellerDetail}
-        return render(request, 'store/enlist.html', context, status=201)
     if request.method == 'POST':
         data = request.POST
         name_instrument = data['name_instrument']
         price = data['price']
+        description = data['description']
         seller = request.user
         sellerDetail = UserDetail.objects.get(user=seller)
 
-        if name_instrument == "" or price == "":
-            messages.error(request,"All the fields are compulsory")
+        if name_instrument == "" or price == "" or description == "":
+            messages.error(request, "All the fields are compulsory")
             return redirect('enlist')
         else:
             sellerDetail = UserDetail.objects.get(user=seller)
             print(f"User is near {sellerDetail.location}")
-            instrument = Instrument.objects.create(seller=request.user, name=name_instrument, price=int(price))
+            instrument = Instrument.objects.create(
+                seller=sellerDetail, name=name_instrument, price=int(price), description=description)
             instrument.save()
-            messages.success(request,"Product enlisted successfully")
+            newInstrument = Instrument.objects.get(id=instrument.id)
+            for image in request.FILES.getlist('images[]'):
+                instrumentImage = InstrumentImage.objects.create(instrument=newInstrument, image=image)
+                print(f"{instrumentImage.instrument.name} image is inside {instrumentImage.imageURL}")
+                instrumentImage.save()
+            messages.success(request, "Product enlisted successfully")
             return redirect('enlist')
     else:
         return redirect('enlist')
@@ -235,35 +214,27 @@ def enlistInstruments(request):
 
 @login_required(login_url='account_login')
 def enlistLabcoats(request):
-    data = request.POST
-    size_labcoat = data['size_labcoat']
-    price = data['price']
-    sellerDetail = UserDetail.objects.get(user=request.user)
-    if size_labcoat == "" or price == "":
-        messages.error(request, "All the fields are compulsory")
-        context = {'sellerDetail': sellerDetail}
-        return render(request, 'store/enlist.html', context, status=406)
-    else:
-        labcoat = Labcoat.objects.create(
-            seller=sellerDetail, size=size_labcoat, price=int(price))
-        labcoat.save()
-        messages.success(request, "Product enlisted successfully")
-        context = {'sellerDetail': sellerDetail}
-        return render(request, 'store/enlist.html', context, status=201)
     if request.method == 'POST':
         data = request.POST
         size_labcoat = data['size_labcoat']
         price = data['price']
+        description = data['description']
         seller = request.user
         sellerDetail = UserDetail.objects.get(user=seller)
 
-        if size_labcoat == "" or price == "":
-            messages.error(request,"All the fields are compulsory")
+        if size_labcoat == "" or price == "" or description == "":
+            messages.error(request, "All the fields are compulsory")
             return redirect('enlist')
         else:
-            labcoat = Labcoat.objects.create(seller=request.user, size=size_labcoat, price=int(price))
+            labcoat = Labcoat.objects.create(
+                seller=sellerDetail, size=size_labcoat, price=int(price), description=description)
             labcoat.save()
-            messages.success(request,"Product enlisted successfully")
+            newLabcoat = Labcoat.objects.get(id=labcoat.id)
+            for image in request.FILES.getlist('images[]'):
+                labcoatImage = LabcoatImage.objects.create(labcoat=newLabcoat, image=image)
+                print(f"{labcoatImage.labcoat.size} image is inside {labcoatImage.imageURL}")
+                labcoatImage.save()
+            messages.success(request, "Product enlisted successfully")
             return redirect('enlist')
     else:
         return redirect('enlist')

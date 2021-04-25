@@ -28,7 +28,6 @@ def collectUserData(request):
 @login_required(login_url='account_login')
 def profile(request):
     user = request.user
-    userDetail = UserDetail.objects.get(user=user)
     first_name = user.first_name
     last_name = user.last_name
     email = user.email
@@ -172,7 +171,9 @@ def enlistBooks(request):
             book = Book.objects.create(seller=sellerDetail, name=name_book, author=name_author, year_of_publishing=year_pub, price=int(price), description=description)
             book.save()
             newBook = Book.objects.get(id=book.id)
+            print(images)
             for image in request.FILES.getlist('images[]'):
+                print(image)
                 bookImage = BookImage.objects.create(book=newBook, image=image)
                 print(f"{bookImage.book.name} image is inside {bookImage.imageURL}")
                 bookImage.save()
@@ -180,6 +181,7 @@ def enlistBooks(request):
             return redirect('enlist')
     else:
         return redirect('enlist')
+
 
 
 @login_required(login_url='account_login')

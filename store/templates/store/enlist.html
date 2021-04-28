@@ -48,7 +48,7 @@
                     </div>
                 </div>
             </div>
-            <div class="includes-dd opened md-form hidden md:block md:col-start-2 md:row-start-1 md:row-end-3 lg:col-span-2">
+            <div class="includes-dd displayed md-form hidden md:block md:col-start-2 md:row-start-1 md:row-end-3 lg:col-span-2">
                 {% include 'store/form-book.html' %}
             </div>
         </div>
@@ -70,9 +70,6 @@
 {% endif %}
 
 <script>
-    // const accordian = document.querySelector('.accordian');
-    // Array.from(accordian.children).forEach(child => console.log(child.innerText));
-
     //change forms on respective clicks on buttons
     if(innerWidth >= 768) {
         let html= ''
@@ -82,9 +79,9 @@
         for (let i = 0; i < accButtons.length; i++) {
             accButtons[i].addEventListener('click', e => {
                 //close accordian if any other accordian is open and rotate chevron
-                if(mdForm.classList.contains('opened')) {
+                if(mdForm.classList.contains('displayed')) {
                     mdForm.innerHTML = ''
-                    mdForm.classList.remove('opened')
+                    mdForm.classList.remove('displayed')
                 }
                 switch (i) {
                     case 0:
@@ -102,7 +99,7 @@
                         break;
                 }
                 dragAndDrop()
-                mdForm.classList.add('opened')
+                mdForm.classList.add('displayed')
             })
         }
     }

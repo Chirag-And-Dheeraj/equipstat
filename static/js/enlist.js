@@ -1,5 +1,5 @@
 // accordian animations - start - sm
-
+let noOfImagesUploaded = 0
 const accBtns = document.querySelectorAll('.btn')
 const chevronArrow = document.querySelectorAll('.chevron')
 
@@ -26,8 +26,41 @@ if(innerWidth < 768) {
             //open accordian and rotate chevron
             if(btnsState[i].closed !== true){
                 panel.style.maxHeight = `${panel.scrollHeight}px`;
-                panel.classList.add('opened')
                 childElements[1].classList.add("transition-all", "transform", "rotate-180")
+                panel.classList.add('opened')
+                let imageInput = document.querySelector('.opened .image')
+                let browseButton = document.querySelector('.opened .browse')
+                //browse button for mobile
+                browseButton.addEventListener('click', () => {
+                    imageInput.click()
+                    
+                    imageInput.addEventListener('change', () => {
+                        let list = new DataTransfer()
+                        if(imageInput.files.length > 5){
+                            for(let i=0; i<5; i++) {
+                                list.items.add(imageInput.files[i])
+                            }
+                            imageInput.files = list.files
+                        }
+                        let upIm = document.querySelector('.opened .uploaded-images')
+                        for(let photo of imageInput.files){
+                            if(noOfImagesUploaded>=5){
+                                panel.style.maxHeight = `${panel.scrollHeight}px`;
+                                upIm.querySelector('.error').textContent = 'Any five images will be taken'
+                                upIm.querySelector('.error').classList.remove('hidden')
+                                break
+                            }else{
+                                let imgTag = `<img loading='lazy' class="inline mr-4" src="${URL.createObjectURL(photo)}" width="50" height="50">`
+                                upIm.classList.remove('hidden')
+                                upIm.innerHTML += imgTag
+                                panel.style.maxHeight = `${panel.scrollHeight}px`;
+                                noOfImagesUploaded++ 
+                            }
+                            
+                        }
+                    })
+                })
+            
             }
         })
     }
@@ -41,16 +74,15 @@ if(innerWidth >= 768){
 
 
 let dragAndDrop = function() {
-    let image = document.querySelector('.includes-dd #image')
 
-    const validFileExtensions = [...image.getAttribute('accept').split(',')]
-
-    const browseFile = document.querySelector('.includes-dd #browse')
-
+    //browse button for laptop
+    let image = document.querySelector('.includes-dd .image')
+    const browseFile = document.querySelector('.includes-dd .browse')
     browseFile.addEventListener('click', () => {
         image.click()
     })
 
+    const validFileExtensions = [...image.getAttribute('accept').split(',')]
 
     const uploadedImages = document.querySelector('.includes-dd .uploaded-images')
 
@@ -71,7 +103,6 @@ let dragAndDrop = function() {
             dropArea.classList.remove("border-pallete-buttonPrimary", "bg-gray-300")
         })
 
-        let noOfImagesUploaded = 0
         // when a file is dropped in drag-area
         dropArea.addEventListener('drop', e => {
             e.preventDefault()
@@ -81,7 +112,7 @@ let dragAndDrop = function() {
             let list = new DataTransfer()
             let discarded = false
             if(noOfImagesUploaded >= 5){
-                alert("5 images are already uploaded.")
+                alert('5 Images are already uploaded')
             }
             else{
                 for(let file of e.dataTransfer.files){

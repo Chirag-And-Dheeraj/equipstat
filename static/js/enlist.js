@@ -45,9 +45,9 @@ if(innerWidth < 768) {
                         let upIm = document.querySelector('.opened .uploaded-images')
                         for(let photo of imageInput.files){
                             if(noOfImagesUploaded>=5){
-                                panel.style.maxHeight = `${panel.scrollHeight}px`;
                                 upIm.querySelector('.error').textContent = 'Any five images will be taken'
                                 upIm.querySelector('.error').classList.remove('hidden')
+                                panel.style.maxHeight = `${panel.scrollHeight}px`;
                                 break
                             }else{
                                 let imgTag = `<img loading='lazy' class="inline mr-4" src="${URL.createObjectURL(photo)}" width="50" height="50">`

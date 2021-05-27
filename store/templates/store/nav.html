@@ -1,7 +1,7 @@
 <header>
-    <nav class="p-3">
-            <div class="flex justify-between items-center p-1">
-                <a href="" class="text-3xl font-semibold">
+    <nav class="">
+            <div class="p-3 nav-content flex justify-between items-center">
+                <a href="/" class="text-3xl font-semibold">
                     Equipstat
                 </a>
                 <div class="hamburgur cursor-pointer">
@@ -10,27 +10,45 @@
                     <div class="bar-3"></div>
                 </div>
             </div>
-            <ul class="navItems hidden text-center text-2xl space-y-5 mt-5">
-                <li>
-                    <a href="">New Calculators</a>
+            <ul class="navItems hidden text-xl">
+                <li class="border-t px-3 py-2 hover:bg-gray-100">
+                    <div class="mobNew flex justify-between">
+                        New
+                        <img class="inline w-5" src="../static/images/chevron-down.svg">
+                    </div>
+                    <div class="hidden mobNewContent">
+                        <a href="" class="m-2 block text-black hover:underline">
+                            Calculators
+                        </a>
+                        <hr>
+                        <a href="" class="m-2 block text-black hover:underline">
+                            Instruments
+                        </a>
+                    </div>
                 </li>
-                <li>
-                    <a href="">New Instruments</a>
+                <li class="border-t px-3 py-2 hover:bg-gray-100">
+                    <div class="mobRef flex justify-between">
+                        Refurbished<img class="inline w-5" src="../static/images/chevron-down.svg">
+                    </div>
+                    <div class="hidden mobRefContent">
+                        <a href="" class="m-2 block text-black hover:underline">
+                            Books
+                        </a>
+                        <hr>
+                        <a href="" class="m-2 block text-black hover:underline">
+                            Instruments
+                        </a>
+                        <hr>
+                        <a href="" class="m-2 block text-black hover:underline">
+                            Labcoats
+                        </a>
+                    </div>
                 </li>
-                <li>
-                    <a href="">Refurbished Books</a>
+                <li class="border-t px-3 py-2">
+                    <a href="{% url 'enlist' %}" class="block"><i class="fa fa-user-plus"></i>&nbsp;Sign Up</a>
                 </li>
-		        <li>
-                    <a href="">Refurbished Labcoats</a>
-                </li>
-		        <li>
-                    <a href="">Refurbished Instruments</a>
-                </li>
-                <li>
-                    <a href="">Sign Up</a>
-                </li>
-                <li>
-                    <a href="">Sign in</a>
+                <li class="border px-3 py-2">
+                    <a href="" class="block"><i class="fa fa-sign-in"></i>&nbsp;Sign in</a>
                 </li>
             </ul>
     </nav>

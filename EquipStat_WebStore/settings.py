@@ -27,7 +27,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'Optional default value')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['equipstat.herokuapp.com', '127.0.0.1',
+ALLOWED_HOSTS = ['equipstat.herokuapp.com', 'equipstat2.herokuapp.com', '127.0.0.1',
                  '192.168.1.196.nip.io', '192.168.0.100.nip.io', '192.168.0.104.nip.io', '192.168.0.103.nip.io', 'localhost']
 
 
@@ -98,6 +98,10 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
 
 
 AUTHENTICATION_BACKENDS = [

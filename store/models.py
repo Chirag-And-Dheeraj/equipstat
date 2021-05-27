@@ -119,6 +119,7 @@ class Product(models.Model):
     inventory = models.IntegerField()
     slug = models.SlugField(max_length=250, null=True, blank=True)
     details = models.TextField()
+    is_calculator = models.BooleanField(default=False)
 
     def _get_unique_slug(self):
         slug = slugify(self.name)
@@ -143,6 +144,20 @@ class Product(models.Model):
 
     class Meta:
         verbose_name_plural = "Products"
+
+
+class ProductImage(models.Model):
+    product = models.ForeignKey(Product, default=None, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to="Products/")
+    
+    @property
+    def imageURL(self):
+        url = self.image.url
+        return url
+    
+    def __str__(self):
+        return self.image.url
+
 
 
 class Order(models.Model):

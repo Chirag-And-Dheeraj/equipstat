@@ -2,5 +2,21 @@
 {% block content %}
 {% load static %}
     <h1 class="text-black text-6xl font-main text-center">New Instruments</h1>
-    
+
+<br>
+<br>
+<hr>
+{% for instrument in instruments %}
+<br>
+Name: {{ instrument.name }} <br>
+MRP: {{ instrument.mrp }} <br>
+Our Price: {{ instrument.ourPrice }} <br>
+{% if instrument.inventory < 6 %}
+Only {{ instrument.inventory }} in stock! Buy Now!! <br>
+{% endif %}
+Details: {{ instrument.details }}
+<br>
+<br>
+<hr>
+{% endfor %}
 {% endblock %}

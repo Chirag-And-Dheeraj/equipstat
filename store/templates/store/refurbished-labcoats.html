@@ -2,5 +2,15 @@
 {% block content %}
 {% load static %}
     <h1 class="text-black text-6xl font-main text-center">Refurbished Labcoats</h1>
-    
+
+    <br>
+    <br>
+
+    {% for size in output %}
+        {% for labcoat in size %}
+            <h3 class="text-black text-2xl font-main text-center"> {{ labcoat.seller.user.first_name }} - {{ labcoat.size }} - {{ labcoat.seller.location }} </h3>
+        {% endfor %}
+    {% endfor %}
+
+
 {% endblock %}

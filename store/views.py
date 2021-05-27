@@ -116,7 +116,8 @@ def profile(request):
 
 
 def instruments(request):
-    context = {}
+    newInstruments = Product.objects.filter(is_calculator=False)
+    context = {'instruments': newInstruments}
     return render(request, 'store/instruments.html', context)
 
 
@@ -138,7 +139,26 @@ def refurbishedInstruments(request):
 
 
 def refurbishedLabcoats(request):
-    context = {}
+    sizes = []
+    labcoats = Labcoat.objects.all()
+    for labcoat in labcoats:
+        if labcoat.size not in sizes:
+            sizes.append(labcoat.size)
+
+    sizes.sort()
+    print(sizes)
+
+    output = []
+    for size in sizes:
+        temp = []
+        for labcoat in labcoats:
+            if labcoat.size == size:
+                temp.append(labcoat)
+        output.append(temp)
+
+    print(output)    
+
+    context = {'sizes':sizes, 'output':output}
     return render(request, 'store/refurbished-labcoats.html', context)
 
 

@@ -1,55 +1,112 @@
-<header>
-    <nav class="">
-            <div class="p-3 nav-content flex justify-between items-center">
-                <a href="/" class="text-3xl font-semibold">
-                    Equipstat
-                </a>
-                <div class="hamburgur cursor-pointer">
-                    <div class="bar-1"></div>
-                    <div class="bar-2"></div>
-                    <div class="bar-3"></div>
-                </div>
-            </div>
-            <ul class="navItems hidden text-xl">
-                <li class="border-t px-3 py-2 hover:bg-gray-100">
-                    <div class="mobNew flex justify-between">
+<header class="border-b">
+    <nav>
+        <div class="p-3 nav-content flex justify-between items-center">
+            <a href="/" class="text-3xl font-semibold">
+                Equipstat
+            </a>
+            <div class="hidden sm:block space-x-3">
+                <div class="w-28 relative inline-block cursor-pointer md:text-lg">
+                    <div class="new">
                         New
                         <img class="inline w-5" src="../static/images/chevron-down.svg">
                     </div>
-                    <div class="hidden mobNewContent">
-                        <a href="" class="m-2 block text-black hover:underline">
-                            Calculator
+                    <div class="newList hidden mt-2 absolute right-0 bg-white border rounded z-10 p-2">
+                        <a href="{% url 'calculators' %}" class="p-2 block text-black hover:underline">
+                            Calculators
                         </a>
-                        <hr>
-                        <a href="" class="m-2 block text-black hover:underline">
-                            Instrument
-                        </a>
-                    </div>
-                </li>
-                <li class="border-t px-3 py-2 hover:bg-gray-100">
-                    <div class="mobRef flex justify-between">
-                        Refurbished<img class="inline w-5" src="../static/images/chevron-down.svg">
-                    </div>
-                    <div class="hidden mobRefContent">
-                        <a href="" class="m-2 block text-black hover:underline">
-                            Books
-                        </a>
-                        <hr>
-                        <a href="" class="m-2 block text-black hover:underline">
+                        <a href="{% url 'instruments' %}" class="p-2 block text-black hover:underline">
                             Instruments
                         </a>
-                        <hr>
-                        <a href="" class="m-2 block text-black hover:underline">
+                    </div>
+                </div>
+                <div class="w-34 relative inline-block cursor-pointer md:text-lg">
+                    <div class="ref">
+                        Refurbished
+                        <img class="inline w-5" src="../static/images/chevron-down.svg">
+                    </div>
+                    <div class="refList hidden mt-2 absolute right-0 bg-white border rounded z-10 p-2">
+                        <a href="{% url 'refurbished-books' %}" class="p-2 block text-black hover:underline">
+                            Books
+                        </a>
+                        <a href="{% url 'refurbished-instruments' %}" class="p-2 block text-black hover:underline">
+                            Instruments
+                        </a>
+                        <a href="{% url 'refurbished-labcoats' %}" class="p-2 block text-black hover:underline">
                             Labcoats
                         </a>
                     </div>
-                </li>
-                <li class="border-t px-3 py-2">
-                    <a href="{% url 'account_signup' %}" class="block"><i class="fa fa-user-plus"></i>&nbsp;Sign Up</a>
-                </li>
-                <li class="border px-3 py-2">
-                    <a href="{% url 'account_login' %}" class="block"><i class="fa fa-sign-in"></i>&nbsp;Sign in</a>
-                </li>
-            </ul>
+                </div>
+                {% if not request.user.is_authenticated %}
+                <a href="{% url 'account_signup' %}" class="bg-pallete-buttonPrimary focus:outline-none p-2 text-lg text-white rounded cursor-pointer font-medium md:text-xl">
+                    Sign Up
+                </a> 
+                <a href="{% url 'account_login' %}" class="bg-gray-200 rounded focus:outline-none p-2 text-lg cursor-pointer font-medium md:text-xl">
+                    Sign in
+                </a>
+                {% else %}
+                <a href="{% url 'account_logout' %}" class="bg-gray-200 rounded focus:outline-none p-2 text-lg cursor-pointer font-medium md:text-xl">
+                    Log out
+                </a>
+                {% endif %}
+            </div>
+            <div class="hamburgur cursor-pointer">
+                <div class="bar-1"></div>
+                <div class="bar-2"></div>
+                <div class="bar-3"></div>
+            </div>
+        </div>
+        <ul class="navItems hidden text-lg">
+            <li class="border-t px-3 py-2 hover:bg-gray-100">
+                <div class="mobNew flex justify-between">
+                    New
+                    <img class="inline w-5" src="../static/images/chevron-down.svg">
+                </div>
+                <div class="hidden mobNewContent">
+                    <a href="{% url 'calculators' %}" class="m-2 block text-black hover:underline">
+                        Calculators
+                    </a>
+                    <hr>
+                    <a href="{% url 'instruments' %}" class="m-2 block text-black hover:underline">
+                        Instruments
+                    </a>
+                </div>
+            </li>
+            <li class="border-t px-3 py-2 hover:bg-gray-100">
+                <div class="mobRef flex justify-between">
+                    Refurbished<img class="inline w-5" src="../static/images/chevron-down.svg">
+                </div>
+                <div class="hidden mobRefContent">
+                    <a href="{% url 'refurbished-books' %}" class="m-2 block text-black hover:underline">
+                        Books
+                    </a>
+                    <hr>
+                    <a href="{% url 'refurbished-instruments' %}" class="m-2 block text-black hover:underline">
+                        Instruments
+                    </a>
+                    <hr>
+                    <a href="{% url 'refurbished-labcoats' %}" class="m-2 block text-black hover:underline">
+                        Labcoats
+                    </a>
+                </div>
+            </li>
+            {% if not request.user.is_authenticated %}
+            <li class="border-t px-3 py-2">
+                <a href="{% url 'account_signup' %}" class="block">
+                    <i class="fa fa-user-plus"></i>&nbsp;Sign Up
+                </a>
+            </li>
+            <li class="border px-3 py-2">
+                <a href="{% url 'account_login' %}" class="block">
+                    <i class="fa fa-sign-in mr-1"></i>&nbsp;Sign in
+                </a>
+            </li>
+            {% else %}
+            <li class="border px-3 py-2">
+                <a class="block" href="{% url 'account_logout' %}">
+                    <i class="fa fa-sign-out mr-1"></i>&nbsp;Log out
+                </a>
+            </li>
+            {% endif %}
+        </ul>
     </nav>
 </header>

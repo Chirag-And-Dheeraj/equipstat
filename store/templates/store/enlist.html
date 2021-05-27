@@ -4,12 +4,11 @@
 {% load static %}
 
 
-<h1 class="text-3xl text-center mt-8 mb-4">Enlist Your Products</h1>
-
 {% include 'store/message.html' %}
 
 {% if sellerDetail %}
-<div class="md:mx-5">
+<h1 class="text-3xl text-center mt-8 mb-4">Enlist Your Products</h1>
+<div class="mb-9 md:mx-5">
     <div class="mx-auto max-w-2xl md:border md:rounded md:max-w-6xl">
         <div class="px-3 md:px-0">
             <h4 class="text-lg rounded-t px-4 py-3 text-center text-white bg-pallete-buttonPrimary lg:text-xl lg:tracking-wider">Choose appropriate type of product</h4>
@@ -38,7 +37,7 @@
                 </div>
                 
         
-                <div class="rounded-b border ">
+                <div class="rounded-b border">
                     <div class="btn flex items-center justify-between px-4 py-3 lg:cursor-pointer hover:bg-gray-100 transition-colors">
                         <h3 class="text-lg font-bold sm:text-xl">Labcoats</h3>
                         <img class="chevron w-6" src="{% static 'images/chevron-down.svg' %}" alt="chevron">
@@ -57,16 +56,33 @@
 
 {% else %}
 
-<h2>You will have to provide your contact number and nearest local train station for enlisting products.</h2>
-<form action="{% url 'collect-user-data' %}" method="POST">
-    {% csrf_token %}
-    <label for="contact_user">Contact Number:</label><br>
-    <input id="contact_user" name="contact_user" type="text"><br>
-    <label for="location_user">Nearest Station:</label><br>
-    <input id="location_user" name="location_user" type="text"><br>
-    <input type="hidden" name="type" value="seller">
-    <input type="submit"><br>
-</form>
+<div class="mx-auto mt-14 max-w-2xl">
+    <div class="px-3">
+        <h2 class="text-lg rounded-t px-4 py-3 text-center text-white bg-pallete-buttonPrimary lg:text-xl lg:tracking-wider">Complete your profile</h2>
+    </div>
+    <div class="px-5 py-5 mx-3 border rounded-b">
+        <div class="py-3 mb-3 border border-black rounded bg-gray-200">
+            <p class="px-3 text-sm font-bold sm:text-lg">
+                Please provide your contact number and nearest railway station before enlisting your product as they are our primary requirements.
+            </p>
+        </div>
+        <form action="{% url 'collect-user-data' %}" method="POST">
+            {% csrf_token %}
+            <div class="grid gap-y-3">
+                <div>
+                    <label class="sm:text-lg" for="contact_user">Contact Number:</label>
+                    <input class="p-2 w-full rounded border border-gray-300 focus:outline-none focus:border-gray-400" id="contact_user" name="contact_user" type="text">
+                </div>
+                <div>
+                    <label class="sm:text-lg" for="location_user">Nearest Station:</label>
+                    <input class="p-2 w-full rounded border border-gray-300 focus:outline-none focus:border-gray-400" id="location_user" name="location_user" type="text">
+                </div>
+                <input type="hidden" name="type" value="seller">
+                <input class="p-2 rounded cursor-pointer bg-pallete-buttonPrimary text-white font-medium text-xl" type="submit">
+            </div>
+        </form>
+    </div>
+</div>
 {% endif %}
 
 <script>

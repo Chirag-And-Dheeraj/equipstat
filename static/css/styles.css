@@ -32098,6 +32098,12 @@ video {
   border-color: rgba(30, 64, 175, var(--tw-border-opacity));
 }
 
+body::after{
+  content: '';
+  display: block;
+  height: 80px;
+}
+
 @media (min-width: 640px){
   .sm\:container{
     width: 100%;

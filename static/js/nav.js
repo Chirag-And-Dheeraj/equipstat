@@ -42,10 +42,10 @@ if(window.innerWidth <= 640) {
             <img class="inline w-5" src="../static/images/chevron-down.svg">
         </div>
         <div class="newList hidden mt-2 absolute right-0 bg-white border rounded z-10 p-2">
-            <a href="" class="p-2 block text-black hover:underline">
+            <a href="/calculators/" class="p-2 block text-black hover:underline">
                 Calculators
             </a>
-            <a href="" class="p-2 block text-black hover:underline">
+            <a href="/instruments/" class="p-2 block text-black hover:underline">
                 Instruments
             </a>
         </div>
@@ -56,21 +56,21 @@ if(window.innerWidth <= 640) {
             <img class="inline w-5" src="../static/images/chevron-down.svg">
         </div>
         <div class="refList hidden mt-2 absolute right-0 bg-white border rounded z-10 p-2">
-            <a href="" class="p-2 block text-black hover:underline">
+            <a href="/refurbished-books/" class="p-2 block text-black hover:underline">
                 Books
             </a>
-            <a href="" class="p-2 block text-black hover:underline">
+            <a href="/refurbished-instruments/" class="p-2 block text-black hover:underline">
                 Instruments
             </a>
-            <a href="" class="p-2 block text-black hover:underline">
+            <a href="/refurbished-labcoats/" class="p-2 block text-black hover:underline">
                 Labcoats
             </a>
         </div>
     </div>
-    <a class="bg-pallete-buttonPrimary focus:outline-none p-2 text-lg text-white rounded cursor-pointer font-medium md:text-xl">
+    <a href="/accounts/signup/" class="bg-pallete-buttonPrimary focus:outline-none p-2 text-lg text-white rounded cursor-pointer font-medium md:text-xl">
         Sign Up
     </a> 
-    <a class="bg-gray-200 rounded focus:outline-none p-2 text-lg cursor-pointer font-medium md:text-xl">
+    <a href="/accounts/login/" class="bg-gray-200 rounded focus:outline-none p-2 text-lg cursor-pointer font-medium md:text-xl">
         Sign in
     </a>
     `

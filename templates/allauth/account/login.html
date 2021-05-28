@@ -3,40 +3,40 @@
 {% block content %}
 {% load static %}
 
-
-{% include 'store/message.html' %}
-
-
-<p>
-    Please sign in with one
-    of your existing third party accounts. Or, <a href="/accounts/signup/">sign up</a>
-    for a Equipstat - Dev account and sign in below:</p>
-    <div class="socialaccount_ballot">
-      <ul class="socialaccount_providers">
-            <li>
-                <a title="Google" class="socialaccount_provider google" href="/accounts/google/login/?process=login">
-                    Google
-                </a>
-            </li>
-      </ul>
-    </div> 
-<form class="login" method="POST" action="/accounts/login/">
-    {% csrf_token %}
-    <p>
-        <label for="id_login">Username:</label> 
-        <input type="text" name="login" placeholder="Username" autocomplete="username" maxlength="150" required id="id_login">
-    </p>
-    <p>
-        <label for="id_password">Password:</label> 
-        <input type="password" name="password" placeholder="Password" autocomplete="current-password" required id="id_password">
-    </p>
-    <p>
-        <label for="id_remember">Remember Me:</label> 
-        <input type="checkbox" name="remember" id="id_remember">
-    </p>
-    <!-- <a class="button secondaryAction" href="/accounts/password/reset/">Forgot Password?</a> -->
-    <button class="primaryAction" type="submit">Sign In</button>
-</form>
+<div class="mx-auto mt-14 max-w-2xl">
+    <div class="px-3">
+        <h2 class="text-lg rounded-t px-4 py-3 text-center text-white bg-pallete-buttonPrimary lg:text-xl lg:tracking-wider">Log into your account</h2>
+    </div>
+    <div class="px-5 py-5 space-y-5 mx-3 border rounded-b">
+        <form action="{% url 'collect-user-data' %}" method="POST">
+            {% csrf_token %}
+            <div class="grid gap-y-3">
+                <div>
+                    <label class="sm:text-lg" for="id_login">Username:</label> 
+                    <input class="p-2 w-full rounded border border-gray-300 focus:outline-none focus:border-gray-400" type="text" name="login" placeholder="Username" autocomplete="username" maxlength="150" required id="id_login">
+                </div>
+                <div>
+                    <label class="sm:text-lg" for="id_password">Password:</label> 
+                    <input class="p-2 w-full rounded border border-gray-300 focus:outline-none focus:border-gray-400" type="password" name="password" placeholder="Password" autocomplete="current-password" required id="id_password">
+                </div>
+                <input type="hidden" name="type" value="seller">
+                <div class="grid justify-items-center">
+                    <input class="w-36 p-2 rounded cursor-pointer bg-pallete-buttonPrimary text-white font-medium text-xl" type="submit" value="Sign in">
+                </div>
+            </div>
+        </form>
+        <div class="flex items-center">
+            <div class="flex-grow bg bg-gray-300 h-0.5"></div>
+            <div class="flex-grow-0 mx-5 text dark:text-white">or</div>
+            <div class="flex-grow bg bg-gray-300 h-0.5"></div>
+         </div>
+        <div class="mx-auto grid items-center justify-items-center w-1/2 border p-2 bg-white transition-colors hover:bg-gray-200">
+            <a class="text-lg" title="Google" href="/accounts/google/login/?process=login">
+                <img class="inline w-8 mr-2" src="{% static '/images/google.png' %}">Sign in with Google
+            </a>
+        </div>
+    </div>
+</div>
     
 
 {% endblock %}

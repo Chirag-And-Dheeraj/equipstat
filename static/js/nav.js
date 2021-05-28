@@ -32,7 +32,5 @@ if(window.innerWidth <= 640) {
             mobRef.querySelector('img').classList.remove("transform", "rotate-180")
         }
     })
-}else {
-    hamburgur.remove()
 }
 

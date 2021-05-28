@@ -50,7 +50,7 @@
                 </a>
                 {% endif %}
             </div>
-            <div class="hamburgur cursor-pointer">
+            <div class="block sm:hidden hamburgur cursor-pointer">
                 <div class="bar-1"></div>
                 <div class="bar-2"></div>
                 <div class="bar-3"></div>
@@ -58,7 +58,7 @@
         </div>
         <ul class="navItems hidden text-lg">
             <li class="border-t px-3 py-2 hover:bg-gray-100">
-                <div class="mobNew flex justify-between">
+                <div class="mobNew flex justify-between cursor-pointer">
                     New
                     <img class="inline w-5" src="{% static '/images/chevron-down.svg' %}">
                 </div>
@@ -73,7 +73,7 @@
                 </div>
             </li>
             <li class="border-t px-3 py-2 hover:bg-gray-100">
-                <div class="mobRef flex justify-between">
+                <div class="mobRef flex justify-between cursor-pointer">
                     Refurbished<img class="inline w-5" src="{% static '/images/chevron-down.svg' %}">
                 </div>
                 <div class="hidden mobRefContent">

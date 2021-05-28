@@ -14,7 +14,8 @@ Our Price: {{ instrument.ourPrice }} <br>
 {% if instrument.inventory < 6 %}
 Only {{ instrument.inventory }} in stock! Buy Now!! <br>
 {% endif %}
-Details: {{ instrument.details }}
+Details: {{ instrument.details }} <br>
+<button class="update-cart" data-product="{{ instrument.id }}" data-action="add" >Plus</button>
 <br>
 <br>
 <hr>

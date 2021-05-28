@@ -1,0 +1,89 @@
+{% extends 'store/main.html' %}
+
+{% block content %}
+{% load static %}
+
+
+{% include 'store/message.html' %}
+
+<div class="grid grid-cols-12 grid-rows-6 justify-items-center items-center">
+    {% if order == 0 or order.get_cart_total == 0.00 %}
+        <div class="grid items-start col-start-5 col-end-9 row-start-1 row-span-4 p-5">
+            <img src="{% static '/images/empty_cart.svg' %}" alt="">
+            <h1 class="text-center">Your cart is empty, goto store and shop your requirments</h1>
+        </div>
+        <div class="col-start-2 col-end-4 row-start-1 row-span-1">
+            <a href="{% url 'instruments' %}" class=" bg-gray-500 text-black hover:text-white hover:bg-gray-800 px-3 py-2 rounded  border-b-4 border-gray-700 text-2xl hover:border-gray-500 focus:outline-none focus:shadow-myOutline">
+                &#x2190; Go to Store
+            </a>
+        </div>
+    {% else %}
+    <div class="row-start-1 row-span-1 col-start-5 col-end-9 text-center">
+        <h1 class="text-4xl font-black underline">{{ request.user.first_name }}'s cart</h1>
+    </div>
+    <div class="grid grid-rows-1 row-start-1 col-start-2 col-end-4">
+        <div class="row-start-1">
+            <a class=" bg-black text-white hover:text-white hover:bg-gray-800 px-3 py-3 rounded text-2xl focus:outline-none focus:shadow-myOutline" href="{% url 'instruments' %}">
+                &#x2190; Go to Store
+            </a>
+        </div>
+    </div>
+    <div class="card grid col-start-2 col-end-12 grid-cols-4 row-start-2 row-span-4 gap-5 p-5 mb-5">  
+                    <div class="grid items-center col-start-1 col-span-1">
+                        <h1 class="text-2xl font-extrabold capitalize">Product name</h1>
+                    </div>
+                    <div class="grid justify-items-center items-center col-start-2">
+                        <h1 class="text-2xl font-extrabold capitalize">Price</h1>
+                    </div>
+                    <div class="grid justify-items-center items-center col-start-3">
+                        <h1 class="text-2xl font-extrabold capitalize">Quantity</h1>
+                    </div>
+                    <div class="grid justify-items-center items-center col-start-4">
+                        <h1 class="text-2xl font-extrabold capitalize">Total</h1>
+                    </div>
+                    <hr class="col-span-4">
+                {% for item in items %}    
+                    <div class="grid items-center col-start-1 col-span-1">
+                        {{ item.product.name }}
+                    </div>
+                    <div class="grid justify-items-center items-center col-start-2">
+                        &#8377;{{ item.product.ourPrice|floatformat:2 }}
+                    </div>
+                    <div class="grid justify-items-center items-center col-start-3">
+                        <div class="flex flex-row justify-center">
+                            <button data-product="{{ item.product.id }}" data-action="remove" class="update-cart flex justify-center items-center focus:outline-none">
+                                <svg class="w-1/4 hover:bg-gray-600 rounded-full" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </button>
+                            <div class="flex justify-center items-center">{{ item.quantity }}</div>
+                            <button data-product="{{ item.product.id }}" data-action="add" class="update-cart flex justify-center items-center focus:outline-none">
+                                <svg class="w-1/4 hover:bg-gray-600 rounded-full" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="grid justify-items-center items-center col-start-4 col-end-5">
+                        &#8377;{{ item.get_total }}
+                    </div>
+                    <hr class="col-span-5">
+                {% endfor %}
+                <div class="grid justify-items-center col-start-4 col-end-5 p-5">
+                   <h1 class="font-extrabold text-3xl">&#8377;{{ order.get_cart_total | floatformat:2 }}/-</h1>
+                </div>
+    </div>
+    {% if order.complete == False and order.placed == True %}
+    <div class="grid justify-items-center row-start-1 col-start-10 col-end-12">
+        <h1>Please pickup your first order before placing next.</h1>
+    </div> 
+    {% else %}
+    <div class="grid justify-items-center row-start-1 col-start-10 col-end-12">
+        <a href="" class=" bg-black text-white hover:bg-gray-800 px-3  py-2 rounded text-2xl focus:outline-none focus:shadow-myOutline">Checkout &rarr;</a>
+    </div>
+    {% endif %}
+    {% endif %}
+</div>
+</div>
+
+{% endblock %}

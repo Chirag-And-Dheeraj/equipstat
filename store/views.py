@@ -260,3 +260,40 @@ def enlistLabcoats(request):
             return redirect('enlist')
     else:
         return redirect('enlist')
+
+
+
+@login_required(login_url='account_login')
+def updateItem(request):
+    data = json.loads(request.body)
+    productId = data['productId']
+    action = data['action']
+
+    print('Action: ' ,action)
+    print('ProductID: ',productId)
+
+    customer = request.user
+    product = Product.objects.get(id=productId)
+    order, created = Order.objects.get_or_create(customer=customer, complete=False, placed=False)
+    orderItem, created = OrderItem.objects.get_or_create(order=order, product=product)
+    if action == 'add':
+        orderItem.quantity = (orderItem.quantity + 1)
+    elif action == 'remove':
+        orderItem.quantity = (orderItem.quantity - 1)
+    orderItem.save()
+    if orderItem.quantity <= 0:
+        orderItem.delete()
+    return JsonResponse('Item was Added', safe=False)
+
+
+@login_required(login_url='account_login')
+def cart(request):
+    customer = request.user
+    try:
+        order = Order.objects.get(customer=customer, complete=False, placed=False)
+        items = order.orderitem_set.all()
+    except:
+        order = 0
+        items = []
+    context = {'items': items, 'order':order}
+    return render(request, 'store/cart.html', context)

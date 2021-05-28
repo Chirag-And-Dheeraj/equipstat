@@ -8,6 +8,7 @@ urlpatterns = [
     path('profile/', views.profile, name="profile"),
 	path('instruments/', views.instruments, name="instruments"),
 	path('calculators/', views.calculators, name="calculators"),
+    path('update-item/', views.updateItem, name="update-item"),
 	path('refurbished-instruments/', views.refurbishedInstruments, name="refurbished-instruments"),
 	path('refurbished-books/', views.refurbishedBooks, name="refurbished-books"),
 	path('refurbished-labcoats/', views.refurbishedLabcoats, name="refurbished-labcoats"),
@@ -16,5 +17,6 @@ urlpatterns = [
 	path('enlist/book', views.enlistBooks, name="enlist-books"),
     path('enlist/instrument', views.enlistInstruments, name="enlist-instruments"),
     path('enlist/labcoat', views.enlistLabcoats, name="enlist-labcoats"),
+    path('cart/', views.cart, name="cart"),
 ]
 

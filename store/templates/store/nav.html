@@ -1,3 +1,4 @@
+{% load static %}
 <header class="border-b">
     <nav>
         <div class="p-3 nav-content flex justify-between items-center">
@@ -8,7 +9,7 @@
                 <div class="w-28 relative inline-block cursor-pointer md:text-lg">
                     <div class="new">
                         New
-                        <img class="inline w-5" src="../static/images/chevron-down.svg">
+                        <img class="inline w-5" src="{% static '/images/chevron-down.svg' %}">
                     </div>
                     <div class="newList hidden mt-2 absolute right-0 bg-white border rounded z-10 p-2">
                         <a href="{% url 'calculators' %}" class="p-2 block text-black hover:underline">
@@ -22,7 +23,7 @@
                 <div class="w-34 relative inline-block cursor-pointer md:text-lg">
                     <div class="ref">
                         Refurbished
-                        <img class="inline w-5" src="../static/images/chevron-down.svg">
+                        <img class="inline w-5" src="{% static '/images/chevron-down.svg' %}">
                     </div>
                     <div class="refList hidden mt-2 absolute right-0 bg-white border rounded z-10 p-2">
                         <a href="{% url 'refurbished-books' %}" class="p-2 block text-black hover:underline">
@@ -44,7 +45,7 @@
                     Sign in
                 </a>
                 {% else %}
-                <a href="{% url 'account_logout' %}" class="bg-gray-200 rounded focus:outline-none p-2 text-lg cursor-pointer font-medium md:text-xl">
+                <a href="#" class="bg-gray-200 logout rounded focus:outline-none p-2 text-lg cursor-pointer font-medium md:text-xl">
                     Log out
                 </a>
                 {% endif %}
@@ -59,7 +60,7 @@
             <li class="border-t px-3 py-2 hover:bg-gray-100">
                 <div class="mobNew flex justify-between">
                     New
-                    <img class="inline w-5" src="../static/images/chevron-down.svg">
+                    <img class="inline w-5" src="{% static '/images/chevron-down.svg' %}">
                 </div>
                 <div class="hidden mobNewContent">
                     <a href="{% url 'calculators' %}" class="m-2 block text-black hover:underline">
@@ -73,7 +74,7 @@
             </li>
             <li class="border-t px-3 py-2 hover:bg-gray-100">
                 <div class="mobRef flex justify-between">
-                    Refurbished<img class="inline w-5" src="../static/images/chevron-down.svg">
+                    Refurbished<img class="inline w-5" src="{% static '/images/chevron-down.svg' %}">
                 </div>
                 <div class="hidden mobRefContent">
                     <a href="{% url 'refurbished-books' %}" class="m-2 block text-black hover:underline">
@@ -102,7 +103,7 @@
             </li>
             {% else %}
             <li class="border px-3 py-2">
-                <a class="block" href="{% url 'account_logout' %}">
+                <a class="block logout" href="#">
                     <i class="fa fa-sign-out mr-1"></i>&nbsp;Log out
                 </a>
             </li>

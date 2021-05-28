@@ -3,7 +3,7 @@
 {% block content %}
 {% load static %}
 
-<div class="mx-auto mt-14 max-w-2xl">
+<div class="mx-auto mt-14 mb-10 max-w-2xl">
     <div class="px-3">
         <h2 class="text-lg rounded-t px-4 py-3 text-center text-white bg-pallete-buttonPrimary lg:text-xl lg:tracking-wider">Log into your account</h2>
     </div>
@@ -30,9 +30,9 @@
             <div class="flex-grow-0 mx-5 text dark:text-white">or</div>
             <div class="flex-grow bg bg-gray-300 h-0.5"></div>
          </div>
-        <div class="mx-auto grid items-center justify-items-center w-1/2 border p-2 bg-white transition-colors hover:bg-gray-200">
-            <a class="text-lg" title="Google" href="/accounts/google/login/?process=login">
-                <img class="inline w-8 mr-2" src="{% static '/images/google.png' %}">Sign in with Google
+        <div class="rounded mx-auto grid items-center justify-items-center lg:w-1/2 border p-2 bg-white transition-colors hover:bg-gray-200">
+            <a class="sm:text-lg" title="Google" href="/accounts/google/login/?process=login">
+                <img class="inline w-6 sm:w-8 mr-2" src="{% static '/images/google.png' %}">Sign in with Google
             </a>
         </div>
     </div>

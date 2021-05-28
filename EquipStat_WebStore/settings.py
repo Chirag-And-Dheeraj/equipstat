@@ -28,7 +28,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'Optional default value')
 DEBUG = True
 
 ALLOWED_HOSTS = ['equipstat.herokuapp.com', 'equipstat2.herokuapp.com', '127.0.0.1',
-                 '192.168.1.196.nip.io', '192.168.0.100.nip.io', '192.168.0.104.nip.io', '192.168.0.103.nip.io', 'localhost', '192.168.43.154.nip.io']
+                 '192.168.1.196.nip.io', '192.168.0.100.nip.io', '192.168.0.104.nip.io', '192.168.0.103.nip.io', 'localhost', '192.168.43.154.nip.io', '192.168.0.105.nip.io']
 
 
 # Application definition
@@ -177,3 +177,5 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
+
+ACCOUNT_LOGOUT_REDIRECT_URL ="/"

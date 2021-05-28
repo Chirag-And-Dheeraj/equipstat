@@ -45,6 +45,9 @@
                     Sign in
                 </a>
                 {% else %}
+                <a href="{% url 'cart' %}" class="bg-gray-200 logout rounded focus:outline-none p-2 text-lg cursor-pointer font-medium md:text-xl">
+                    Cart
+                </a>
                 <a href="#" class="bg-gray-200 logout rounded focus:outline-none p-2 text-lg cursor-pointer font-medium md:text-xl">
                     Log out
                 </a>

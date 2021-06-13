@@ -6,16 +6,56 @@
 
 {% include 'store/message.html' %}
 
-<p>Already have an account? Then please <a href="/accounts/login/">sign in</a>.</p>
 
-<form class="signup" id="signup_form" method="post" action="/accounts/signup/">
-    <input type="hidden" name="csrfmiddlewaretoken" value="OhIhWUFhWrBaNwPdbbf5z6eY8m53fpx7QbD5GjXFJqQZN3vEqYloMwdzBhg1QTWu">
-    <p><label for="id_username">Username:</label> <input type="text" name="username" placeholder="Username" autocomplete="username" minlength="1" maxlength="150" required id="id_username"></p>
-    <p><label for="id_email">E-mail (optional):</label> <input type="email" name="email" placeholder="E-mail address" autocomplete="email" id="id_email"></p>
-    <p><label for="id_password1">Password:</label> <input type="password" name="password1" placeholder="Password" autocomplete="new-password" required id="id_password1"></p>
-    <p><label for="id_password2">Password (again):</label> <input type="password" name="password2" placeholder="Password (again)" required id="id_password2"></p>
-  
-  <button type="submit">Sign Up &raquo;</button>
-</form>
+
+<div class="mx-auto mt-14 mb-10 max-w-2xl">
+  <div class="px-3">
+      <h2 class="text-lg rounded-t px-4 py-3 text-center text-white bg-pallete-buttonPrimary lg:text-xl lg:tracking-wider">Sign up to create your account</h2>
+  </div>
+  <div class="px-5 py-5 space-y-5 mx-3 border rounded-b">
+      <form action="{% url 'collect-user-data' %}" method="POST">
+          {% csrf_token %}
+          <div class="grid gap-y-3">
+              <div>
+                  <label class="sm:text-lg" for="id_login">Username:</label> 
+                  <input class="p-2 w-full rounded border border-gray-300 focus:outline-none focus:border-gray-400" type="text" name="username" placeholder="John Doe" autocomplete="username" minlength="1" maxlength="150" required id="id_username">
+              </div>
+              <div>
+                <label class="sm:text-lg" for="id_email">Email Address:</label>
+                <input class="p-2 w-full rounded border border-gray-300 focus:outline-none focus:border-gray-400" type="email" name="email" placeholder="example@anything.com" autocomplete="email" id="id_email">
+              </div>
+              <div>
+                <label class="sm:text-lg" for="id_password1">Password:</label> 
+                <input class="p-2 w-full rounded border border-gray-300 focus:outline-none focus:border-gray-400" type="password" name="password1" placeholder="********" autocomplete="new-password" required id="id_password1">
+              </div>
+              <div>
+                <label class="sm:text-lg" for="id_password2">Password (again):</label>
+                <input class="p-2 w-full rounded border border-gray-300 focus:outline-none focus:border-gray-400" type="password" name="password2" placeholder="********" required id="id_password2">
+              </div>
+              <input type="hidden" name="type" value="seller">
+              <div class="grid justify-items-center">
+                  <input class="w-36 p-2 rounded cursor-pointer bg-pallete-buttonPrimary text-white font-medium text-xl" type="submit" value="Sign up">
+                  <div>
+                    Already have an account? 
+                    <a class="font-bold sm:text-lg hover:underline" href="/accounts/login/">
+                      sign in
+                    </a>
+                  </div>
+              </div>
+              
+          </div>
+      </form>
+      <div class="flex items-center">
+          <div class="flex-grow bg bg-gray-300 h-0.5"></div>
+          <div class="flex-grow-0 mx-5 text dark:text-white">or</div>
+          <div class="flex-grow bg bg-gray-300 h-0.5"></div>
+       </div>
+      <a href="/accounts/google/login/?process=login" class="rounded mx-auto grid items-center justify-items-center lg:w-1/2 border p-2 bg-white transition-colors hover:bg-gray-200">
+          <div class="sm:text-lg" title="Google">
+              <img class="inline w-6 sm:w-8 mr-2" src="{% static '/images/google.png' %}">Sign up with Google
+          </div>
+      </a>
+  </div>
+</div>
 
 {% endblock %}

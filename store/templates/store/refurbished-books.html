@@ -1,11 +1,7 @@
 {% extends 'store/main.html' %}
 {% block content %}
 {% load static %}
-<h1 class="text-black text-6xl font-main text-center">Refurbished Books</h1>
 
-<br>
-<br>
-<hr>
 {% for book in books %}
 <br>
 Name: {{ book.name }} <br>
@@ -14,11 +10,11 @@ Author: {{ book.author }} <br>
 Year of Publishing: {{ book.year_of_publishing }} <br>
 Seller: {{ book.seller.user.first_name }} {{ book.seller.user.last_name }} <br>
 Location: {{ book.seller.location }} <br>
-WhatsApp: <a
-    href="https://wa.me/91{{ book.seller.contact }}?text=Hi+{{ book.seller.user.first_name }}.+I+am+{{ request.user.first_name }}.+I+got+your+number+from+your+_{{ book.name }}_+Listing+on+*Equipstat*+and+I+would+like+to+talk+to+you+about+it."
-    target="_blank">{{ book.seller.user.first_name }}</a>
-<br>
-<br>
-<hr>
+WhatsApp: 
+<a href="https://wa.me/91{{ book.seller.contact }}?text=Hi+{{ book.seller.user.first_name }}.+I+am+{{ request.user.first_name }}.+I+got+your+number+from+your+_{{ book.name }}_+Listing+on+*Equipstat*+and+I+would+like+to+talk+to+you+about+it."
+target="_blank">
+    {{ book.seller.user.first_name }}
+</a>
+
 {% endfor %}
 {% endblock %}

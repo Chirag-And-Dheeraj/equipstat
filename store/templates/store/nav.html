@@ -7,7 +7,7 @@
             </a>
             <div class="hidden sm:block space-x-3">
                 <div class="w-28 relative inline-block cursor-pointer md:text-lg">
-                    <div class="new">
+                    <div class="new inline p-2 rounded transition-colors hover:bg-gray-200 border hover:border-gray-400">
                         New
                         <img class="inline w-5" src="{% static '/images/chevron-down.svg' %}">
                     </div>
@@ -21,7 +21,7 @@
                     </div>
                 </div>
                 <div class="w-34 relative inline-block cursor-pointer md:text-lg">
-                    <div class="ref">
+                    <div class="ref inline p-2 rounded transition-colors hover:bg-gray-200 border hover:border-gray-400">
                         Refurbished
                         <img class="inline w-5" src="{% static '/images/chevron-down.svg' %}">
                     </div>
@@ -45,7 +45,7 @@
                     Sign in
                 </a>
                 {% else %}
-                <a href="{% url 'cart' %}" class="bg-gray-200 logout rounded focus:outline-none p-2 text-lg cursor-pointer font-medium md:text-xl">
+                <a href="{% url 'cart' %}" class="bg-gray-200 rounded focus:outline-none p-2 text-lg cursor-pointer font-medium md:text-xl">
                     Cart
                 </a>
                 <a href="#" class="bg-gray-200 logout rounded focus:outline-none p-2 text-lg cursor-pointer font-medium md:text-xl">
@@ -105,6 +105,11 @@
                 </a>
             </li>
             {% else %}
+            <li class="border px-3 py-2">
+                <a class="block" href="{% url 'cart' %}">
+                    <i class="fa fa-shopping-cart mr-1"></i>&nbsp;My Cart
+                </a>
+            </li>
             <li class="border px-3 py-2">
                 <a class="block logout" href="#">
                     <i class="fa fa-sign-out mr-1"></i>&nbsp;Log out

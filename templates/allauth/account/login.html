@@ -13,11 +13,11 @@
             <div class="grid gap-y-3">
                 <div>
                     <label class="sm:text-lg" for="id_login">Username:</label> 
-                    <input class="p-2 w-full rounded border border-gray-300 focus:outline-none focus:border-gray-400" type="text" name="login" placeholder="Username" autocomplete="username" maxlength="150" required id="id_login">
+                    <input class="p-2 w-full rounded border border-gray-300 focus:outline-none focus:border-gray-400" type="text" name="login" placeholder="John Doe" autocomplete="username" maxlength="150" required id="id_login">
                 </div>
                 <div>
                     <label class="sm:text-lg" for="id_password">Password:</label> 
-                    <input class="p-2 w-full rounded border border-gray-300 focus:outline-none focus:border-gray-400" type="password" name="password" placeholder="Password" autocomplete="current-password" required id="id_password">
+                    <input class="p-2 w-full rounded border border-gray-300 focus:outline-none focus:border-gray-400" type="password" name="password" placeholder="********" autocomplete="current-password" required id="id_password">
                 </div>
                 <input type="hidden" name="type" value="seller">
                 <div class="grid justify-items-center">
@@ -30,11 +30,11 @@
             <div class="flex-grow-0 mx-5 text dark:text-white">or</div>
             <div class="flex-grow bg bg-gray-300 h-0.5"></div>
          </div>
-        <div class="rounded mx-auto grid items-center justify-items-center lg:w-1/2 border p-2 bg-white transition-colors hover:bg-gray-200">
-            <a class="sm:text-lg" title="Google" href="/accounts/google/login/?process=login">
+        <a href="/accounts/google/login/?process=login" class="rounded mx-auto grid items-center justify-items-center lg:w-1/2 border p-2 bg-white transition-colors hover:bg-gray-200">
+            <div class="sm:text-lg" title="Google">
                 <img class="inline w-6 sm:w-8 mr-2" src="{% static '/images/google.png' %}">Sign in with Google
-            </a>
-        </div>
+            </div>
+        </a>
     </div>
 </div>
     
